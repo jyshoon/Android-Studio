@@ -209,7 +209,7 @@
                     android:layout_centerHorizontal="@+id/abcd"
                     android:layout_centerVertical="@+id/abcd"
                     android:text="방만들기"
-                    android:textSize="40dp"
+                    android:textSize="30dp"
                     android:background="@drawable/bbb"/>
 
                 <Button
@@ -220,7 +220,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_centerInParent="@+id/createButton"
                     android:text="빠른입장"
-                    android:textSize="40dp"
+                    android:textSize="30dp"
                     android:background="@drawable/aaa"/>
             </LinearLayout>
         </LinearLayout>

@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class GamePlay extends AppCompatActivity {
 
     private TextView[] idTextView = new TextView[4];

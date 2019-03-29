@@ -163,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="86dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ccc"
+                    android:background="@drawable/buttonccc"
                     android:text="Search"
                     android:textSize="20dp" />
 
@@ -172,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="86dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ccc"
+                    android:background="@drawable/buttonccc"
                     android:text="friend"
                     android:textSize="20dp" />
 
@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="86dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ccc"
+                    android:background="@drawable/buttonccc"
                     android:text="System"
                     android:textSize="20dp" />
 
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="86dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ccc"
+                    android:background="@drawable/buttonccc"
                     android:text="OFF"
                     android:textSize="20dp" />
             </LinearLayout>
@@ -208,8 +208,9 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/neo" />
 
             <TextView
                 android:id="@+id/IDtext"
@@ -244,7 +245,7 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_margin="100dp"
-                        android:background="@drawable/bbb"
+                        android:background="@drawable/buttonbbb"
                         android:text="방만들기"
                         android:textSize="30dp" />
                 </LinearLayout>
@@ -260,7 +261,7 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:layout_margin="100dp"
-                        android:background="@drawable/aaa"
+                        android:background="@drawable/buttonaaa"
                         android:text="빠른입장"
                         android:textSize="30dp" />
 

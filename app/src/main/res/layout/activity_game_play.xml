@@ -107,7 +107,7 @@
                     android:onClick="onHintSendClicked"
                     android:text="hintSend"
                     android:textSize="30dp"
-                    android:background="@drawable/ccc"/>
+                    android:background="@drawable/buttonccc"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -153,7 +153,7 @@
                 android:id="@+id/user1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/neo" />
 
             <TextView
                 android:id="@+id/score0"
@@ -195,7 +195,7 @@
                 android:id="@+id/user2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/neo" />
 
             <TextView
                 android:id="@+id/score1"
@@ -237,7 +237,7 @@
                 android:id="@+id/user3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/neo" />
 
             <TextView
                 android:id="@+id/score2"
@@ -282,7 +282,7 @@
                 android:id="@+id/user4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/neo" />
 
             <TextView
                 android:id="@+id/score3"
@@ -318,7 +318,7 @@
             android:onClick="onEnterButtonClicked"
             android:text="Enter"
             android:textSize="30dp"
-            android:background="@drawable/aaa"/>
+            android:background="@drawable/buttonaaa"/>
 
     </LinearLayout>
 </TableLayout>

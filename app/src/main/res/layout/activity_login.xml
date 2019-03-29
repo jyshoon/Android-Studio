@@ -47,6 +47,6 @@
             android:onClick="onButton1Clicked"
             android:text="log in"
             android:textSize="20dp"
-            android:background="@drawable/aaa"/>
+            android:background="@drawable/buttonaaa"/>
     </LinearLayout>
 </LinearLayout>

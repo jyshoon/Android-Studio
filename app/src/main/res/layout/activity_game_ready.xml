@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/b" />
+                    app:srcCompat="@drawable/neo" />
 
                 <TextView
                     android:id="@+id/readyTextView0"
@@ -132,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/b" />
+                    app:srcCompat="@drawable/neo" />
 
                 <TextView
                     android:id="@+id/readyTextView1"
@@ -173,7 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/b" />
+                    app:srcCompat="@drawable/neo" />
 
                 <TextView
                     android:id="@+id/readyTextView2"
@@ -214,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/b" />
+                    app:srcCompat="@drawable/neo" />
 
                 <TextView
                     android:id="@+id/readyTextView3"

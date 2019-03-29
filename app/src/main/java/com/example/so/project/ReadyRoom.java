@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class ReadyRoom extends AppCompatActivity {
 
@@ -18,7 +20,8 @@ public class ReadyRoom extends AppCompatActivity {
 
         Intent intent = getIntent();
         myID = intent.getExtras().getString("id");
-
+        TextView Idtext = (TextView) findViewById(R.id.IDtext);
+        Idtext.setText(myID);
 
         Log.d("dd", myID);
 

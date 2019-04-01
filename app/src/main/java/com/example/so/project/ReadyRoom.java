@@ -34,7 +34,10 @@ public class ReadyRoom extends AppCompatActivity {
 
                 intent.putExtra("id",myID);
 
+
                 startActivity(intent);
+                Log.d("HHHHHHHHHHHHHHHH", myID);
+
             }
         });
     }

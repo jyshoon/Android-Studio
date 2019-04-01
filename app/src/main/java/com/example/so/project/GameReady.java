@@ -32,8 +32,8 @@ public class GameReady extends AppCompatActivity {
     private GameReadyMesgRecv recvThread;
 
     public Socket sock;
-    private String addr = "192.168.0.17".trim();
-    private int port = 8003;
+    private String addr = "192.168.0.16".trim();
+    private int port = 8006;
 
     private boolean isConnected = false;
 
@@ -47,6 +47,8 @@ public class GameReady extends AppCompatActivity {
 
         Intent intent = getIntent();
         myID = intent.getExtras().getString("id");
+
+        Log.d("GGGGGGGGGGGG", myID);
 
 
         idTextView[0] = (TextView)findViewById(R.id.id0);

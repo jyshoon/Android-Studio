@@ -259,7 +259,7 @@
                 android:onClick="onEnterClicked"
                 android:text="Enter"
                 android:textSize="30dp"
-                android:background="@drawable/aaa"/>
+                android:background="@drawable/buttonaaa"/>
 
             <Button
                 android:id="@+id/btn_GameReady"
@@ -270,7 +270,7 @@
                 android:onClick="onButtonGameReadyClicked"
                 android:text="준비"
                 android:textSize="30dp"
-                android:background="@drawable/ccc"/>
+                android:background="@drawable/buttonccc"/>
         </LinearLayout>
 
     </LinearLayout>

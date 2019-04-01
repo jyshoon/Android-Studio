@@ -38,12 +38,12 @@
         android:id="@+id/registe"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/buttonbbb"
         android:onClick="onButtonRegisterClicked"
         android:text="회원가입"
-        android:textSize="50dp"
-        android:background="@drawable/buttonbbb"/>
+        android:textSize="50dp" />
 
 
 </LinearLayout>

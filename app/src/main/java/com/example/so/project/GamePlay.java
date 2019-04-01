@@ -21,6 +21,8 @@ import java.net.Socket;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import android.os.CountDownTimer;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class GamePlay extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class GamePlay extends AppCompatActivity {
     private EditText chatText;
     private TextView roundView;
 
+    private TextView hintTimeView;
+
     private String myID;
     private int myNumber;
     private int stage;
@@ -42,6 +46,10 @@ public class GamePlay extends AppCompatActivity {
 
     private MessageHandler mesgHandler = null;
     private GamePlayMesgRecv recvThread = null;
+
+
+    private CountDownTimer mCountDownTimer;
+    private boolean isHintDialogOpen = false;
 
     private void initGamePlay () {
         // 초기화하는 함수
@@ -63,6 +71,7 @@ public class GamePlay extends AppCompatActivity {
 
         enterButton = (Button)findViewById(R.id.btnEnter);
 
+        hintTimeView = (TextView) findViewById(R.id.hintTimer);
 
         // Socket을 전역변수로부터 얻느다.
         sock = SocketSingleton.getSocket();
@@ -122,8 +131,13 @@ public class GamePlay extends AppCompatActivity {
         stage = 0;  // 0 단계 스테이지
 
 
+        isHintDialogOpen = true;
         showImg();
         // TODO: 3초 시간 관리 구현
+
+        //startTimer();
+        //while (isHintDialogOpen) ;
+
 
         // TODO: 힌트 View 활성화
 
@@ -153,7 +167,7 @@ public class GamePlay extends AppCompatActivity {
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout1));
+            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout));
             AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
 
             aDialog.setTitle("정답");
@@ -170,7 +184,7 @@ public class GamePlay extends AppCompatActivity {
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout2));
+            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout));
             AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
 
             aDialog.setTitle("정답");
@@ -197,6 +211,7 @@ public class GamePlay extends AppCompatActivity {
                     @Override
                     public void run(){
                         ad.dismiss();
+                        isHintDialogOpen = false;
                     }
                 };
                 Timer timer = new Timer();
@@ -324,6 +339,44 @@ public class GamePlay extends AppCompatActivity {
         sendMesg("P2S_SEND_HINT_LIST", stage + " " + hintStr);
 
     }
+
+    private long mTimeLeftInMillis = 20000;
+
+    private void showCountDownText () {
+        hintTimeView.setText(""+ mTimeLeftInMillis / 1000);
+    }
+
+    private void hintTimeOut () {
+        String hintStr = null;
+        hintStr = hintTextViews[stage][0].getText().toString();
+        hintStr += " " + hintTextViews[stage][1].getText().toString();
+        hintStr += " " + hintTextViews[stage][2].getText().toString();
+
+        sendMesg("P2S_SEND_HINT_LIST", stage + " " + hintStr);
+
+    }
+
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                showCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                hintTimeOut ();
+                //mTimerRunning = false;
+                //타이머리셋
+                //mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                //CountDownText();
+            }
+        }.start();
+        //mTimerRunning = true;
+    }
+
 
     public void onEnterButtonClicked(View v){
         sendGuessAnswer();

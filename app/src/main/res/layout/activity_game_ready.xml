@@ -28,13 +28,6 @@
             android:text="방이름"
             android:textSize="30dp"/>
 
-        <TextView
-            android:id="@+id/timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="20:00"
-            android:textSize="30dp"/>
 
         <TextView
             android:id="@+id/RoundView"

@@ -28,14 +28,14 @@ public class GameReady extends AppCompatActivity {
     private String myID;
     private int myNumber;
     private Button btnGameReady;
-    private ConnectThread connectThread;
+    //private ConnectThread connectThread;
     private GameReadyMesgRecv recvThread;
 
     public Socket sock;
-    private String addr = "192.168.0.16".trim();
-    private int port = 8006;
+    //private String addr = "192.168.0.16".trim();
+    //private int port = 8007;
 
-    private boolean isConnected = false;
+    //private boolean isConnected = false;
 
     private MessageHandler mesgHandler = null;
 
@@ -120,7 +120,7 @@ public class GameReady extends AppCompatActivity {
     }
 
 
-
+/*
     class ConnectThread extends Thread{
         String hostname;
         public ConnectThread(String addr){
@@ -156,7 +156,7 @@ public class GameReady extends AppCompatActivity {
             }
         }
     }
-
+*/
     private void sendMesg(String type, String data){
         GameMesgSender sendThread = new GameMesgSender(sock, type,data);
         sendThread.start();
@@ -164,10 +164,12 @@ public class GameReady extends AppCompatActivity {
 
     private void initNetwork(){
 
-        connectThread = new ConnectThread(addr);
-        connectThread.start();
+//        connectThread = new ConnectThread(addr);
+//        connectThread.start();
+//
+//        while(isConnected == false);
 
-        while(isConnected == false);
+        sock = SocketSingleton.getSocket();
 
         recvThread = new GameReadyMesgRecv(this);
         recvThread.start();

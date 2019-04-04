@@ -235,6 +235,9 @@ public class GameReady extends AppCompatActivity {
 
         idTextView[num].setText(ID);
 
+        Log.d("GGGGGGGGGGGG", ID + num+"");
+
+
     }
 
     public void setMessage(int number, String mesg){

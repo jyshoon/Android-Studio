@@ -64,11 +64,6 @@ public class GameReadyMesgRecv extends Thread{
                 break;
             }
 
-
-
-
-
-
         }
     }
 

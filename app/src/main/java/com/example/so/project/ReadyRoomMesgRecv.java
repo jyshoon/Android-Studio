@@ -24,6 +24,8 @@ public class ReadyRoomMesgRecv extends Thread{
     }
 
     public void run(){
+
+
         while(true){
             //메시지 받기
             String msg = null;

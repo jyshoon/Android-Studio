@@ -29,8 +29,8 @@ public class ReadyRoom extends AppCompatActivity {
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.0.16".trim();
-    private int port = 8009;
+    private String addr = "192.168.1.226".trim();
+    private int port = 8002;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -62,6 +62,8 @@ public class ReadyRoom extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),GameReady.class);
 
                 intent.putExtra("id",myID);
+
+                
 
 
                 startActivity(intent);

@@ -47,6 +47,9 @@ public class GamePlay extends AppCompatActivity {
     private MessageHandler mesgHandler = null;
     private GamePlayMesgRecv recvThread = null;
 
+    private long mTimeLeftInMillis = 20000;
+
+
 
     private CountDownTimer mCountDownTimer;
     private boolean isHintDialogOpen = false;
@@ -131,18 +134,19 @@ public class GamePlay extends AppCompatActivity {
         stage = 0;  // 0 단계 스테이지
 
 
-        isHintDialogOpen = true;
+        //isHintDialogOpen = true;
         showImg();
         // TODO: 3초 시간 관리 구현
 
-        //startTimer();
-        //while (isHintDialogOpen) ;
 
+        //while (isHintDialogOpen) ;
+        //startTimer();
 
         // TODO: 힌트 View 활성화
 
     }
     AlertDialog ad;
+
     private void showImg(){
         Random random = new Random();
         int answer = random.nextInt(2);
@@ -202,7 +206,29 @@ public class GamePlay extends AppCompatActivity {
         //일단 기린
         // TODO: 받은 정답에 따라 해당하는 이미지를 팝업창으로 띄워준다.
 
+        mTimeLeftInMillis = 5000;
+        mCountDownTimer = new HintCountDownTimer(this, ad, mTimeLeftInMillis, 1000);
+        mCountDownTimer.start();
 
+        /*
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+            }
+
+            @Override
+            public void onFinish() {
+               ad.dismiss();
+                //isHintDialogOpen = false;
+                Message sendmsg =  this.getHandler().obtainMessage();/////////////////////////////////////////////////
+                sendmsg.what = ReadyRoom.S2P_SEND_ROOM_LIST;                                                     //상수는 class 이름으로 일반적으로 한다
+                sendmsg.obj = msg;
+                readyRoom.getHandler().sendMessage(sendmsg);
+            }
+        }.start();
+        */
+/*
 
         Thread thread = new Thread(new Runnable(){
             @Override
@@ -219,6 +245,7 @@ public class GamePlay extends AppCompatActivity {
             }
         });
         thread.start();
+        */
     }
 
     private void showHintList(int stage, String []hintStrs){
@@ -246,6 +273,7 @@ public class GamePlay extends AppCompatActivity {
     public static final int S2P_RECV_GUESS_ANSWER = 203;
     public static final int S2P_CORRECT_ANSWER = 204;
     public static final int S2P_NEW_ROUND = 205;
+    public static final int HINT_TIME_OVER = 206;
 
 
     class MessageHandler extends Handler {
@@ -279,6 +307,9 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
                     setRound(roundNum);
+                    break;
+                case HINT_TIME_OVER:
+                    startTimer();
                     break;
             }
         }
@@ -340,7 +371,6 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    private long mTimeLeftInMillis = 20000;
 
     private void showCountDownText () {
         hintTimeView.setText(""+ mTimeLeftInMillis / 1000);
@@ -358,6 +388,7 @@ public class GamePlay extends AppCompatActivity {
 
 
     private void startTimer() {
+        mTimeLeftInMillis = 20000;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {

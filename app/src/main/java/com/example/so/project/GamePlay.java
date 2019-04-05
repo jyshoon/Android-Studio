@@ -210,42 +210,6 @@ public class GamePlay extends AppCompatActivity {
         mCountDownTimer = new HintCountDownTimer(this, ad, mTimeLeftInMillis, 1000);
         mCountDownTimer.start();
 
-        /*
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-            }
-
-            @Override
-            public void onFinish() {
-               ad.dismiss();
-                //isHintDialogOpen = false;
-                Message sendmsg =  this.getHandler().obtainMessage();/////////////////////////////////////////////////
-                sendmsg.what = ReadyRoom.S2P_SEND_ROOM_LIST;                                                     //상수는 class 이름으로 일반적으로 한다
-                sendmsg.obj = msg;
-                readyRoom.getHandler().sendMessage(sendmsg);
-            }
-        }.start();
-        */
-/*
-
-        Thread thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                TimerTask task = new TimerTask(){
-                    @Override
-                    public void run(){
-                        ad.dismiss();
-                        isHintDialogOpen = false;
-                    }
-                };
-                Timer timer = new Timer();
-                timer.schedule(task,3000);
-            }
-        });
-        thread.start();
-        */
     }
 
     private void showHintList(int stage, String []hintStrs){

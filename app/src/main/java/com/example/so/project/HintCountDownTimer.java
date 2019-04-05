@@ -12,8 +12,8 @@ public class HintCountDownTimer extends CountDownTimer {
     private AlertDialog ad;
     private long mTimeLeftInMillis = 5000;
 
-    public HintCountDownTimer (GamePlay gamePlay, AlertDialog ad, long a, int b) {
-        super(a, b);
+    public HintCountDownTimer (GamePlay gamePlay, AlertDialog ad, long millsLeft, int interval) {
+        super(millsLeft, interval);
         this.gamePlay = gamePlay;
         this.ad = ad;
     }

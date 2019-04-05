@@ -50,7 +50,7 @@ public class ReadyRoom extends AppCompatActivity {
         TextView Idtext = (TextView) findViewById(R.id.IDtext);
         Idtext.setText(myID);
         roomList= new ArrayList<String>();
-        listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,roomList);
+        listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, roomList);
 
         Log.d("dd", myID);
         roomText = (EditText)findViewById(R.id.roomText);

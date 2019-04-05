@@ -179,7 +179,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="100dp"
                         android:background="@drawable/buttonaaa"
-                        android:text="빠른입장"
+                        android:text="입장"
                         android:textSize="30dp" />
 
                 </LinearLayout>

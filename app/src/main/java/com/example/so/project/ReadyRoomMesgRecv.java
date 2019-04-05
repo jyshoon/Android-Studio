@@ -52,6 +52,25 @@ public class ReadyRoomMesgRecv extends Thread{
                 break;
             }
 
+            if(parsedStr[0].compareTo("S2P_ENTER_ROOM_FAIL") == 0){
+                Message sendmsg = readyRoom.getHandler().obtainMessage();/////////////////////////////////////////////////
+                sendmsg.what = ReadyRoom.S2P_ENTER_ROOM_FAIL;                                                     //상수는 class 이름으로 일반적으로 한다
+                readyRoom.getHandler().sendMessage(sendmsg);
+            }
+
+            if(parsedStr[0].compareTo("S2P_CREATE_ROOM_FAIL") == 0){
+                Message sendmsg = readyRoom.getHandler().obtainMessage();/////////////////////////////////////////////////
+                sendmsg.what = ReadyRoom.S2P_CREATE_ROOM_FAIL;                                                     //상수는 class 이름으로 일반적으로 한다
+                readyRoom.getHandler().sendMessage(sendmsg);
+            }
+
+            if(parsedStr[0].compareTo("S2P_CREATE_ROOM_OK") == 0){
+                Message sendmsg = readyRoom.getHandler().obtainMessage();/////////////////////////////////////////////////
+                sendmsg.what = ReadyRoom.S2P_CREATE_ROOM_OK;                                                     //상수는 class 이름으로 일반적으로 한다
+                readyRoom.getHandler().sendMessage(sendmsg);
+                break;
+            }
+
 /*
             if(parsedStr[0].compareTo("S2P_SEND_GAME_READY_CHAT")==0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();

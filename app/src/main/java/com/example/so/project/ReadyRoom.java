@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -30,10 +31,12 @@ public class ReadyRoom extends AppCompatActivity {
     private Socket sock;
     private boolean isConnected = false;
     private String addr = "192.168.0.16".trim();
-    private int port = 8007;
+    private int port = 8010;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
+
+    private String selectedRoomName = "";
 
     private EditText roomText;
 
@@ -60,7 +63,7 @@ public class ReadyRoom extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendMesg("P2S_ENTER_ROOM", "Room1");
+                sendMesg("P2S_ENTER_ROOM", selectedRoomName);
 
 
 
@@ -71,9 +74,9 @@ public class ReadyRoom extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    String roomname = roomText.getText().toString();
-                    roomList.add(roomname);
-                    listAdapter.notifyDataSetChanged();
+                selectedRoomName = roomText.getText().toString();
+                sendMesg("P2S_CREATE_ROOM", selectedRoomName);
+
             }
         });
 
@@ -82,9 +85,9 @@ public class ReadyRoom extends AppCompatActivity {
         roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("gggggg",position+" "+id);
-                String roomName = roomList.get(position);
-                Log.d("Room Number : " , roomName);
+
+                selectedRoomName = roomList.get(position);
+
             }
         });
 
@@ -125,8 +128,32 @@ public class ReadyRoom extends AppCompatActivity {
         Log.d("HHHHHHHHHHHHHHHH", myID);
     }
 
+    private void showRoomEnterFail ()
+    {
+        Toast.makeText(this, "Fail to enter room " + selectedRoomName, Toast.LENGTH_LONG).show();
+    }
+
+
+    private void createRoom () {
+
+        Intent intent = new Intent(getApplicationContext(),GameReady.class);
+        intent.putExtra("id",myID);
+
+        startActivity(intent);
+        Log.d("HHHHHHHHHHHHHHHH", myID);
+    }
+
+    private void createRoomFail ()
+    {
+        Toast.makeText(this, "Fail to create room " + selectedRoomName, Toast.LENGTH_LONG).show();
+    }
+
     public static final int S2P_SEND_ROOM_LIST = 300;
     public static final int S2P_ENTER_ROOM_OK = 301;
+    public static final int S2P_ENTER_ROOM_FAIL = 302;
+    public static final int S2P_CREATE_ROOM_OK = 303;
+    public static final int S2P_CREATE_ROOM_FAIL = 304;
+
 
     class MessageHandler extends Handler {
         public void handleMessage(Message msg){
@@ -139,6 +166,15 @@ public class ReadyRoom extends AppCompatActivity {
                     break;
                 case S2P_ENTER_ROOM_OK:
                     enterRoom ();
+                    break;
+                case S2P_ENTER_ROOM_FAIL:
+                    showRoomEnterFail ();
+                    break;
+                case S2P_CREATE_ROOM_OK:
+                    createRoom ();
+                    break;
+                case S2P_CREATE_ROOM_FAIL:
+                    createRoomFail ();
                     break;
                     /*
                 case S2P_START_GAME:

@@ -29,8 +29,8 @@ public class ReadyRoom extends AppCompatActivity {
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.1.226".trim();
-    private int port = 8002;
+    private String addr = "192.168.0.16".trim();
+    private int port = 8007;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -59,15 +59,10 @@ public class ReadyRoom extends AppCompatActivity {
         enterbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),GameReady.class);
 
-                intent.putExtra("id",myID);
-
-                
+                sendMesg("P2S_ENTER_ROOM", "Room1");
 
 
-                startActivity(intent);
-                Log.d("HHHHHHHHHHHHHHHH", myID);
 
             }
         });
@@ -120,7 +115,18 @@ public class ReadyRoom extends AppCompatActivity {
 
 
     }
+
+    private void enterRoom () {
+
+        Intent intent = new Intent(getApplicationContext(),GameReady.class);
+        intent.putExtra("id",myID);
+
+        startActivity(intent);
+        Log.d("HHHHHHHHHHHHHHHH", myID);
+    }
+
     public static final int S2P_SEND_ROOM_LIST = 300;
+    public static final int S2P_ENTER_ROOM_OK = 301;
 
     class MessageHandler extends Handler {
         public void handleMessage(Message msg){
@@ -130,6 +136,9 @@ public class ReadyRoom extends AppCompatActivity {
 
                 case S2P_SEND_ROOM_LIST:
                     recvRoomList ((String)msg.obj);
+                    break;
+                case S2P_ENTER_ROOM_OK:
+                    enterRoom ();
                     break;
                     /*
                 case S2P_START_GAME:

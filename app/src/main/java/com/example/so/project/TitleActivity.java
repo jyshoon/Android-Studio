@@ -22,7 +22,7 @@ public class TitleActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivityForResult(intent, REQUEST_CODE_LOGIN);
     }
-
+/////////////
     public void onButtonRegisterClicked(View v){
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivityForResult(intent, REQUEST_CODE_REGISTER);

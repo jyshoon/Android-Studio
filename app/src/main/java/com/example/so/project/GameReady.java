@@ -113,6 +113,8 @@ public class GameReady extends AppCompatActivity {
         args[1] = sendText.getText().toString();
 
         sendMesg("P2S_SEND_GAME_READY_CHAT", args);
+
+        sendText.setText("");
     }
 
 
@@ -251,8 +253,17 @@ public class GameReady extends AppCompatActivity {
 
     }
 
-    public void setMessage(int number, String mesg){
-        chatTextView[number].setText(mesg);
+    public void setMessage(final int number, String mesg){
+        final int num = number;
+        chatTextView[num].setText(mesg);
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                chatTextView[num].setText("");
+            }
+        };
+        timer.schedule(timerTask,1000);
     }
 
 }

@@ -137,6 +137,7 @@ public class GamePlay extends AppCompatActivity {
         args[0] = myNumber + "";
         args[1] = chatText.getText().toString();
         sendMesg("P2S_SEND_GUESS_ANSWER", args);
+        chatText.setText("");
     }
 
     private void showAnswer () {
@@ -401,6 +402,7 @@ public class GamePlay extends AppCompatActivity {
 
     public void onEnterButtonClicked(View v){
         sendGuessAnswer();
+
     }
 
 

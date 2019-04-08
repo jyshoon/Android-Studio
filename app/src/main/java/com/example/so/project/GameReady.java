@@ -110,7 +110,7 @@ public class GameReady extends AppCompatActivity {
     public void onEnterClicked(View v){
         String mesg;
         mesg = sendText.getText().toString();
-
+        sendText.setText("");
         sendMesg("P2S_SEND_GAME_READY_CHAT", myNumber+" "+mesg);
     }
 

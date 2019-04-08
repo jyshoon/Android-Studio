@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -242,6 +243,15 @@ public class GamePlay extends AppCompatActivity {
         roundView.setText("ROUND "+roundNum);
     }
 
+    private void endGame (HashMap<String, String> playerScoreMap)
+    {
+        String scores = "";
+        for (String key : playerScoreMap.keySet()) {
+            Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
     public static final int S2P_RECV_ANSWER = 200;
     public static final int S2P_RECV_HINT_READY = 201;
     public static final int S2P_RECV_HINT_LIST = 202;
@@ -249,6 +259,7 @@ public class GamePlay extends AppCompatActivity {
     public static final int S2P_CORRECT_ANSWER = 204;
     public static final int S2P_NEW_ROUND = 205;
     public static final int HINT_TIME_OVER = 206;
+    public static final int S2P_END_GAME = 207;
 
 
     class MessageHandler extends Handler {
@@ -285,6 +296,10 @@ public class GamePlay extends AppCompatActivity {
                     break;
                 case HINT_TIME_OVER:
                     startTimer();
+                    break;
+                case S2P_END_GAME:
+                    HashMap<String, String> playerScoreMap = (HashMap<String, String>)msg.obj;
+                    endGame (playerScoreMap);
                     break;
             }
         }

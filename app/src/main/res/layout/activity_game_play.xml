@@ -28,14 +28,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/roomnuber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="번호"
-                    android:textSize="30dp" />
-
-                <TextView
                     android:id="@+id/roomname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,16 +89,6 @@
                     android:textSize="25dp"
                     android:layout_width="wrap_content"/>
 
-                <Button
-                    android:id="@+id/hintSend"
-                    android:layout_width="50dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="0.7"
-                    android:layout_marginTop="5dp"
-                    android:onClick="onHintSendClicked"
-                    android:text="hintSend"
-                    android:textSize="30dp"
-                    android:background="@drawable/buttonccc"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class GamePlayMesgRecv extends Thread{
     private GamePlay gamePlay;
@@ -59,8 +60,7 @@ public class GamePlayMesgRecv extends Thread{
                 hintList[1] = parsedStr[3];
                 hintList[2] = parsedStr[4];
 
-//                String hintList = parsedStr[2] + " " + parsedStr[3] +
-//                            " " + parsedStr[4];
+
                 sendmsg.obj = hintList;
                 gamePlay.getHandler().sendMessage(sendmsg);
             }
@@ -91,7 +91,18 @@ public class GamePlayMesgRecv extends Thread{
                 gamePlay.getHandler().sendMessage(sendmsg);
             }
 
+            if(parsedStr[0].compareTo("S2P_END_GAME") == 0){
+                Message sendmsg = gamePlay.getHandler().obtainMessage();
+                sendmsg.what = GamePlay.S2P_END_GAME;
 
+                HashMap<String, String> playerScoreMap = new HashMap<String, String>();
+                for (int i = 1; i < parsedStr.length; i+=2)
+                    playerScoreMap.put(parsedStr[i], parsedStr[i+1]);
+
+                sendmsg.obj = playerScoreMap;
+
+                gamePlay.getHandler().sendMessage(sendmsg);
+            }
 
         }
     }

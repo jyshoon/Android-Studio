@@ -10,9 +10,23 @@ public class GameMesgSender extends Thread{
 
     Socket sock;
     String message;
+
+    public GameMesgSender (Socket s, String type) {
+        sock = s;
+        message = type;
+
+    }
     public GameMesgSender(Socket s, String type, String data){
         sock = s;
-        message = type + " " + data;
+        message = type + "####" + data;
+    }
+    public GameMesgSender (Socket s, String type, String[] args) {
+        sock = s;
+        message = type;
+        for (int i = 0; i < args.length; i++) {
+            message += "####" + args[i];
+        }
+
     }
 
     public void run(){

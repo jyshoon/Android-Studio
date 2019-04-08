@@ -108,10 +108,11 @@ public class GameReady extends AppCompatActivity {
     }
 
     public void onEnterClicked(View v){
-        String mesg;
-        mesg = sendText.getText().toString();
+        String args[] = new String[2];
+        args[0] = myNumber +"";
+        args[1] = sendText.getText().toString();
 
-        sendMesg("P2S_SEND_GAME_READY_CHAT", myNumber+" "+mesg);
+        sendMesg("P2S_SEND_GAME_READY_CHAT", args);
     }
 
 
@@ -160,6 +161,16 @@ public class GameReady extends AppCompatActivity {
     private void sendMesg(String type, String data){
         GameMesgSender sendThread = new GameMesgSender(sock, type,data);
         sendThread.start();
+    }
+
+    private void sendMesg (String type) {
+        GameMesgSender sendThread = new GameMesgSender (sock, type);
+        sendThread.start ();
+    }
+
+    private void sendMesg (String type, String[] args) {
+        GameMesgSender sendThread = new GameMesgSender (sock, type, args);
+        sendThread.start ();
     }
 
     private void initNetwork(){

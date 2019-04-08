@@ -33,7 +33,7 @@ public class GamePlayMesgRecv extends Thread{
                 e.printStackTrace();
             }
 
-            parsedStr = msg.split(" ");
+            parsedStr = msg.split("####");
 
             if(parsedStr[0].compareTo("S2P_RECV_ANSWER") == 0){
                 Message sendmsg = gamePlay.getHandler().obtainMessage();
@@ -54,8 +54,13 @@ public class GamePlayMesgRecv extends Thread{
                 Message sendmsg = gamePlay.getHandler().obtainMessage();
                 sendmsg.what = GamePlay.S2P_RECV_HINT_LIST;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
-                String hintList = parsedStr[2] + " " + parsedStr[3] +
-                            " " + parsedStr[4];
+                String[] hintList = new String[3];
+                hintList[0] = parsedStr[2];
+                hintList[1] = parsedStr[3];
+                hintList[2] = parsedStr[4];
+
+//                String hintList = parsedStr[2] + " " + parsedStr[3] +
+//                            " " + parsedStr[4];
                 sendmsg.obj = hintList;
                 gamePlay.getHandler().sendMessage(sendmsg);
             }
@@ -88,29 +93,6 @@ public class GamePlayMesgRecv extends Thread{
 
 
 
-
-
-
-
-
-
-            /*
-            if(parsedStr[0].compareTo("S2P_CLIENT_NUMBER") == 0){
-                Message sendmsg = gameReady.getHandler().obtainMessage();
-                sendmsg.what = GameReady.S2P_CLIENT_NUMBER;                                                     //상수는 class 이름으로 일반적으로 한다
-                sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
-                sendmsg.obj = parsedStr[2];
-
-                gameReady.getHandler().sendMessage(sendmsg);
-            }
-
-            if(parsedStr[0].compareTo("S2P_START_GAME")==0){
-                Message sendmsg = gameReady.getHandler().obtainMessage();
-                sendmsg.what = GameReady.S2P_START_GAME;
-                gameReady.getHandler().sendMessage(sendmsg);
-                break;
-            }
-            */
         }
     }
 

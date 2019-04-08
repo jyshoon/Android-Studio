@@ -30,8 +30,8 @@ public class ReadyRoom extends AppCompatActivity {
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.0.16".trim();
-    private int port = 8017;
+    private String addr = "192.168.0.5".trim();
+    private int port = 8003;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -63,8 +63,8 @@ public class ReadyRoom extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendMesg("P2S_ENTER_ROOM", selectedRoomName);
 
+                sendMesg("P2S_ENTER_ROOM", selectedRoomName);
 
 
             }
@@ -95,7 +95,7 @@ public class ReadyRoom extends AppCompatActivity {
         roomListRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMesg("P2S_REQ_ROOM_LIST", "");
+                sendMesg("P2S_REQ_ROOM_LIST");
             }
         });
 
@@ -105,7 +105,7 @@ public class ReadyRoom extends AppCompatActivity {
 
     private void recvRoomList (String mesg) {
         String[] parsedStr;
-        parsedStr = mesg.split(" ");
+        parsedStr = mesg.split("####");
 
         int roomNum = Integer.parseInt(parsedStr[1]);
 
@@ -217,8 +217,16 @@ public class ReadyRoom extends AppCompatActivity {
         }
     }
 
-    private void sendMesg(String type, String data){
-        GameMesgSender sendThread = new GameMesgSender(sock, type,data);
+    private void sendMesg (String type) {
+        GameMesgSender sendThread = new GameMesgSender(sock, type);
+        sendThread.start ();
+    }
+    private void sendMesg (String type, String data) {
+        GameMesgSender sendThread = new GameMesgSender(sock, type, data);
+        sendThread.start();
+    }
+    private void sendMesg(String type, String[] args){
+        GameMesgSender sendThread = new GameMesgSender(sock, type, args);
         sendThread.start();
     }
 
@@ -233,7 +241,7 @@ public class ReadyRoom extends AppCompatActivity {
         recvThread = new ReadyRoomMesgRecv(this);
         recvThread.start();
 
-        //sendMesg("P2S_CONNECT_CLIENT", myID);
+
 
     }
 }

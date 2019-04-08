@@ -86,7 +86,7 @@ public class GamePlay extends AppCompatActivity {
         recvThread = new GamePlayMesgRecv(this);
         recvThread.start();
 
-        sendMesg("P2S_READY_PLAY", "");
+        sendMesg("P2S_READY_PLAY");
     }
 
     @Override
@@ -117,15 +117,26 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
+    private void sendMesg (String type) {
+        GameMesgSender sendThread = new GameMesgSender(sock, type);
+        sendThread.start();
+    }
+
     private void sendMesg(String type, String data){
         GameMesgSender sendThread = new GameMesgSender(sock, type,data);
         sendThread.start();
     }
 
+    private void sendMesg (String type, String[] args) {
+        GameMesgSender sendThread = new GameMesgSender (sock, type, args);
+        sendThread.start ();
+    }
+
     private void sendGuessAnswer(){
-        String answer = chatText.getText().toString();
-        String data = myNumber + " " + answer;
-        sendMesg("P2S_SEND_GUESS_ANSWER", data);
+        String[] args = new String[2];
+        args[0] = myNumber + "";
+        args[1] = chatText.getText().toString();
+        sendMesg("P2S_SEND_GUESS_ANSWER", args);
     }
 
     private void showAnswer () {
@@ -254,9 +265,9 @@ public class GamePlay extends AppCompatActivity {
                     break;
                 case S2P_RECV_HINT_LIST:
                     int stage = msg.arg1;
-                    String hintList = (String)msg.obj;
-                    String[] hintStrs = hintList.split(" ");
-                    showHintList(stage, hintStrs);
+                    String[] hintList = (String[])msg.obj;
+                    //String[] hintStrs = hintList.split(" ");
+                    showHintList(stage, hintList);
                     break;
                 case S2P_RECV_GUESS_ANSWER:
                     int number = msg.arg1;
@@ -326,12 +337,20 @@ public class GamePlay extends AppCompatActivity {
 
     public void onHintSendClicked(View v)  {
         // 일단 Hint 보내는 것을 버튼 클릭으로 구현
-        String hintStr = null;
-        hintStr = hintTextViews[stage][0].getText().toString();
-        hintStr += " " + hintTextViews[stage][1].getText().toString();
-        hintStr += " " + hintTextViews[stage][2].getText().toString();
 
-        sendMesg("P2S_SEND_HINT_LIST", stage + " " + hintStr);
+        String[] args = new String[4];
+        args[0] = stage + "";
+        args[1] = hintTextViews[stage][0].getText().toString();
+        if (args[1].compareTo("") == 0)
+            args[1] = " ";
+        args[2] = hintTextViews[stage][1].getText().toString();
+        if (args[2].compareTo("") == 0)
+            args[2] = " ";
+        args[3] = hintTextViews[stage][2].getText().toString();
+        if (args[3].compareTo("") == 0)
+            args[3] = " ";
+
+        sendMesg("P2S_SEND_HINT_LIST", args);
 
     }
 
@@ -341,12 +360,19 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void hintTimeOut () {
-        String hintStr = null;
-        hintStr = hintTextViews[stage][0].getText().toString();
-        hintStr += " " + hintTextViews[stage][1].getText().toString();
-        hintStr += " " + hintTextViews[stage][2].getText().toString();
+        String[] args = new String[4];
+        args[0] = stage + "";
+        args[1] = hintTextViews[stage][0].getText().toString();
+        if (args[1].compareTo("") == 0)
+            args[1] = " ";
+        args[2] = hintTextViews[stage][1].getText().toString();
+        if (args[2].compareTo("") == 0)
+            args[2] = " ";
+        args[3] = hintTextViews[stage][2].getText().toString();
+        if (args[3].compareTo("") == 0)
+            args[3] = " ";
 
-        sendMesg("P2S_SEND_HINT_LIST", stage + " " + hintStr);
+        sendMesg("P2S_SEND_HINT_LIST", args);
 
     }
 

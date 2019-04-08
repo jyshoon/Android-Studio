@@ -37,7 +37,7 @@ public class GameReadyMesgRecv extends Thread{
                 e.printStackTrace();
             }
 
-            parsedStr = msg.split(" ");
+            parsedStr = msg.split("####");
 
             if(parsedStr[0].compareTo("S2P_CLIENT_NUMBER") == 0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();/////////////////////////////////////////////////

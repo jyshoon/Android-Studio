@@ -97,16 +97,6 @@
                     android:textSize="25dp"
                     android:layout_width="wrap_content"/>
 
-                <Button
-                    android:id="@+id/hintSend"
-                    android:layout_width="50dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="0.7"
-                    android:layout_marginTop="5dp"
-                    android:onClick="onHintSendClicked"
-                    android:text="hintSend"
-                    android:textSize="30dp"
-                    android:background="@drawable/buttonccc"/>
             </LinearLayout>
         </LinearLayout>
 

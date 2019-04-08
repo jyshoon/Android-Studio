@@ -324,16 +324,6 @@ public class GamePlay extends AppCompatActivity {
     };
 */
 
-    public void onHintSendClicked(View v)  {
-        // 일단 Hint 보내는 것을 버튼 클릭으로 구현
-        String hintStr = null;
-        hintStr = hintTextViews[stage][0].getText().toString();
-        hintStr += " " + hintTextViews[stage][1].getText().toString();
-        hintStr += " " + hintTextViews[stage][2].getText().toString();
-
-        sendMesg("P2S_SEND_HINT_LIST", stage + " " + hintStr);
-
-    }
 
 
     private void showCountDownText () {

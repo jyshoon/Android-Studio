@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="상어"
+        android:text="표범"
         android:gravity="center"
         android:textSize="50dp"
         android:textStyle="bold"/>
@@ -17,6 +17,6 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/shark" />
+        android:src="@drawable/z102" />
 
 </LinearLayout>

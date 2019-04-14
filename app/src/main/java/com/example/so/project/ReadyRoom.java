@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ReadyRoom extends AppCompatActivity {
 
@@ -101,6 +103,43 @@ public class ReadyRoom extends AppCompatActivity {
 
         mesgHandler = new MessageHandler();
         initNetwork ();
+
+//랜덤으로 레디룸 이미지(캐릭터) 띄우기 여기부터
+        Random r = new Random();
+        int answer = r.nextInt(5);
+        if (answer == 0) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c1);
+        }
+        if (answer == 1) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c2);
+
+        }
+        if (answer == 2) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c3);
+        }
+        if (answer == 3) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c4);
+        }
+        if (answer == 4) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c5);
+        }
+        if (answer == 5) {
+            ImageView test = (ImageView)findViewById(R.id.imageView);
+            test.setVisibility(View.VISIBLE);
+            test.setImageResource(R.drawable.c6);
+        }
+//랜덤으로 레디룸 이미지(캐릭터) 띄우기 여기까지
+
     }
 
     private void recvRoomList (String mesg) {

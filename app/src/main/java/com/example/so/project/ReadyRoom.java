@@ -32,8 +32,8 @@ public class ReadyRoom extends AppCompatActivity {
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.0.137".trim();
-    private int port = 8035;
+    private String addr = "192.168.0.26".trim();
+    private int port = 8005;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -51,9 +51,7 @@ public class ReadyRoom extends AppCompatActivity {
         setContentView(R.layout.activity_ready_room);
 
         Intent intent = getIntent();
-        myID = intent.getExtras().getString("id");
-        TextView Idtext = (TextView) findViewById(R.id.IDtext);
-        Idtext.setText(myID);
+
         roomList= new ArrayList<String>();
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, roomList);
 

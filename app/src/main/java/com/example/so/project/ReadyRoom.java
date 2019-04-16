@@ -27,13 +27,15 @@ public class ReadyRoom extends AppCompatActivity {
     String myID;
     ListView roomListView;
 
-    ArrayList<String> roomList;
-    ArrayAdapter<String> listAdapter;
+    //ArrayList<String> roomList;
+    //ArrayAdapter<String> listAdapter;
+    RoomListAdapter listAdapter;
+    ArrayList<RoomListItemData> roomList;
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.0.26".trim();
-    private int port = 8005;
+    private String addr = "192.168.0.5".trim();
+    private int port = 8007;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -52,9 +54,9 @@ public class ReadyRoom extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        roomList= new ArrayList<String>();
-        listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, roomList);
 
+
+        myID = intent.getExtras().getString("id");
         Log.d("dd", myID);
         roomText = (EditText)findViewById(R.id.roomText);
         Button enterbutton = (Button)findViewById(R.id.enterbutton);
@@ -80,7 +82,22 @@ public class ReadyRoom extends AppCompatActivity {
             }
         });
 
+
+        //roomList= new ArrayList<String>();
+        //listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, roomList);
+        roomList = new ArrayList<RoomListItemData>();
+        listAdapter = new RoomListAdapter(roomList);
+
         roomListView = (ListView)findViewById(R.id.roomListView);
+        roomListView.setAdapter(listAdapter);
+
+        roomList.add (new RoomListItemData("Room1", "1", "Wait"));
+        roomList.add (new RoomListItemData("Room2", "4", "Playing"));
+        roomList.add (new RoomListItemData("Room3", "3", "Wait"));
+
+
+        /*
+
         roomListView.setAdapter(listAdapter);
         roomListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,6 +107,8 @@ public class ReadyRoom extends AppCompatActivity {
 
             }
         });
+
+        */
 
         Button roomListRefresh = (Button)findViewById(R.id.roomListRefresh);
         roomListRefresh.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +167,8 @@ public class ReadyRoom extends AppCompatActivity {
 
         for (int i = 0; i < roomNum; i++) {
 
-            roomList.add(parsedStr[2+i]);
+            //roomList.add(parsedStr[2+i]);
+            roomList.add(new RoomListItemData(parsedStr[2+i], "1", "Waiting"));
         }
         listAdapter.notifyDataSetChanged();
 

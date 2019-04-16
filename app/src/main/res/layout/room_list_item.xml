@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="70"
+        android:layout_height="match_parent"
+        android:text="방이름"
+        android:id="@+id/roomListItemName"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="15"
+        android:layout_height="match_parent"
+        android:text="인원"
+        android:id="@+id/roomListItemCount"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="15"
+        android:layout_height="match_parent"
+        android:text="상태"
+        android:id="@+id/roomListItemStatus"/>
+
+
+</LinearLayout>

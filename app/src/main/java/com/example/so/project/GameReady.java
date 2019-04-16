@@ -1,6 +1,7 @@
 package com.example.so.project;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -253,17 +254,36 @@ public class GameReady extends AppCompatActivity {
 
     }
 
+    private Timer timer;
+    private ChatClearCountDownTimer chatClearCountDownTimer;
+
     public void setMessage(final int number, String mesg){
-        final int num = number;
-        chatTextView[num].setText(mesg);
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                chatTextView[num].setText("");
-            }
-        };
-        timer.schedule(timerTask,1000);
+
+        chatTextView[number].setText(mesg);
+
+        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], 2000, 1000);
+        chatClearCountDownTimer.start();
+
+    }
+
+
+    class ChatClearCountDownTimer extends CountDownTimer {
+        private TextView chatView;
+        private long mTimeLeftInMillis = 2000;
+
+        public ChatClearCountDownTimer (TextView _chatView, long millsLeft, int interval) {
+            super(millsLeft, interval);
+            chatView = _chatView;
+        }
+
+        public void onTick(long millisUntilFinished) {
+            mTimeLeftInMillis = millisUntilFinished;
+        }
+
+        @Override
+        public void onFinish() {
+            chatView.setText("");
+        }
     }
 
 }

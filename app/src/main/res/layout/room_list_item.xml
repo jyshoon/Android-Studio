@@ -9,6 +9,7 @@
         android:layout_weight="65"
         android:layout_height="match_parent"
         android:text="방이름"
+        android:textSize="30dp"
         android:id="@+id/roomListItemName"
         />
     <TextView
@@ -16,12 +17,14 @@
         android:layout_weight="15"
         android:layout_height="match_parent"
         android:text="인원"
+        android:textSize="30dp"
         android:id="@+id/roomListItemCount"/>
     <TextView
         android:layout_width="0dp"
         android:layout_weight="20"
         android:layout_height="match_parent"
         android:text="상태"
+        android:textSize="30dp"
         android:id="@+id/roomListItemStatus"/>
 
 

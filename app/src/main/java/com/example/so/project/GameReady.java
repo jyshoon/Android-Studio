@@ -266,7 +266,6 @@ public class GameReady extends AppCompatActivity {
 
     }
 
-
     class ChatClearCountDownTimer extends CountDownTimer {
         private TextView chatView;
         private long mTimeLeftInMillis = 2000;

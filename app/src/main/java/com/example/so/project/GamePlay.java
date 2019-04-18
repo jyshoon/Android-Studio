@@ -8,9 +8,10 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +22,6 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 import android.os.CountDownTimer;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,10 +37,12 @@ public class GamePlay extends AppCompatActivity {
     private TextView roundView;
 
     private TextView hintTimeView;
+    private TextView answerTimeView;
 
     private String myID;
     private int myNumber;
     private int stage;
+    private boolean isHostPlayer = false;
 
     private Socket sock;
     private String answer;
@@ -72,10 +74,23 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[0][0] = (EditText)findViewById(R.id.Hint_00);
         hintTextViews[0][1] = (EditText)findViewById(R.id.Hint_01);
         hintTextViews[0][2] = (EditText)findViewById(R.id.Hint_02);
+        //힌트추가생성
+        hintTextViews[1] = new  EditText[3];
+        hintTextViews[1][0] = (EditText)findViewById(R.id.Hint_03);
+        hintTextViews[1][1] = (EditText)findViewById(R.id.Hint_04);
+        hintTextViews[1][2] = (EditText)findViewById(R.id.Hint_05);
+        //엔터키 이벤트
+        hintTextViews[0][0].setOnKeyListener(new hintOnKeyListener());
+        hintTextViews[0][1].setOnKeyListener(new hintOnKeyListener());
+        hintTextViews[0][2].setOnKeyListener(new hintOnKeyListener());
+        hintTextViews[1][0].setOnKeyListener(new hintOnKeyListener());
+        hintTextViews[1][1].setOnKeyListener(new hintOnKeyListener());
+        hintTextViews[1][2].setOnKeyListener(new hintOnKeyListener());
 
         enterButton = (Button)findViewById(R.id.btnEnter);
 
         hintTimeView = (TextView) findViewById(R.id.hintTimer);
+        answerTimeView = (TextView) findViewById(R.id.hintTimer);
 
         // Socket을 전역변수로부터 얻느다.
         sock = SocketSingleton.getSocket();
@@ -434,10 +449,14 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[stage][0].setText(hintStrs[0]);
         hintTextViews[stage][1].setText(hintStrs[1]);
         hintTextViews[stage][2].setText(hintStrs[2]);
+
     }
 
     private void showGuessAnswer(int number, String guessAnswer){
         chatTextView[number].setText(guessAnswer);
+        hintTextViews[stage][0].setText(null);
+        hintTextViews[stage][1].setText(null);
+        hintTextViews[stage][2].setText(null);
     }
 
     private void showScore(int number, int score){
@@ -465,23 +484,37 @@ public class GamePlay extends AppCompatActivity {
     public static final int S2P_NEW_ROUND = 205;
     public static final int HINT_TIME_OVER = 206;
     public static final int S2P_END_GAME = 207;
+    public static final int S2P_RECV_HINT_LIST_END = 208;
+    public static  final int S2P_WRONG_ANSWER = 209;
+    public static final int S2P_NEW_STAGE = 210;
 
 
     class MessageHandler extends Handler {
         public void handleMessage(Message msg){
             super.handleMessage(msg);
+            String[] hintList;
+            int stage;
 
             switch(msg.what){
                 case S2P_RECV_ANSWER:
                     answer = (String)msg.obj;
+                    isHostPlayer = true;
                     showAnswer ();
                     break;
                 case S2P_RECV_HINT_READY:
                     Toast.makeText(getApplicationContext(),"hint ready",Toast.LENGTH_LONG).show();
                     break;
+                case S2P_RECV_HINT_LIST_END:
+                    stage = msg.arg1;
+                    hintList = (String[])msg.obj;
+                    //String[] hintStrs = hintList.split(" ");
+                    showHintList(stage, hintList);
+                    //문제푸는타이머적용
+                    startGuessAnswer();
+                    break;
                 case S2P_RECV_HINT_LIST:
-                    int stage = msg.arg1;
-                    String[] hintList = (String[])msg.obj;
+                    stage = msg.arg1;
+                    hintList = (String[])msg.obj;
                     //String[] hintStrs = hintList.split(" ");
                     showHintList(stage, hintList);
                     break;
@@ -498,14 +531,24 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
                     setRound(roundNum);
+                    chatText.setFocusable(true);
                     break;
                 case HINT_TIME_OVER:
-                    startTimer();
+                    HintstartTimer();
                     break;
                 case S2P_END_GAME:
                     HashMap<String, String> playerScoreMap = (HashMap<String, String>)msg.obj;
                     endGame (playerScoreMap);
                     break;
+                case S2P_WRONG_ANSWER:
+                    Toast.makeText(GamePlay.this, "WRONG ANSWER", Toast.LENGTH_SHORT).show();
+                    chatText.setFocusable(false);
+                    break;
+                case S2P_NEW_STAGE:
+                    startNewStage(msg.arg1);
+                    break;
+
+
             }
         }
     }
@@ -558,7 +601,7 @@ public class GamePlay extends AppCompatActivity {
     public void onHintSendClicked(View v)  {
         // 일단 Hint 보내는 것을 버튼 클릭으로 구현
 
-        String[] args = new String[4];
+        /*String[] args = new String[4];
         args[0] = stage + "";
         args[1] = hintTextViews[stage][0].getText().toString();
         if (args[1].compareTo("") == 0)
@@ -569,8 +612,17 @@ public class GamePlay extends AppCompatActivity {
         args[3] = hintTextViews[stage][2].getText().toString();
         if (args[3].compareTo("") == 0)
             args[3] = " ";
+        args[4] = hintTextViews[stage][3].getText().toString();
+        if (args[4].compareTo("") == 0)
+            args[4] = " ";
+        args[5] = hintTextViews[stage][4].getText().toString();
+        if (args[5].compareTo("") == 0)
+            args[5] = " ";
+        args[6] = hintTextViews[stage][5].getText().toString();
+        if (args[6].compareTo("") == 0)
+            args[6] = " ";*/
 
-        sendMesg("P2S_SEND_HINT_LIST", args);
+       // sendMesg("P2S_SEND_HINT_LIST", args);
 
     }
 
@@ -580,7 +632,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void hintTimeOut () {
-        String[] args = new String[4];
+        String[] args = new String[7];
         args[0] = stage + "";
         args[1] = hintTextViews[stage][0].getText().toString();
         if (args[1].compareTo("") == 0)
@@ -592,12 +644,35 @@ public class GamePlay extends AppCompatActivity {
         if (args[3].compareTo("") == 0)
             args[3] = " ";
 
-        sendMesg("P2S_SEND_HINT_LIST", args);
+        sendMesg("P2S_SEND_HINT_LIST_END", args);
 
     }
 
+    class hintOnKeyListener implements View.OnKeyListener{
+        @Override
+        public boolean onKey (View view, int KeyCode, KeyEvent event){
+            if(KeyCode == event.KEYCODE_ENTER){
+                //엔터키를 누르고 실행시키고자 하는 사항
+                String[] args = new String[7];
+                args[0] = stage + "";
+                args[1] = hintTextViews[stage][0].getText().toString();
+                if (args[1].compareTo("") == 0)
+                    args[1] = " ";
+                args[2] = hintTextViews[stage][1].getText().toString();
+                if (args[2].compareTo("") == 0)
+                    args[2] = " ";
+                args[3] = hintTextViews[stage][2].getText().toString();
+                if (args[3].compareTo("") == 0)
+                    args[3] = " ";
 
-    private void startTimer() {
+                sendMesg("P2S_SEND_HINT_LIST", args);
+            }
+            return false;
+        }
+    }
+
+
+    private void HintstartTimer() {
         mTimeLeftInMillis = 20000;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
@@ -609,41 +684,58 @@ public class GamePlay extends AppCompatActivity {
             @Override
             public void onFinish() {
                 hintTimeOut ();
-                //mTimerRunning = false;
-                //타이머리셋
-                //mTimeLeftInMillis = START_TIME_IN_MILLIS;
-                //CountDownText();
             }
         }.start();
         //mTimerRunning = true;
     }
 
 
-    public void onEnterButtonClicked(View v){
-        sendGuessAnswer();
+   /* private void AnswerstartTimer() {
+        mTimeLeftInMillis = 40000;
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                answerTimeView.setText(""+ mTimeLeftInMillis / 1000);
+            }
 
+            @Override
+            public void onFinish() {
+                //주어진 시간내에 문제를 풀지 못 했을 경우
+            }
+        }.start();
+    }*/
+
+    private void startGuessAnswer(){
+        mTimeLeftInMillis = 40000;
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                answerTimeView.setText(""+ mTimeLeftInMillis / 1000);
+            }
+
+            @Override
+            public void onFinish() {
+                //주어진 시간내에 문제를 풀지 못 했을 경우
+                if(isHostPlayer == true){
+                    sendMesg("P2S_ANSWER_TIME_OVER");
+                }
+            }
+        }.start();
     }
 
 
-    ////////채팅////////
-//    public void enterclicked(View v) throws InterruptedException {
-//        final TextView chat1 = (TextView) findViewById(R.id.chat1);
-//        EditText chattext = (EditText) findViewById(R.id.chattext);
-//        chat1.setVisibility(View.VISIBLE);
-//        chat1.setText(chattext.getText());
-//        Thread thread = new Thread(new Runnable(){
-//            @Override
-//            public void run(){
-//                TimerTask task = new TimerTask(){
-//                    @Override
-//                    public void run(){
-//                        chat1.setVisibility(View.INVISIBLE);
-//                    }
-//                };
-//                Timer timer = new Timer();
-//                timer.schedule(task,3000);
-//            }
-//        });
-//        thread.start();
-//    }
+    public void startNewStage(int newStage){
+        if(isHostPlayer == true){
+            여기부터 시작
+        }
+        else{
+
+        }
+    }
+
+    public void onEnterButtonClicked(View v){
+        sendGuessAnswer();
+    }
 }

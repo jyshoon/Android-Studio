@@ -29,12 +29,9 @@ public class GameReady extends AppCompatActivity {
     private String myID;
     private int myNumber;
     private Button btnGameReady;
-    //private ConnectThread connectThread;
     private GameReadyMesgRecv recvThread;
 
     public Socket sock;
-
-    //private boolean isConnected = false;
 
     private MessageHandler mesgHandler = null;
 
@@ -46,8 +43,6 @@ public class GameReady extends AppCompatActivity {
 
         Intent intent = getIntent();
         myID = intent.getExtras().getString("id");
-
-        Log.d("GGGGGGGGGGGG", myID);
 
 
         idTextView[0] = (TextView)findViewById(R.id.id0);

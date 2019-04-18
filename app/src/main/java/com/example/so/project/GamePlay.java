@@ -527,10 +527,13 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     int score = msg.arg2;
                     showScore(pnumber,score);
+                    if (isHostPlayer)
+                        isHostPlayer = false;
                     break;
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
                     setRound(roundNum);
+                    chatText.setFocusableInTouchMode(true);
                     chatText.setFocusable(true);
                     break;
                 case HINT_TIME_OVER:
@@ -632,7 +635,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void hintTimeOut () {
-        String[] args = new String[7];
+        String[] args = new String[4];
         args[0] = stage + "";
         args[1] = hintTextViews[stage][0].getText().toString();
         if (args[1].compareTo("") == 0)
@@ -653,7 +656,7 @@ public class GamePlay extends AppCompatActivity {
         public boolean onKey (View view, int KeyCode, KeyEvent event){
             if(KeyCode == event.KEYCODE_ENTER){
                 //엔터키를 누르고 실행시키고자 하는 사항
-                String[] args = new String[7];
+                String[] args = new String[4];
                 args[0] = stage + "";
                 args[1] = hintTextViews[stage][0].getText().toString();
                 if (args[1].compareTo("") == 0)
@@ -720,18 +723,25 @@ public class GamePlay extends AppCompatActivity {
                 //주어진 시간내에 문제를 풀지 못 했을 경우
                 if(isHostPlayer == true){
                     sendMesg("P2S_ANSWER_TIME_OVER");
+                    if (stage == 1) {
+                        isHostPlayer = false;
+                    }
                 }
+
             }
         }.start();
     }
 
 
     public void startNewStage(int newStage){
+        stage = newStage;
         if(isHostPlayer == true){
-            여기부터 시작
+            HintstartTimer();
         }
         else{
-
+            chatText.setFocusableInTouchMode(true);
+            chatText.setFocusable(true);
+            Toast.makeText(GamePlay.this, "Waitinf for Hint", Toast.LENGTH_SHORT).show();
         }
     }
 

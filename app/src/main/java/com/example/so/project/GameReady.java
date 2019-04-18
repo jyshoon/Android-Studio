@@ -33,8 +33,6 @@ public class GameReady extends AppCompatActivity {
     private GameReadyMesgRecv recvThread;
 
     public Socket sock;
-    //private String addr = "192.168.0.16".trim();
-    //private int port = 8007;
 
     //private boolean isConnected = false;
 

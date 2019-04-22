@@ -454,10 +454,7 @@ public class GamePlay extends AppCompatActivity {
 
     private void showGuessAnswer(int number, String guessAnswer){
         chatTextView[number].setText(guessAnswer);
-        hintTextViews[stage][0].setText(null);
-        hintTextViews[stage][1].setText(null);
-        hintTextViews[stage][2].setText(null);
-    }
+}
 
     private void showScore(int number, int score){
         scoreView[number].setText(score+"");
@@ -550,8 +547,6 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_NEW_STAGE:
                     startNewStage(msg.arg1);
                     break;
-
-
             }
         }
     }
@@ -559,76 +554,6 @@ public class GamePlay extends AppCompatActivity {
     public MessageHandler getHandler(){
         return mesgHandler;
     }
-
-/*
-    //'팝업창'클릭시 팝업 구현
-    OnClickListener mClickListener = new OnClickListener(){
-        AlertDialog ad;
-        @Override
-        public void onClick(View v) {
-                    Context mContext = getApplicationContext();
-                    LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-                    View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout));
-                    AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-                    aDialog.setTitle("정답");
-                    aDialog.setView(layout);
-                    aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                   ad = aDialog.create();
-                   ad.show();
-
-
-            Thread thread = new Thread(new Runnable(){
-                @Override
-                public void run(){
-                    TimerTask task = new TimerTask(){
-                        @Override
-                        public void run(){
-                            ad.dismiss();
-                        }
-                    };
-                    Timer timer = new Timer();
-                    timer.schedule(task,3000);
-                }
-            });
-            thread.start();
-        }
-    };
-*/
-
-    public void onHintSendClicked(View v)  {
-        // 일단 Hint 보내는 것을 버튼 클릭으로 구현
-
-        /*String[] args = new String[4];
-        args[0] = stage + "";
-        args[1] = hintTextViews[stage][0].getText().toString();
-        if (args[1].compareTo("") == 0)
-            args[1] = " ";
-        args[2] = hintTextViews[stage][1].getText().toString();
-        if (args[2].compareTo("") == 0)
-            args[2] = " ";
-        args[3] = hintTextViews[stage][2].getText().toString();
-        if (args[3].compareTo("") == 0)
-            args[3] = " ";
-        args[4] = hintTextViews[stage][3].getText().toString();
-        if (args[4].compareTo("") == 0)
-            args[4] = " ";
-        args[5] = hintTextViews[stage][4].getText().toString();
-        if (args[5].compareTo("") == 0)
-            args[5] = " ";
-        args[6] = hintTextViews[stage][5].getText().toString();
-        if (args[6].compareTo("") == 0)
-            args[6] = " ";*/
-
-       // sendMesg("P2S_SEND_HINT_LIST", args);
-
-    }
-
 
     private void showCountDownText () {
         hintTimeView.setText(""+ mTimeLeftInMillis / 1000);

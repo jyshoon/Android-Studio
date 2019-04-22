@@ -34,8 +34,8 @@ public class ReadyRoom extends AppCompatActivity {
 
     private Socket sock;
     private boolean isConnected = false;
-    private String addr = "192.168.0.9".trim();
-    private int port = 8003;
+    private String addr = "192.168.0.26".trim();
+    private int port = 8010;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -155,7 +155,7 @@ public class ReadyRoom extends AppCompatActivity {
         parsedStr = mesg.split("####");
 
         int roomNum = Integer.parseInt(parsedStr[1]);
-
+        roomList.clear();
         for (int i = 0; i < roomNum; i++) {
 
             //roomList.add(parsedStr[2+i]);

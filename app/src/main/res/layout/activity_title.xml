@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="컴퓨팅 사고력 향상을 위한"
-        android:textSize="30dp"
+        android:textSize="40dp"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="170dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,25 +25,25 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:onClick="onButtonLoginClicked"
         android:layout_marginTop="40dp"
         android:text="로그인"
-        android:textSize="50dp"
-        android:background="@drawable/buttonaaa"/>
+        android:textSize="40dp"
+        android:background="@drawable/rounded_corner_emptybackground"/>
 
     <Button
         android:id="@+id/registe"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="40dp"
-        android:background="@drawable/buttonbbb"
         android:onClick="onButtonRegisterClicked"
         android:text="회원가입"
-        android:textSize="50dp" />
+        android:textSize="40dp"
+        android:background="@drawable/rounded_corner_background"/>
 
 
 </LinearLayout>

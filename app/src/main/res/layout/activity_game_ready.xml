@@ -16,8 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
+            android:layout_margin="30dp"
             android:text="방이름"
-            android:textSize="30dp"/>
+            android:textSize="40dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="8"
+        android:layout_marginTop="10dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +59,8 @@
                     android:layout_height="wrap_content"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
 
                 <ImageView
                     android:id="@+id/user1character"
@@ -71,7 +74,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
 
             </LinearLayout>
 
@@ -100,7 +104,8 @@
                     android:layout_height="wrap_content"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
 
                 <ImageView
                     android:id="@+id/user2character"
@@ -114,7 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -141,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
 
                 <ImageView
                     android:id="@+id/user3character"
@@ -155,7 +162,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
             <LinearLayout
@@ -182,7 +190,8 @@
                     android:layout_height="wrap_content"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal" />
 
                 <ImageView
                     android:id="@+id/user4character"
@@ -196,7 +205,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:gravity="center_horizontal"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -214,6 +224,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             >
 
             <EditText
@@ -234,7 +246,7 @@
                 android:onClick="onEnterClicked"
                 android:text="Enter"
                 android:textSize="30dp"
-                android:background="@drawable/buttonaaa"/>
+                android:background="@drawable/rounded_corner_emptybackground"/>
 
             <Button
                 android:id="@+id/btn_GameReady"
@@ -245,7 +257,7 @@
                 android:onClick="onButtonGameReadyClicked"
                 android:text="준비"
                 android:textSize="30dp"
-                android:background="@drawable/buttonccc"/>
+                android:background="@drawable/rounded_corner_background"/>
         </LinearLayout>
 
     </LinearLayout>

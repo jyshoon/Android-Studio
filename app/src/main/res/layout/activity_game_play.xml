@@ -32,6 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
+                    android:layout_marginLeft="30dp"
                     android:text="방이름"
                     android:textSize="30dp" />
 
@@ -40,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="20"
+                    android:text="남은 시간"
                     android:textSize="30dp" />
 
 
@@ -317,7 +318,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <EditText
             android:id="@+id/chatText"
@@ -336,7 +339,7 @@
             android:onClick="onEnterButtonClicked"
             android:text="Enter"
             android:textSize="30dp"
-            android:background="@drawable/buttonaaa"/>
+            android:background="@drawable/rounded_corner_background"/>
 
     </LinearLayout>
 </TableLayout>

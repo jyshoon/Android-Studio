@@ -470,6 +470,13 @@ public class GamePlay extends AppCompatActivity {
         for (String key : playerScoreMap.keySet()) {
             Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
         }
+        hintTextViews[0][0].setText(" ");
+        hintTextViews[0][1].setText(" ");
+        hintTextViews[0][2].setText(" ");
+        hintTextViews[1][0].setText(" ");
+        hintTextViews[1][1].setText(" ");
+        hintTextViews[1][2].setText(" ");
+
 
     }
 
@@ -672,5 +679,38 @@ public class GamePlay extends AppCompatActivity {
 
     public void onEnterButtonClicked(View v){
         sendGuessAnswer();
+    }
+
+
+
+
+    private Timer timer;
+    private ChatClearCountDownTimer chatClearCountDownTimer;
+
+    public void setMessage(final int number, String mesg){
+
+        chatTextView[number].setText(mesg);
+
+        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], 2000, 1000);
+        chatClearCountDownTimer.start();
+
+    }
+    static class ChatClearCountDownTimer extends CountDownTimer {
+        private TextView chatView;
+        private long mTimeLeftInMillis = 2000;
+
+        public ChatClearCountDownTimer (TextView _chatView, long millsLeft, int interval) {
+            super(millsLeft, interval);
+            chatView = _chatView;
+        }
+
+        public void onTick(long millisUntilFinished) {
+            mTimeLeftInMillis = millisUntilFinished;
+        }
+
+        @Override
+        public void onFinish() {
+            chatView.setText("");
+        }
     }
 }

@@ -157,6 +157,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void showAnswer () {
+
         // 정답을 보여주고 3초간 시간 관리
 
         stage = 0;  // 0 단계 스테이지
@@ -164,13 +165,9 @@ public class GamePlay extends AppCompatActivity {
 
         //isHintDialogOpen = true;
         showImg();
-        // TODO: 3초 시간 관리 구현
-
 
         //while (isHintDialogOpen) ;
         //startTimer();
-
-        // TODO: 힌트 View 활성화
 
     }
     AlertDialog ad;
@@ -458,6 +455,15 @@ public class GamePlay extends AppCompatActivity {
 
     private void showScore(int number, int score){
         scoreView[number].setText(score+"");
+
+        //hintView 초기화
+        // @TODO : 현재는 맞췄을 경우 인데 틀렸을 경우에도 아래의 코드 넣어줘야함 // 태훈
+        hintTextViews[0][0].setText("");
+        hintTextViews[0][1].setText("");
+        hintTextViews[0][2].setText("");
+        hintTextViews[1][0].setText("");
+        hintTextViews[1][1].setText("");
+        hintTextViews[1][2].setText("");
     }
 
     private void setRound(int roundNum){
@@ -470,15 +476,9 @@ public class GamePlay extends AppCompatActivity {
         for (String key : playerScoreMap.keySet()) {
             Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
         }
-        hintTextViews[0][0].setText(" ");
-        hintTextViews[0][1].setText(" ");
-        hintTextViews[0][2].setText(" ");
-        hintTextViews[1][0].setText(" ");
-        hintTextViews[1][1].setText(" ");
-        hintTextViews[1][2].setText(" ");
-
 
     }
+
 
     public static final int S2P_RECV_ANSWER = 200;
     public static final int S2P_RECV_HINT_READY = 201;

@@ -177,9 +177,10 @@ public class GamePlay extends AppCompatActivity {
 
     private void showImg() {
 
-        Random r = new Random();
-        int answer = r.nextInt(14);
-        if (answer == 0) {
+//        Random r = new Random();
+//        int answer = r.nextInt(14);
+//        if (answer == 0) {
+        if (answer.compareTo("Giraffe") == 0) {
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -196,7 +197,8 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 1) {
+        //if (answer == 1) {
+        else if (answer.compareTo("Hedgehog") == 0) {
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -213,7 +215,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 2) {
+        //if (answer == 2) {
+        else if (answer.compareTo("Leopard") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -230,7 +234,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 3) {
+        //if (answer == 3) {
+        else if (answer.compareTo("Cat") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -247,7 +253,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 4) {
+        //if (answer == 4) {
+        else if (answer.compareTo("Raccon") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -264,7 +272,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 5) {
+        //if (answer == 5) {
+        else if (answer.compareTo("Lion") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -281,7 +291,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 6) {
+        //if (answer == 6) {
+        else if (answer.compareTo("Pigeon") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -298,7 +310,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 7) {
+        //if (answer == 7) {
+        else if (answer.compareTo("Rabbit") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -315,7 +329,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 8) {
+        //if (answer == 8) {
+        else if (answer.compareTo("Wolf") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -332,7 +348,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 9) {
+        //if (answer == 9) {
+        else if (answer.compareTo("Dog") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -349,7 +367,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 10) {
+        //if (answer == 10) {
+        else if (answer.compareTo("Smartphone") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -366,7 +386,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 11) {
+        //if (answer == 11) {
+        else if (answer.compareTo("Elephant") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -383,7 +405,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 12) {
+        //if (answer == 12) {
+        else if (answer.compareTo("Butterfly") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -400,7 +424,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 13) {
+        //if (answer == 13) {
+        else if (answer.compareTo("Strawberry") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -417,7 +443,9 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        if (answer == 14) {
+        //if (answer == 14) {
+        else if (answer.compareTo("Blueberry") == 0) {
+
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 

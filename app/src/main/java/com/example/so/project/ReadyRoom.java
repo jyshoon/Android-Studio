@@ -35,7 +35,7 @@ public class ReadyRoom extends AppCompatActivity {
     private Socket sock;
     private boolean isConnected = false;
     private String addr = "192.168.0.15".trim();
-    private int port = 8019;
+    private int port = 8021;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -64,11 +64,7 @@ public class ReadyRoom extends AppCompatActivity {
         enterbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 sendMesg("P2S_ENTER_ROOM", selectedRoomName);
-
-
             }
         });
 

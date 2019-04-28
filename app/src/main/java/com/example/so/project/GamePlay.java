@@ -507,6 +507,7 @@ public class GamePlay extends AppCompatActivity {
                     break;
                 case S2P_RECV_HINT_READY:
                     Toast.makeText(getApplicationContext(),"hint ready",Toast.LENGTH_LONG).show();
+                    HintstartTimer(25);
                     break;
                 case S2P_RECV_HINT_LIST_END:
                     stage = msg.arg1;
@@ -541,7 +542,7 @@ public class GamePlay extends AppCompatActivity {
                     chatText.setFocusable(true);
                     break;
                 case HINT_TIME_OVER:
-                    HintstartTimer();
+                    HintstartTimer(20);
                     break;
                 case S2P_END_GAME:
                     HashMap<String, String> playerScoreMap = (HashMap<String, String>)msg.obj;
@@ -607,20 +608,37 @@ public class GamePlay extends AppCompatActivity {
     }
 
 
-    private void HintstartTimer() {
-        mTimeLeftInMillis = 20000;
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                showCountDownText();
-            }
+    private void HintstartTimer(long timeLeftSec) {
+        if (isHostPlayer) {
+            mTimeLeftInMillis = timeLeftSec * 1000;
+            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mTimeLeftInMillis = millisUntilFinished;
+                    showCountDownText();
+                }
 
-            @Override
-            public void onFinish() {
-                hintTimeOut ();
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    hintTimeOut();
+                }
+            }.start();
+        }
+        else {
+            mTimeLeftInMillis = timeLeftSec * 1000;
+            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mTimeLeftInMillis = millisUntilFinished;
+                    showCountDownText();
+                }
+
+                @Override
+                public void onFinish() {
+                    //hintTimeOut();
+                }
+            }.start();
+        }
         //mTimerRunning = true;
     }
 
@@ -668,9 +686,10 @@ public class GamePlay extends AppCompatActivity {
     public void startNewStage(int newStage){
         stage = newStage;
         if(isHostPlayer == true){
-            HintstartTimer();
+            HintstartTimer(20);
         }
         else{
+            HintstartTimer(20);
             chatText.setFocusableInTouchMode(true);
             chatText.setFocusable(true);
             Toast.makeText(GamePlay.this, "Waitinf for Hint", Toast.LENGTH_SHORT).show();

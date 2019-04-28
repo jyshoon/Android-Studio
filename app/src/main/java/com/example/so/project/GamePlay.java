@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class GamePlay extends AppCompatActivity {
     private EditText[][] hintTextViews = new EditText[3][];
     private TextView[] chatTextView = new TextView[4];
     private TextView[] scoreView = new TextView[4];
+    private ImageView[] characterView = new ImageView[4];
 
     private Button enterButton;
     private EditText chatText;
@@ -42,6 +44,7 @@ public class GamePlay extends AppCompatActivity {
 
     private String myID;
     private int myNumber;
+    private int myImgResId;
     private int stage;
     private boolean isHostPlayer = false;
 
@@ -65,11 +68,36 @@ public class GamePlay extends AppCompatActivity {
         Intent intent = getIntent();
         myID = intent.getExtras().getString("myID");
         myNumber = intent.getIntExtra("myNum", -1);
+        myImgResId = intent.getIntExtra("myImgId", 0);
 
         idTextView[0].setText( intent.getExtras().getString("player0") );
         idTextView[1].setText( intent.getExtras().getString("player1") );
-        //idTextView[2].setText( intent.getExtras().getString("player2") );
-        //idTextView[3].setText( intent.getExtras().getString("player3") );
+        idTextView[2].setText( intent.getExtras().getString("player2") );
+        idTextView[3].setText( intent.getExtras().getString("player3") );
+
+
+        characterView[0] = (ImageView) findViewById(R.id.user1);
+        characterView[1] = (ImageView) findViewById(R.id.user2);
+        characterView[2] = (ImageView) findViewById(R.id.user3);
+        characterView[3] = (ImageView) findViewById(R.id.user4);
+        characterView[0].setTag ( intent.getExtras().getInt("player0ResId"));
+        characterView[1].setTag ( intent.getExtras().getInt("player1ResId"));
+        characterView[2].setTag ( intent.getExtras().getInt("player2ResId"));
+        characterView[3].setTag ( intent.getExtras().getInt("player3ResId"));
+
+        for (int i = 0; i < 4; i++) {
+            if ((Integer)characterView[i].getTag() != 0) {
+                characterView[i].setVisibility(View.VISIBLE);
+                characterView[i].setImageResource( (Integer)characterView[i].getTag() );
+            }
+            else
+                characterView[i].setVisibility(View.INVISIBLE);
+
+        }
+        //characterView[1].setImageResource ( intent.getExtras().getInt("player1ResId"));
+        //characterView[2].setImageResource ( intent.getExtras().getInt("player2ResId"));
+        //characterView[3].setImageResource ( intent.getExtras().getInt("player3ResId"));
+
 
         hintTextViews[0] = new  EditText[3];
         hintTextViews[0][0] = (EditText)findViewById(R.id.Hint_00);

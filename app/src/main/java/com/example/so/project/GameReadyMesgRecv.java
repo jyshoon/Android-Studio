@@ -43,6 +43,7 @@ public class GameReadyMesgRecv extends Thread{
                 Message sendmsg = gameReady.getHandler().obtainMessage();/////////////////////////////////////////////////
                 sendmsg.what = GameReady.S2P_CLIENT_NUMBER;                                                     //상수는 class 이름으로 일반적으로 한다
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
+                sendmsg.arg2 = Integer.parseInt(parsedStr[3]);
                 sendmsg.obj = parsedStr[2];
 
                 gameReady.getHandler().sendMessage(sendmsg);

@@ -36,7 +36,7 @@ public class ReadyRoom extends AppCompatActivity {
     private boolean isConnected = false;
 
     private String addr = "192.168.0.9".trim();
-    private int port = 8001;
+    private int port = 8004;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -44,6 +44,7 @@ public class ReadyRoom extends AppCompatActivity {
     private String selectedRoomName = "";
 
     private EditText roomText;
+    private int imgId = 0;
 
     Socket getSocket () {
         return sock;
@@ -111,40 +112,50 @@ public class ReadyRoom extends AppCompatActivity {
 
 //랜덤으로 레디룸 이미지(캐릭터) 띄우기 여기부터
         Random r = new Random();
-        int answer = r.nextInt(5);
-        if (answer == 0) {
+        int randNum = r.nextInt(5);
+
+        if (randNum == 0) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c1);
+            imgId = R.drawable.c1;
         }
-        if (answer == 1) {
+        if (randNum == 1) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c2);
+            imgId = R.drawable.c2;
 
         }
-        if (answer == 2) {
+        if (randNum == 2) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c3);
+            imgId = R.drawable.c3;
+
         }
-        if (answer == 3) {
+        if (randNum == 3) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c4);
+            imgId = R.drawable.c4;
+
         }
-        if (answer == 4) {
+        if (randNum == 4) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c5);
+            imgId = R.drawable.c5;
+
         }
-        if (answer == 5) {
+        if (randNum == 5) {
             ImageView test = (ImageView)findViewById(R.id.imageView);
             test.setVisibility(View.VISIBLE);
             test.setImageResource(R.drawable.c6);
+            imgId = R.drawable.c6;
+
         }
 //랜덤으로 레디룸 이미지(캐릭터) 띄우기 여기까지
-
     }
 
     private void recvRoomList (String mesg) {
@@ -169,6 +180,7 @@ public class ReadyRoom extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(),GameReady.class);
         intent.putExtra("id",myID);
+        intent.putExtra("imgId", imgId );
 
         startActivity(intent);
         Log.d("HHHHHHHHHHHHHHHH", myID);

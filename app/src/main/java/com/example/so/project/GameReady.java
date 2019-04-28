@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -25,8 +26,11 @@ public class GameReady extends AppCompatActivity {
     private TextView[] idTextView = new TextView[4];
     private TextView[] chatTextView = new TextView[4];
     private TextView[] readyTextView = new TextView[4];
+    private ImageView[] characterView = new ImageView[4];
+
     private EditText sendText;
     private String myID;
+    private int myImgId;
     private int myNumber;
     private Button btnGameReady;
     private GameReadyMesgRecv recvThread;
@@ -43,6 +47,9 @@ public class GameReady extends AppCompatActivity {
 
         Intent intent = getIntent();
         myID = intent.getExtras().getString("id");
+        myImgId = intent.getExtras().getInt("imgId");
+
+
 
 
         idTextView[0] = (TextView)findViewById(R.id.id0);
@@ -60,14 +67,22 @@ public class GameReady extends AppCompatActivity {
         readyTextView[2] = (TextView) findViewById(R.id.readyTextView2);
         readyTextView[3] = (TextView) findViewById(R.id.readyTextView3);
 
+        characterView[0] = (ImageView) findViewById(R.id.user1character);
+        characterView[1] = (ImageView) findViewById(R.id.user2character);
+        characterView[2] = (ImageView) findViewById(R.id.user3character);
+        characterView[3] = (ImageView) findViewById(R.id.user4character);
+        for (int i = 0; i < 4; i++) {
+            characterView[i].setVisibility(View.INVISIBLE);
+            characterView[i].setTag(0);
+        }
+
+
         sendText = (EditText)findViewById(R.id.sendTextView);
 
 
         btnGameReady = (Button)findViewById(R.id.btn_GameReady);
 
         mesgHandler = new MessageHandler();
-
-
 
         initNetwork();
 
@@ -181,7 +196,11 @@ public class GameReady extends AppCompatActivity {
         recvThread = new GameReadyMesgRecv(this);
         recvThread.start();
 
-        sendMesg("P2S_CONNECT_CLIENT", myID);
+        String args[] = new String[2];
+        args[0] = myID;
+        args[1] = myImgId + "";
+
+        sendMesg("P2S_CONNECT_CLIENT", args);
 
     }
 
@@ -200,7 +219,7 @@ public class GameReady extends AppCompatActivity {
 
             switch(msg.what){
                 case S2P_CLIENT_NUMBER:
-                    connectNewID(msg.arg1,(String)msg.obj);
+                    connectNewID(msg.arg1,(String)msg.obj, msg.arg2);
                     break;
                 case S2P_START_GAME:
                     startGame();
@@ -224,23 +243,30 @@ public class GameReady extends AppCompatActivity {
 
         intent.putExtra("myNum", myNumber);
         intent.putExtra("myID",myID);
+        intent.putExtra ("myResId", myImgId);
 
 
         intent.putExtra("player0",idTextView[0].getText().toString());
         intent.putExtra("player1",idTextView[1].getText().toString());
         intent.putExtra("player2",idTextView[2].getText().toString());                                //////////////////////////////////////////에러
-        //intent.putExtra("player3",idTextView[3].getText().toString());
-
+        intent.putExtra("player3",idTextView[3].getText().toString());
+        intent.putExtra("player0ResId", (Integer)characterView[0].getTag());
+        intent.putExtra("player1ResId", (Integer)characterView[1].getTag());
+        intent.putExtra("player2ResId", (Integer)characterView[2].getTag());
+        intent.putExtra("player3ResId", (Integer)characterView[3].getTag());
 
 
         startActivity(intent);
     }
 
-    public void connectNewID(int num, String ID){
+    public void connectNewID(int num, String ID, int resId){
         if(ID.compareTo(myID) == 0)
             myNumber = num;
 
         idTextView[num].setText(ID);
+        characterView[num].setVisibility(View.VISIBLE);
+        characterView[num].setImageResource (resId);
+        characterView[num].setTag(resId);
 
         Log.d("GGGGGGGGGGGG", ID + num+"");
 

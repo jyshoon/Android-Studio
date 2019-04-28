@@ -185,13 +185,13 @@
                     android:textSize="30dp"/>
 
                 <TextView
-                    android:id="@+id/id4"
+                    android:id="@+id/id3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="30dp"
-                    android:gravity="center_horizontal" />
+                    android:textSize="30dp" />
 
                 <ImageView
                     android:id="@+id/user4character"

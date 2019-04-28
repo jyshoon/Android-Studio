@@ -538,6 +538,7 @@ public class GamePlay extends AppCompatActivity {
                     if (isHostPlayer){
                         isHostPlayer = false;
                         chatText.setFocusable(true);
+                        chatText.setFocusableInTouchMode(true);
                     }
                     mCountDownTimer.cancel();
 
@@ -692,6 +693,7 @@ public class GamePlay extends AppCompatActivity {
                     if (stage == 1) {
                         isHostPlayer = false;
                         chatText.setFocusable(true);
+                        chatText.setFocusableInTouchMode(true);
                         // test
                     }
                 }
@@ -709,8 +711,9 @@ public class GamePlay extends AppCompatActivity {
         }
         else{
             HintstartTimer(20);
-            chatText.setFocusableInTouchMode(true);
+
             chatText.setFocusable(true);
+            chatText.setFocusableInTouchMode(true);
             Toast.makeText(GamePlay.this, "Waitinf for Hint", Toast.LENGTH_SHORT).show();
         }
     }

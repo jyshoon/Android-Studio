@@ -663,6 +663,7 @@ public class GamePlay extends AppCompatActivity {
                     if (stage == 1) {
                         isHostPlayer = false;
                         chatText.setFocusable(true);
+                        // test
                     }
                 }
 

@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import android.os.CountDownTimer;
-//////허건녕
+//////김태훈 branches
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class GamePlay extends AppCompatActivity {
 
@@ -449,9 +449,6 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    private void showGuessAnswer(int number, String guessAnswer){
-        chatTextView[number].setText(guessAnswer);
-}
 
     private void showScore(int number, int score){
         scoreView[number].setText(score+"");
@@ -706,17 +703,17 @@ public class GamePlay extends AppCompatActivity {
     private Timer timer;
     private ChatClearCountDownTimer chatClearCountDownTimer;
 
-    public void setMessage(final int number, String mesg){
+    public void showGuessAnswer(final int number, String mesg){
 
         chatTextView[number].setText(mesg);
 
-        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], 2000, 1000);
+        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], 5000, 1000);
         chatClearCountDownTimer.start();
 
     }
     static class ChatClearCountDownTimer extends CountDownTimer {
         private TextView chatView;
-        private long mTimeLeftInMillis = 2000;
+        private long mTimeLeftInMillis = 5000;
 
         public ChatClearCountDownTimer (TextView _chatView, long millsLeft, int interval) {
             super(millsLeft, interval);

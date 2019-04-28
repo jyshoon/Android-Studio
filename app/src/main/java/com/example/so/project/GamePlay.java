@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -534,6 +535,9 @@ public class GamePlay extends AppCompatActivity {
                     showScore(pnumber,score);
                     if (isHostPlayer)
                         isHostPlayer = false;
+
+                    mCountDownTimer.cancel();
+
                     break;
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
@@ -602,6 +606,7 @@ public class GamePlay extends AppCompatActivity {
                 if (args[3].compareTo("") == 0)
                     args[3] = " ";
 
+                Log.d("----> KHKim <---", view.getId() + "");
                 sendMesg("P2S_SEND_HINT_LIST", args);
             }
             return false;
@@ -688,6 +693,9 @@ public class GamePlay extends AppCompatActivity {
 
 
             }
+
+
+
         }.start();
     }
 

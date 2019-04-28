@@ -9,7 +9,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="코끼리"
+        android:text="코끼리 와 관련된 추상적인 단어
+
+        3가지를 20초안에 입력하세요"
         android:gravity="center"
         android:textSize="50dp"
         android:textStyle="bold"/>

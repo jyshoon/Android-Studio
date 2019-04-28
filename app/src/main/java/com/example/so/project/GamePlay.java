@@ -504,6 +504,7 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_RECV_ANSWER:
                     answer = (String)msg.obj;
                     isHostPlayer = true;
+                    chatText.setFocusable(false);
                     showAnswer ();
                     break;
                 case S2P_RECV_HINT_READY:
@@ -533,9 +534,11 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     int score = msg.arg2;
                     showScore(pnumber,score);
-                    if (isHostPlayer)
+                    Toast.makeText(GamePlay.this,idTextView[pnumber].getText().toString()+"가 문제를 맞췄습니다!",Toast.LENGTH_SHORT).show();
+                    if (isHostPlayer){
                         isHostPlayer = false;
-
+                        chatText.setFocusable(true);
+                    }
                     mCountDownTimer.cancel();
 
                     break;
@@ -688,14 +691,13 @@ public class GamePlay extends AppCompatActivity {
                     sendMesg("P2S_ANSWER_TIME_OVER");
                     if (stage == 1) {
                         isHostPlayer = false;
+                        chatText.setFocusable(true);
+                        // test
                     }
                 }
 
 
             }
-
-
-
         }.start();
     }
 

@@ -166,8 +166,10 @@ public class GamePlay extends AppCompatActivity {
         //isHintDialogOpen = true;
         showImg();
 
-        //while (isHintDialogOpen) ;
-        //startTimer();
+        //hintView 두번째 라인 비활성화
+        hintTextViews[1][0].setFocusable(false);
+        hintTextViews[1][1].setFocusable(false);
+        hintTextViews[1][2].setFocusable(false);
 
     }
     AlertDialog ad;
@@ -461,6 +463,7 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[1][0].setText("");
         hintTextViews[1][1].setText("");
         hintTextViews[1][2].setText("");
+
     }
 
     private void setRound(int roundNum){
@@ -565,6 +568,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void hintTimeOut () {
+
         String[] args = new String[4];
         args[0] = stage + "";
         args[1] = hintTextViews[stage][0].getText().toString();
@@ -669,11 +673,19 @@ public class GamePlay extends AppCompatActivity {
             public void onFinish() {
                 //주어진 시간내에 문제를 풀지 못 했을 경우
                 if(isHostPlayer == true){
+                    //hintView 두번째 라인 활성화
+                    hintTextViews[1][0].setFocusable(true);
+                    hintTextViews[1][1].setFocusable(true);
+                    hintTextViews[1][2].setFocusable(true);
+                    hintTextViews[1][0].setFocusableInTouchMode(true);
+                    hintTextViews[1][1].setFocusableInTouchMode(true);
+                    hintTextViews[1][2].setFocusableInTouchMode(true);
                     sendMesg("P2S_ANSWER_TIME_OVER");
                     if (stage == 1) {
                         isHostPlayer = false;
                     }
                 }
+
 
             }
         }.start();

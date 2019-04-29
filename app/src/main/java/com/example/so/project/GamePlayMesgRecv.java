@@ -92,7 +92,12 @@ public class GamePlayMesgRecv extends Thread{
                 Message sendmsg = gamePlay.getHandler().obtainMessage();
                 sendmsg.what = GamePlay.S2P_CORRECT_ANSWER;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
-                sendmsg.arg2 = Integer.parseInt(parsedStr[2]);
+
+                String[] scores = new String[gamePlay.getNumPlayer()];
+                for (int i = 0; i < gamePlay.getNumPlayer(); i++)
+                    scores[i] = parsedStr[i+2];
+
+                sendmsg.obj = scores;
 
                 gamePlay.getHandler().sendMessage(sendmsg);
             }

@@ -61,6 +61,7 @@ public class GameReadyMesgRecv extends Thread{
             if(parsedStr[0].compareTo("S2P_START_GAME")==0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();
                 sendmsg.what = GameReady.S2P_START_GAME;
+                sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 gameReady.getHandler().sendMessage(sendmsg);
                 break;
             }

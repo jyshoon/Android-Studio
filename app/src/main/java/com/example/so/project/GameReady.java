@@ -222,7 +222,7 @@ public class GameReady extends AppCompatActivity {
                     connectNewID(msg.arg1,(String)msg.obj, msg.arg2);
                     break;
                 case S2P_START_GAME:
-                    startGame();
+                    startGame(msg.arg1);
                     break;
                 case S2P_SEND_GAME_READY_CHAT:
                     setMessage(msg.arg1, (String)msg.obj);
@@ -238,12 +238,13 @@ public class GameReady extends AppCompatActivity {
 
 
 
-    private void startGame(){
+    private void startGame(int numPlayer){
         Intent intent = new Intent(getApplicationContext(),GamePlay.class);
 
         intent.putExtra("myNum", myNumber);
         intent.putExtra("myID",myID);
         intent.putExtra ("myResId", myImgId);
+        intent.putExtra ("numPlayer", numPlayer);
 
 
         intent.putExtra("player0",idTextView[0].getText().toString());

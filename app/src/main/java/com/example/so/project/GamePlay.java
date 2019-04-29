@@ -45,8 +45,10 @@ public class GamePlay extends AppCompatActivity {
     private String myID;
     private int myNumber;
     private int myImgResId;
+    private int numPlayer;
     private int stage;
     private boolean isHostPlayer = false;
+
 
     private Socket sock;
     private String answer;
@@ -61,6 +63,9 @@ public class GamePlay extends AppCompatActivity {
     private CountDownTimer mCountDownTimer;
     private boolean isHintDialogOpen = false;
 
+    public int getNumPlayer () {
+        return numPlayer;
+    }
     private void initGamePlay () {
         // 초기화하는 함수
 
@@ -69,6 +74,7 @@ public class GamePlay extends AppCompatActivity {
         myID = intent.getExtras().getString("myID");
         myNumber = intent.getIntExtra("myNum", -1);
         myImgResId = intent.getIntExtra("myImgId", 0);
+        numPlayer = intent.getIntExtra("numPlayer", 4);
 
         idTextView[0].setText( intent.getExtras().getString("player0") );
         idTextView[1].setText( intent.getExtras().getString("player1") );
@@ -160,6 +166,11 @@ public class GamePlay extends AppCompatActivity {
         // 초기화 하는 함수 호출
         initGamePlay();
 
+    }
+
+    @Override
+    public void onBackPressed () {
+        Toast.makeText(this, "One more back for exit.", Toast.LENGTH_SHORT).show ();
     }
 
     private void sendMesg (String type) {
@@ -509,8 +520,10 @@ public class GamePlay extends AppCompatActivity {
     }
 
 
-    private void showScore(int number, int score){
-        scoreView[number].setText(score+"");
+    //private void showScore(int number, int score){
+    private void showScore(String[] scores){
+        for (int i = 0; i < numPlayer; i++)
+            scoreView[i].setText(scores[i]);
 
         //hintView 초기화
         // @TODO : 현재는 맞췄을 경우 인데 틀렸을 경우에도 아래의 코드 넣어줘야함 // 태훈
@@ -587,9 +600,13 @@ public class GamePlay extends AppCompatActivity {
                     showGuessAnswer(number,guessAnswer);
                     break;
                 case S2P_CORRECT_ANSWER:
+                    /*
                     int pnumber = msg.arg1;
                     int score = msg.arg2;
-                    showScore(pnumber,score);
+                    */
+                    int pnumber = msg.arg1;
+                    String[] scores = (String[])msg.obj;
+                    showScore(scores);
                     Toast.makeText(GamePlay.this,idTextView[pnumber].getText().toString()+"가 문제를 맞췄습니다!",Toast.LENGTH_SHORT).show();
                     if (isHostPlayer){
                         isHostPlayer = false;
@@ -652,7 +669,7 @@ public class GamePlay extends AppCompatActivity {
     class hintOnKeyListener implements View.OnKeyListener{
         @Override
         public boolean onKey (View view, int KeyCode, KeyEvent event){
-            if(KeyCode == event.KEYCODE_ENTER){
+            if(KeyCode == event.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP){
                 //엔터키를 누르고 실행시키고자 하는 사항
                 String[] args = new String[4];
                 args[0] = stage + "";

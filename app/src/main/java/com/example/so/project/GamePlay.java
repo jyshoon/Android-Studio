@@ -122,6 +122,14 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[1][1].setOnKeyListener(new hintOnKeyListener());
         hintTextViews[1][2].setOnKeyListener(new hintOnKeyListener());
 
+        hintTextViews[0][0].setText("");
+        hintTextViews[0][1].setText("");
+        hintTextViews[0][2].setText("");
+        hintTextViews[1][0].setText("");
+        hintTextViews[1][1].setText("");
+        hintTextViews[1][2].setText("");
+
+
         enterButton = (Button)findViewById(R.id.btnEnter);
 
         hintTimeView = (TextView) findViewById(R.id.hintTimer);
@@ -669,7 +677,7 @@ public class GamePlay extends AppCompatActivity {
     class hintOnKeyListener implements View.OnKeyListener{
         @Override
         public boolean onKey (View view, int KeyCode, KeyEvent event){
-            if(KeyCode == event.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP){
+            if(KeyCode == event.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
                 //엔터키를 누르고 실행시키고자 하는 사항
                 String[] args = new String[4];
                 args[0] = stage + "";
@@ -683,7 +691,8 @@ public class GamePlay extends AppCompatActivity {
                 if (args[3].compareTo("") == 0)
                     args[3] = " ";
 
-                Log.d("----> KHKim <---", view.getId() + "");
+                Log.d ("-- KHKim --", "length = " + args.length + args[0] + "$" + args[1]
+                                + "$" + args[2] + "$" + args[3] + "$");
                 sendMesg("P2S_SEND_HINT_LIST", args);
             }
             return false;

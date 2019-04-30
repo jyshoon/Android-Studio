@@ -35,8 +35,8 @@ public class ReadyRoom extends AppCompatActivity {
     private Socket sock;
     private boolean isConnected = false;
 
-    private String addr = "192.168.0.26".trim();
-    private int port = 8001;
+    private String addr = "192.168.0.9".trim();
+    private int port = 8005;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -302,4 +302,10 @@ public class ReadyRoom extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed () {
+        Toast.makeText(this, "One more back for exit.", Toast.LENGTH_SHORT).show ();
+    }
+
 }

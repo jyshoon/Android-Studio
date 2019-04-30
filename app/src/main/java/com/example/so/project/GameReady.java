@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -302,6 +303,11 @@ public class GameReady extends AppCompatActivity {
         public void onFinish() {
             chatView.setText("");
         }
+    }
+
+    @Override
+    public void onBackPressed () {
+        Toast.makeText(this, "One more back for exit.", Toast.LENGTH_SHORT).show ();
     }
 
 }

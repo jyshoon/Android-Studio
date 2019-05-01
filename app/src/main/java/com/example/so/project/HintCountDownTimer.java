@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class HintCountDownTimer extends CountDownTimer {
     private GamePlay gamePlay;
@@ -20,6 +21,8 @@ public class HintCountDownTimer extends CountDownTimer {
 
     public void onTick(long millisUntilFinished) {
         mTimeLeftInMillis = millisUntilFinished;
+        Log.d ("KHKim ", "HintCountDown Timer tick ()");
+
     }
 
     @Override

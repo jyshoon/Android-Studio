@@ -60,7 +60,9 @@ public class GamePlay extends AppCompatActivity {
 
 
 
-    private CountDownTimer mCountDownTimer;
+    private SolvingTimer mCountDownTimer = null;
+    private CountDownTimer mHintTimer = null;
+
     private boolean isHintDialogOpen = false;
 
     public int getNumPlayer () {
@@ -215,9 +217,12 @@ public class GamePlay extends AppCompatActivity {
         showImg();
 
         //hintView 두번째 라인 비활성화
-        hintTextViews[1][0].setFocusable(false);
-        hintTextViews[1][1].setFocusable(false);
-        hintTextViews[1][2].setFocusable(false);
+        hintTextViews[0][0].setFocusable(true);
+        hintTextViews[0][1].setFocusable(true);
+        hintTextViews[0][2].setFocusable(true);
+        hintTextViews[0][0].setFocusableInTouchMode(true);
+        hintTextViews[0][1].setFocusableInTouchMode(true);
+        hintTextViews[0][2].setFocusableInTouchMode(true);
 
     }
     AlertDialog ad;
@@ -514,8 +519,9 @@ public class GamePlay extends AppCompatActivity {
         // TODO: 받은 정답에 따라 해당하는 이미지를 팝업창으로 띄워준다.
 
         mTimeLeftInMillis = 5000;
-        mCountDownTimer = new HintCountDownTimer(this, ad, mTimeLeftInMillis, 1000);
-        mCountDownTimer.start();
+        mHintTimer = new HintCountDownTimer(this, ad, mTimeLeftInMillis, 1000);
+        mHintTimer.start();
+
 
     }
 
@@ -571,6 +577,21 @@ public class GamePlay extends AppCompatActivity {
     public static  final int S2P_WRONG_ANSWER = 209;
     public static final int S2P_NEW_STAGE = 210;
 
+    private void clearHintViews () {
+        hintTextViews[0][0].setText("");
+        hintTextViews[0][1].setText("");
+        hintTextViews[0][2].setText("");
+        hintTextViews[1][0].setText("");
+        hintTextViews[1][1].setText("");
+        hintTextViews[1][2].setText("");
+
+        hintTextViews[0][0].setFocusable(false);
+        hintTextViews[0][1].setFocusable(false);
+        hintTextViews[0][2].setFocusable(false);
+        hintTextViews[1][0].setFocusable(false);
+        hintTextViews[1][1].setFocusable(false);
+        hintTextViews[1][2].setFocusable(false);
+    }
 
     class MessageHandler extends Handler {
         public void handleMessage(Message msg){
@@ -580,12 +601,32 @@ public class GamePlay extends AppCompatActivity {
 
             switch(msg.what){
                 case S2P_RECV_ANSWER:
+                    if (mCountDownTimer != null) {
+                        mCountDownTimer.stop();
+                        mCountDownTimer = null;
+                    }
+                    clearHintViews ();
+                    hintTextViews[0][0].setFocusable(true);
+                    hintTextViews[0][1].setFocusable(true);
+                    hintTextViews[0][2].setFocusable(true);
+                    hintTextViews[0][0].setFocusableInTouchMode(true);
+                    hintTextViews[0][1].setFocusableInTouchMode(true);
+                    hintTextViews[0][2].setFocusableInTouchMode(true);
                     answer = (String)msg.obj;
                     isHostPlayer = true;
                     chatText.setFocusable(false);
                     showAnswer ();
                     break;
                 case S2P_RECV_HINT_READY:
+                    if (mCountDownTimer != null) {
+                        mCountDownTimer.stop();
+                        mCountDownTimer = null;
+                    }
+                    clearHintViews ();
+
+                    chatText.setFocusable(true);
+                    chatText.setFocusableInTouchMode(true);
+
                     Toast.makeText(getApplicationContext(),"hint ready",Toast.LENGTH_LONG).show();
                     HintstartTimer(25);
                     break;
@@ -595,6 +636,7 @@ public class GamePlay extends AppCompatActivity {
                     //String[] hintStrs = hintList.split(" ");
                     showHintList(stage, hintList);
                     //문제푸는타이머적용
+                    Log.d ("KHKim ", "S2P_RECV_HINT_LIST_END  --- ");
                     startGuessAnswer();
                     break;
                 case S2P_RECV_HINT_LIST:
@@ -607,6 +649,11 @@ public class GamePlay extends AppCompatActivity {
                     int number = msg.arg1;
                     String guessAnswer = (String)msg.obj;
                     showGuessAnswer(number,guessAnswer);
+
+                    if (msg.arg2 == myNumber) {
+                        Toast.makeText(GamePlay.this, "WRONG ANSWER", Toast.LENGTH_SHORT).show();
+                        chatText.setFocusable(false);
+                    }
                     break;
                 case S2P_CORRECT_ANSWER:
                     /*
@@ -622,7 +669,11 @@ public class GamePlay extends AppCompatActivity {
                         chatText.setFocusable(true);
                         chatText.setFocusableInTouchMode(true);
                     }
-                    mCountDownTimer.cancel();
+
+                    if (mCountDownTimer != null) {
+                        mCountDownTimer.stop();
+                        mCountDownTimer = null;
+                    }
 
                     break;
                 case S2P_NEW_ROUND:
@@ -630,6 +681,10 @@ public class GamePlay extends AppCompatActivity {
                     setRound(roundNum);
                     chatText.setFocusableInTouchMode(true);
                     chatText.setFocusable(true);
+                    if (mCountDownTimer != null) {
+                        mCountDownTimer.stop();
+                        mCountDownTimer = null;
+                    }
                     break;
                 case HINT_TIME_OVER:
                     HintstartTimer(20);
@@ -643,6 +698,11 @@ public class GamePlay extends AppCompatActivity {
                     chatText.setFocusable(false);
                     break;
                 case S2P_NEW_STAGE:
+                    if (mCountDownTimer != null) {
+                        Log.d("--> KHKim <--", "cancel mCountDownTimer");
+                        mCountDownTimer.stop();
+                        mCountDownTimer = null;
+                    }
                     startNewStage(msg.arg1);
                     break;
             }
@@ -704,26 +764,31 @@ public class GamePlay extends AppCompatActivity {
     private void HintstartTimer(long timeLeftSec) {
         if (isHostPlayer) {
             mTimeLeftInMillis = timeLeftSec * 1000;
-            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            mHintTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     mTimeLeftInMillis = millisUntilFinished;
                     showCountDownText();
+                    Log.d ("KHKim ", "Hintstart Timer tick ()");
+
                 }
 
                 @Override
                 public void onFinish() {
+                    Log.d ("KHKim ", "Hintstart Timer stopped...");
                     hintTimeOut();
                 }
             }.start();
         }
         else {
             mTimeLeftInMillis = timeLeftSec * 1000;
-            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            mHintTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     mTimeLeftInMillis = millisUntilFinished;
                     showCountDownText();
+                    Log.d ("KHKim ", "Hintstart Timer else tick ()");
+
                 }
 
                 @Override
@@ -752,7 +817,53 @@ public class GamePlay extends AppCompatActivity {
         }.start();
     }*/
 
+    private class SolvingTimer extends CountDownTimer {
+        private long millsecLeft = 40000;
+        public SolvingTimer (long secLeft, long interval) {
+            super(secLeft * 1000, interval);
+            millsecLeft = secLeft * 1000;
+            Log.d ("KHKim ", "Solving Timer is created....................");
+        }
+
+        public void onTick(long millisUntilFinished) {
+            millsecLeft = millisUntilFinished;
+            answerTimeView.setText(""+ millsecLeft / 1000);
+
+
+            Log.d ("KHKim ", "Solving tick ()");
+        }
+
+        public void onFinish() {
+            //주어진 시간내에 문제를 풀지 못 했을 경우
+            if(isHostPlayer == true){
+                //hintView 두번째 라인 활성화
+                hintTextViews[1][0].setFocusable(true);
+                hintTextViews[1][1].setFocusable(true);
+                hintTextViews[1][2].setFocusable(true);
+                hintTextViews[1][0].setFocusableInTouchMode(true);
+                hintTextViews[1][1].setFocusableInTouchMode(true);
+                hintTextViews[1][2].setFocusableInTouchMode(true);
+                sendMesg("P2S_ANSWER_TIME_OVER");
+                if (stage == 1) {
+                    isHostPlayer = false;
+                    chatText.setFocusable(true);
+                    chatText.setFocusableInTouchMode(true);
+                    // test
+                }
+            }
+        }
+
+        public void stop () {
+            Log.d ("KHKim ", "Solving timer     stopped........");
+            super.cancel();
+        }
+    }
+
     private void startGuessAnswer(){
+        mCountDownTimer = new SolvingTimer(40, 1000);
+        mCountDownTimer.start();
+
+        /*
         mTimeLeftInMillis = 40000;
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
@@ -783,14 +894,25 @@ public class GamePlay extends AppCompatActivity {
 
 
             }
-        }.start();
+        };
+
+        mCountDownTimer.start();
+        */
     }
 
 
     public void startNewStage(int newStage){
         stage = newStage;
+
+
         if(isHostPlayer == true){
             HintstartTimer(20);
+            hintTextViews[stage][0].setFocusable(true);
+            hintTextViews[stage][1].setFocusable(true);
+            hintTextViews[stage][2].setFocusable(true);
+            hintTextViews[stage][0].setFocusableInTouchMode(true);
+            hintTextViews[stage][1].setFocusableInTouchMode(true);
+            hintTextViews[stage][2].setFocusableInTouchMode(true);
         }
         else{
             HintstartTimer(20);
@@ -830,6 +952,7 @@ public class GamePlay extends AppCompatActivity {
 
         public void onTick(long millisUntilFinished) {
             mTimeLeftInMillis = millisUntilFinished;
+            Log.d ("KHKim ", "ChatClear tick ()");
         }
 
         @Override

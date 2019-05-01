@@ -84,6 +84,7 @@ public class GamePlayMesgRecv extends Thread{
                 sendmsg.what = GamePlay.S2P_RECV_GUESS_ANSWER;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 sendmsg.obj = parsedStr[2];
+                sendmsg.arg2 = Integer.parseInt(parsedStr[3]);
 
                 gamePlay.getHandler().sendMessage(sendmsg);
             }

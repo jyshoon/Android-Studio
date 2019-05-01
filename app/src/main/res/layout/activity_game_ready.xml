@@ -50,7 +50,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/chatbubble"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="30dp"/>
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/chatbubble"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="30dp"
                     />
 
@@ -138,7 +138,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/chatbubble"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="30dp"/>
 
                 <TextView
@@ -181,7 +181,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/chatbubble"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="30dp"/>
 
                 <TextView

@@ -136,14 +136,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginBottom="10dp"
         android:layout_weight="4">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_margin="10dp">
@@ -158,7 +158,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/chatbubble"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:textSize="30dp"/>
 
             <TextView
@@ -185,7 +185,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_margin="10dp">
@@ -200,7 +200,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/chatbubble"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:textSize="30dp"/>
 
             <TextView
@@ -226,7 +226,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_margin="10dp">
@@ -241,7 +241,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/chatbubble"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:textSize="30dp"/>
 
             <TextView
@@ -269,7 +269,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_margin="10dp"
@@ -286,7 +286,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/chatbubble"
                 android:gravity="center"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:textSize="30dp" />
 
             <TextView

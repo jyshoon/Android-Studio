@@ -38,7 +38,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/user1chat"
+                android:id="@+id/user0chat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

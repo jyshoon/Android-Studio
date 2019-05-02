@@ -34,8 +34,6 @@ public class ReadyRoom extends AppCompatActivity {
     private Socket sock;
     private boolean isConnected = false;
 
-    //private String addr = "192.168.0.26".trim();
-   // private int port = 8003;
     private Intent intent = getIntent();
 
     //private String addr = intent.getExtras().getString("ip").trim();

@@ -35,8 +35,8 @@ public class ReadyRoom extends AppCompatActivity {
     private Socket sock;
     private boolean isConnected = false;
 
-    private String addr = "192.168.1.226".trim();
-    private int port = 8000;
+    private String addr = "192.168.0.21".trim();
+    private int port = 8008;
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;

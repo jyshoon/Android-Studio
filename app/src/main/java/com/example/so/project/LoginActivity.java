@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("ip",myIP.getText().toString());
                 Log.d("ip넘김확인",myIP.getText().toString());
 
-                intent.putExtra("port",myPort.getText());
+                intent.putExtra("port",myPort.getText().toString());
                 Log.d("port넘김확인",myPort.getText().toString());
 
 

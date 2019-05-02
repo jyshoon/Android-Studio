@@ -37,8 +37,12 @@ public class ReadyRoom extends AppCompatActivity {
     //private String addr = "192.168.0.26".trim();
    // private int port = 8003;
     private Intent intent = getIntent();
-    private String addr = intent.getExtras().getString("ip").trim();
-    private int port = (Integer)intent.getExtras().getInt("port");
+
+    //private String addr = intent.getExtras().getString("ip").trim();
+    //private int port = (Integer)intent.getExtras().getInt("port");
+    private String addr = null;
+    private int port;
+
     private ConnectThread connectThread;
     private ReadyRoomMesgRecv recvThread;
     private MessageHandler mesgHandler;
@@ -56,9 +60,12 @@ public class ReadyRoom extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ready_room);
 
-        //Intent intent = getIntent();
+        Intent intent = getIntent();
 
         myID = intent.getExtras().getString("id");
+        addr = intent.getExtras().getString("ip").trim();
+        port = Integer.parseInt(intent.getExtras().getString("port").trim());
+
         Log.d("dd", myID);
         roomText = (EditText)findViewById(R.id.roomText);
         Button enterbutton = (Button)findViewById(R.id.enterbutton);

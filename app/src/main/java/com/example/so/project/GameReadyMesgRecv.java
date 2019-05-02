@@ -45,7 +45,6 @@ public class GameReadyMesgRecv extends Thread{
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 sendmsg.arg2 = Integer.parseInt(parsedStr[3]);
                 sendmsg.obj = parsedStr[2];
-
                 gameReady.getHandler().sendMessage(sendmsg);
             }
 
@@ -54,7 +53,6 @@ public class GameReadyMesgRecv extends Thread{
                 sendmsg.what = GameReady.S2P_SEND_GAME_READY_CHAT;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 sendmsg.obj = parsedStr[2];
-
                 gameReady.getHandler().sendMessage(sendmsg);
             }
 
@@ -64,6 +62,13 @@ public class GameReadyMesgRecv extends Thread{
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 gameReady.getHandler().sendMessage(sendmsg);
                 break;
+            }
+
+            if(parsedStr[0].compareTo("S2P_PLAYER_GAME_READY")==0){
+                Message sendmsg = gameReady.getHandler().obtainMessage();
+                sendmsg.what = GameReady.S2P_PLAYER_GAME_READY;
+                sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
+                gameReady.getHandler().sendMessage(sendmsg);
             }
 
         }

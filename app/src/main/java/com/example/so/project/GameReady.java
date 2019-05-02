@@ -211,6 +211,7 @@ public class GameReady extends AppCompatActivity {
     public static final int S2P_CLIENT_NUMBER = 100;
     public static final int S2P_START_GAME = 101;
     public static final int S2P_SEND_GAME_READY_CHAT = 102;
+    public static final int S2P_PLAYER_GAME_READY = 103;
 
 
 
@@ -227,6 +228,10 @@ public class GameReady extends AppCompatActivity {
                     break;
                 case S2P_SEND_GAME_READY_CHAT:
                     setMessage(msg.arg1, (String)msg.obj);
+                    break;
+                case S2P_PLAYER_GAME_READY:
+                    setReady(msg.arg1);
+                    Toast.makeText(getApplicationContext(),"ddddddddddffffffffffffff",Toast.LENGTH_LONG ).show();
                     break;
             }
         }
@@ -285,6 +290,11 @@ public class GameReady extends AppCompatActivity {
         chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number],ChatClearCountDownTimer.CHAT, 2000, 1000);
         chatClearCountDownTimer.start();
 
+    }
+
+    public void setReady(int number){
+        readyTextView[number].setText("준비완료");
+        Toast.makeText(getApplicationContext(),"dddddddddd",Toast.LENGTH_LONG ).show();
     }
 
     @Override

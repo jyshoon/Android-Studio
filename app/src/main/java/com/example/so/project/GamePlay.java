@@ -628,6 +628,9 @@ public class GamePlay extends AppCompatActivity {
                     chatText.setFocusableInTouchMode(true);
 
                     Toast.makeText(getApplicationContext(),"hint ready",Toast.LENGTH_LONG).show();
+                    Log.d("KHKim ", "HintstarTimer in S2P_RECV_HINT_READY");
+
+                    isHostPlayer = false;
                     HintstartTimer(25);
                     break;
                 case S2P_RECV_HINT_LIST_END:
@@ -650,9 +653,13 @@ public class GamePlay extends AppCompatActivity {
                     String guessAnswer = (String)msg.obj;
                     showGuessAnswer(number,guessAnswer);
 
-                    if (msg.arg2 == myNumber) {
-                        Toast.makeText(GamePlay.this, "WRONG ANSWER", Toast.LENGTH_SHORT).show();
-                        chatText.setFocusable(false);
+                    if (msg.arg2 == 0) {
+                        Toast.makeText(GamePlay.this, "Player "+ number + " WRONG ANSWER", Toast.LENGTH_SHORT).show();
+                        if (number == myNumber)
+                            chatText.setFocusable(false);
+                    }
+                    else {
+                        Toast.makeText(GamePlay.this, "Player "+ number + " Correct ANSWER", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case S2P_CORRECT_ANSWER:
@@ -687,6 +694,8 @@ public class GamePlay extends AppCompatActivity {
                     }
                     break;
                 case HINT_TIME_OVER:
+                    Log.d("KHKim ", "HintstarTimer in HINT_TIME_OVER");
+
                     HintstartTimer(20);
                     break;
                 case S2P_END_GAME:
@@ -731,6 +740,7 @@ public class GamePlay extends AppCompatActivity {
         if (args[3].compareTo("") == 0)
             args[3] = " ";
 
+        Log.d("KHKim ", "..... send HINT LIST END ....");
         sendMesg("P2S_SEND_HINT_LIST_END", args);
 
     }
@@ -904,7 +914,7 @@ public class GamePlay extends AppCompatActivity {
     public void startNewStage(int newStage){
         stage = newStage;
 
-
+        Log.d("KHKim ", "HintstarTimer in startNewStage");
         if(isHostPlayer == true){
             HintstartTimer(20);
             hintTextViews[stage][0].setFocusable(true);

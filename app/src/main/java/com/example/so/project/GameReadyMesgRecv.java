@@ -64,12 +64,11 @@ public class GameReadyMesgRecv extends Thread{
                 break;
             }
 
-            if(parsedStr[0].compareTo("S2P_READY_PLAYER_NUMBER")==0){
+            if(parsedStr[0].compareTo("S2P_PLAYER_GAME_READY")==0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();
-                sendmsg.what = GameReady.S2P_START_GAME;
+                sendmsg.what = GameReady.S2P_PLAYER_GAME_READY;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 gameReady.getHandler().sendMessage(sendmsg);
-                break;
             }
 
         }

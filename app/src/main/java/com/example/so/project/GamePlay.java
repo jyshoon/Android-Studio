@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -229,292 +228,66 @@ public class GamePlay extends AppCompatActivity {
     AlertDialog ad;
 
     private void showImg() {
-
-//        Random r = new Random();
-//        int answer = r.nextInt(14);
-//        if (answer == 0) {
-        if (answer.compareTo("Giraffe") == 0) {
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+        Context mContext = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout;
+        if(answer.compareTo("Giraffe") == 0){
+            layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 1) {
-        else if (answer.compareTo("Hedgehog") == 0) {
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast1, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+        else if(answer.compareTo("Hedgehog") == 0){
+            layout = inflater.inflate(R.layout.toast1, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 2) {
         else if (answer.compareTo("Leopard") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast2, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast2, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 3) {
         else if (answer.compareTo("Cat") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast3, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast3, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 4) {
         else if (answer.compareTo("Raccon") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast4, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast4, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 5) {
         else if (answer.compareTo("Lion") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast5, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast5, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 6) {
+        else if (answer.compareTo("Leopard") == 0) {
+            layout = inflater.inflate(R.layout.toast6, (ViewGroup) findViewById(R.id.toastlayout));
+        }
         else if (answer.compareTo("Pigeon") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast6, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast7, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 7) {
         else if (answer.compareTo("Rabbit") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast7, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast8, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 8) {
-        else if (answer.compareTo("Wolf") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast8, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
-        }
-        //if (answer == 9) {
         else if (answer.compareTo("Dog") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast9, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast9, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 10) {
         else if (answer.compareTo("Smartphone") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast10, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast10, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 11) {
         else if (answer.compareTo("Elephant") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast11, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast11, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 12) {
         else if (answer.compareTo("Butterfly") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast12, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+            layout = inflater.inflate(R.layout.toast12, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 13) {
-        else if (answer.compareTo("Strawberry") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast13, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+        else if (answer.compareTo("Smartphone") == 0) {
+            layout = inflater.inflate(R.layout.toast13, (ViewGroup) findViewById(R.id.toastlayout));
         }
-        //if (answer == 14) {
-        else if (answer.compareTo("Blueberry") == 0) {
-
-            Context mContext = getApplicationContext();
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.toast14, (ViewGroup) findViewById(R.id.toastlayout));
-            AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
-
-            aDialog.setTitle("정답");
-            aDialog.setView(layout);
-            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            ad = aDialog.create();
-            ad.show();
+        else {
+            layout = inflater.inflate(R.layout.toast14, (ViewGroup) findViewById(R.id.toastlayout));
         }
+
+        AlertDialog.Builder aDialog = new AlertDialog.Builder(GamePlay.this);
+        aDialog.setTitle("정답");
+        aDialog.setView(layout);
+        aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        ad = aDialog.create();
+        ad.show();
+
+//
 
         //일단 기린
         // TODO: 받은 정답에 따라 해당하는 이미지를 팝업창으로 띄워준다.
@@ -655,29 +428,12 @@ public class GamePlay extends AppCompatActivity {
                     showGuessAnswer(number,guessAnswer);
 
                     if (msg.arg2 == 0) {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text = (TextView) layout.findViewById(R.id.text);
-                        text.setText("Player "+ number + " WRONG ANSWER");
-                        Toast toast = new Toast(getApplicationContext());
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
-
+                        Toast.makeText(GamePlay.this, "Player "+ number + " WRONG ANSWER", Toast.LENGTH_SHORT).show();
                         if (number == myNumber)
                             chatText.setFocusable(false);
                     }
                     else {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text = (TextView) layout.findViewById(R.id.text);
-                        text.setText("Player "+ number + " Correct ANSWER");
-                        Toast toast = new Toast(getApplicationContext());
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
+                        Toast.makeText(GamePlay.this, "Player "+ number + " Correct ANSWER", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 case S2P_CORRECT_ANSWER:
@@ -688,17 +444,7 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     String[] scores = (String[])msg.obj;
                     showScore(scores);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                    TextView text = (TextView) layout.findViewById(R.id.text);
-                    text.setText(idTextView[pnumber].getText().toString()+"정답! 10점 획득  다음문제로 넘어갑니다");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(layout);
-                    toast.show();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    Toast.makeText(GamePlay.this,idTextView[pnumber].getText().toString()+"가 문제를 맞췄습니다!",Toast.LENGTH_SHORT).show();
                     if (isHostPlayer){
                         isHostPlayer = false;
                         chatText.setFocusable(true);
@@ -731,15 +477,8 @@ public class GamePlay extends AppCompatActivity {
                     endGame (playerScoreMap);
                     break;
                 case S2P_WRONG_ANSWER:
-                    LayoutInflater inflater1 = getLayoutInflater();
-                    View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                    TextView text1 = (TextView) layout1.findViewById(R.id.text);
-                    text1.setText("아무도 문제를 맞추지 못하였습니다. 다음문제로 넘어갑니다!");
-                    Toast toast1 = new Toast(getApplicationContext());
-                    toast1.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    toast1.setDuration(Toast.LENGTH_LONG);
-                    toast1.setView(layout1);
-                    toast1.show();
+                    Toast.makeText(GamePlay.this, "WRONG ANSWER", Toast.LENGTH_SHORT).show();
+                    chatText.setFocusable(false);
                     break;
                 case S2P_NEW_STAGE:
                     if (mCountDownTimer != null) {
@@ -798,7 +537,7 @@ public class GamePlay extends AppCompatActivity {
                     args[3] = " ";
 
                 Log.d ("-- KHKim --", "length = " + args.length + args[0] + "$" + args[1]
-                                + "$" + args[2] + "$" + args[3] + "$");
+                        + "$" + args[2] + "$" + args[3] + "$");
                 sendMesg("P2S_SEND_HINT_LIST", args);
             }
             return false;

@@ -212,6 +212,7 @@ public class GameReady extends AppCompatActivity {
     public static final int S2P_START_GAME = 101;
     public static final int S2P_SEND_GAME_READY_CHAT = 102;
     public static final int S2P_PLAYER_GAME_READY = 103;
+    public static final int REQUEST_CODE_GAMEPLAY = 404;
 
 
 
@@ -262,8 +263,8 @@ public class GameReady extends AppCompatActivity {
         intent.putExtra("player2ResId", (Integer)characterView[2].getTag());
         intent.putExtra("player3ResId", (Integer)characterView[3].getTag());
 
-
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_CODE_GAMEPLAY);
+        //startActivity(intent);
     }
 
     public void connectNewID(int num, String ID, int resId){
@@ -300,6 +301,17 @@ public class GameReady extends AppCompatActivity {
     @Override
     public void onBackPressed () {
         Toast.makeText(this, "One more back for exit.", Toast.LENGTH_SHORT).show ();
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("ssssss","ssss");
+        if (resultCode == RESULT_OK) {
+            Log.d("dddddd","dddd");
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
     }
 
 }

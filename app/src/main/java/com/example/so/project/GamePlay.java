@@ -516,7 +516,7 @@ public class GamePlay extends AppCompatActivity {
             ad.show();
         }
 
-        //일단 기린
+        //일단 ㅌ
         // TODO: 받은 정답에 따라 해당하는 이미지를 팝업창으로 띄워준다.
 
         mTimeLeftInMillis = 5000;
@@ -527,6 +527,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void showHintList(int stage, String []hintStrs){
+
 
         hintTextViews[stage][0].setText(hintStrs[0]);
         hintTextViews[stage][1].setText(hintStrs[1]);
@@ -602,6 +603,18 @@ public class GamePlay extends AppCompatActivity {
 
             switch(msg.what){
                 case S2P_RECV_ANSWER:
+
+
+                    /*
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    */
+
+
+
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
@@ -619,17 +632,24 @@ public class GamePlay extends AppCompatActivity {
                     showAnswer ();
                     break;
                 case S2P_RECV_HINT_READY:
+
+                    LayoutInflater inflater5 = getLayoutInflater();
+                    View layout5 = inflater5.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                    TextView text5 = (TextView) layout5.findViewById(R.id.text);
+                    text5.setText("출제자가 20초간 문제 작성중! 기다려주세요!");
+                    Toast toast5 = new Toast(getApplicationContext());
+                    toast5.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast5.setDuration(Toast.LENGTH_LONG);
+                    toast5.setView(layout5);
+                    toast5.show();
+
+                    chatText.setFocusable(false);                                                       //20초 간 !host 채팅창 블록
+
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
                     }
                     clearHintViews ();
-
-                    chatText.setFocusable(true);
-                    chatText.setFocusableInTouchMode(true);
-
-                    Toast.makeText(getApplicationContext(),"hint ready",Toast.LENGTH_LONG).show();
-                    Log.d("KHKim ", "HintstarTimer in S2P_RECV_HINT_READY");
 
                     isHostPlayer = false;
                     HintstartTimer(25);
@@ -637,11 +657,10 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_RECV_HINT_LIST_END:
                     stage = msg.arg1;
                     hintList = (String[])msg.obj;
-                    //String[] hintStrs = hintList.split(" ");
                     showHintList(stage, hintList);
                     //문제푸는타이머적용
-                    Log.d ("KHKim ", "S2P_RECV_HINT_LIST_END  --- ");
                     startGuessAnswer();
+
                     break;
                 case S2P_RECV_HINT_LIST:
                     stage = msg.arg1;
@@ -655,29 +674,32 @@ public class GamePlay extends AppCompatActivity {
                     showGuessAnswer(number,guessAnswer);
 
                     if (msg.arg2 == 0) {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text = (TextView) layout.findViewById(R.id.text);
-                        text.setText("Player "+ number + " WRONG ANSWER");
-                        Toast toast = new Toast(getApplicationContext());
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
+
+                        LayoutInflater inflater3 = getLayoutInflater();
+                        View layout3 = inflater3.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                        TextView text3 = (TextView) layout3.findViewById(R.id.text);
+                        text3.setText("Player "+ number + " WRONG ANSWER");
+                        Toast toast3 = new Toast(getApplicationContext());
+                        toast3.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast3.setDuration(Toast.LENGTH_LONG);
+                        toast3.setView(layout3);
+                        toast3.show();
 
                         if (number == myNumber)
                             chatText.setFocusable(false);
                     }
                     else {
-                        LayoutInflater inflater = getLayoutInflater();
-                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text = (TextView) layout.findViewById(R.id.text);
-                        text.setText("Player "+ number + " Correct ANSWER");
-                        Toast toast = new Toast(getApplicationContext());
-                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast.setDuration(Toast.LENGTH_LONG);
-                        toast.setView(layout);
-                        toast.show();
+                        /*
+                        LayoutInflater inflater2 = getLayoutInflater();
+                        View layout2 = inflater2.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                        TextView text2 = (TextView) layout2.findViewById(R.id.text);
+                        text2.setText("Player "+ number + " Correct ANSWER");
+                        Toast toast2 = new Toast(getApplicationContext());
+                        toast2.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast2.setDuration(Toast.LENGTH_LONG);
+                        toast2.setView(layout2);
+                        toast2.show();
+                        */
                     }
                     break;
                 case S2P_CORRECT_ANSWER:
@@ -689,15 +711,15 @@ public class GamePlay extends AppCompatActivity {
                     String[] scores = (String[])msg.obj;
                     showScore(scores);
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                    TextView text = (TextView) layout.findViewById(R.id.text);
-                    text.setText(idTextView[pnumber].getText().toString()+"정답! 10점 획득  다음문제로 넘어갑니다");
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(layout);
-                    toast.show();
+                    LayoutInflater inflater4 = getLayoutInflater();
+                    View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                    TextView text4 = (TextView) layout4.findViewById(R.id.text);
+                    text4.setText(idTextView[pnumber].getText().toString()+"정답! 10점 획득  다음문제로 넘어갑니다");
+                    Toast toast4 = new Toast(getApplicationContext());
+                    toast4.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast4.setDuration(Toast.LENGTH_LONG);
+                    toast4.setView(layout4);
+                    toast4.show();
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     if (isHostPlayer){
                         isHostPlayer = false;
@@ -722,15 +744,15 @@ public class GamePlay extends AppCompatActivity {
                     }
                     break;
                 case HINT_TIME_OVER:
-                    Log.d("KHKim ", "HintstarTimer in HINT_TIME_OVER");
-
                     HintstartTimer(20);
                     break;
                 case S2P_END_GAME:
                     HashMap<String, String> playerScoreMap = (HashMap<String, String>)msg.obj;
                     endGame (playerScoreMap);
                     break;
-                case S2P_WRONG_ANSWER:
+                case S2P_WRONG_ANSWER:                                                                              //아예 맞추지 못했을 경우
+
+
                     LayoutInflater inflater1 = getLayoutInflater();
                     View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                     TextView text1 = (TextView) layout1.findViewById(R.id.text);
@@ -740,10 +762,11 @@ public class GamePlay extends AppCompatActivity {
                     toast1.setDuration(Toast.LENGTH_LONG);
                     toast1.setView(layout1);
                     toast1.show();
+
+
                     break;
                 case S2P_NEW_STAGE:
                     if (mCountDownTimer != null) {
-                        Log.d("--> KHKim <--", "cancel mCountDownTimer");
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
                     }
@@ -899,12 +922,14 @@ public class GamePlay extends AppCompatActivity {
         }
 
         public void stop () {
-            Log.d ("KHKim ", "Solving timer     stopped........");
             super.cancel();
         }
     }
 
     private void startGuessAnswer(){
+        chatText.setFocusable(true);
+        chatText.setFocusableInTouchMode(true);                 //힌트가 왔을때 답 입력 가능하게끔
+
         mCountDownTimer = new SolvingTimer(40, 1000);
         mCountDownTimer.start();
 

@@ -30,13 +30,15 @@
             <EditText
                 android:id="@+id/ID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="ID" />
 
             <EditText
                 android:id="@+id/editText_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:hint="PW"
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <Button
@@ -50,5 +52,35 @@
             android:text="log in"
             android:textSize="20dp"
             android:background="@drawable/rounded_corner_background"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="50dp">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+
+            <EditText
+                android:id="@+id/editText_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="IP" />
+
+            <EditText
+                android:id="@+id/editText_port"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Port number" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -654,12 +655,29 @@ public class GamePlay extends AppCompatActivity {
                     showGuessAnswer(number,guessAnswer);
 
                     if (msg.arg2 == 0) {
-                        Toast.makeText(GamePlay.this, "Player "+ number + " WRONG ANSWER", Toast.LENGTH_SHORT).show();
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                        TextView text = (TextView) layout.findViewById(R.id.text);
+                        text.setText("Player "+ number + " WRONG ANSWER");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
+
                         if (number == myNumber)
                             chatText.setFocusable(false);
                     }
                     else {
-                        Toast.makeText(GamePlay.this, "Player "+ number + " Correct ANSWER", Toast.LENGTH_SHORT).show();
+                        LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                        TextView text = (TextView) layout.findViewById(R.id.text);
+                        text.setText("Player "+ number + " Correct ANSWER");
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(layout);
+                        toast.show();
                     }
                     break;
                 case S2P_CORRECT_ANSWER:
@@ -670,7 +688,17 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     String[] scores = (String[])msg.obj;
                     showScore(scores);
-                    Toast.makeText(GamePlay.this,idTextView[pnumber].getText().toString()+"가 문제를 맞췄습니다!",Toast.LENGTH_SHORT).show();
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                    TextView text = (TextView) layout.findViewById(R.id.text);
+                    text.setText(idTextView[pnumber].getText().toString()+"정답! 10점 획득  다음문제로 넘어갑니다");
+                    Toast toast = new Toast(getApplicationContext());
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     if (isHostPlayer){
                         isHostPlayer = false;
                         chatText.setFocusable(true);
@@ -703,8 +731,15 @@ public class GamePlay extends AppCompatActivity {
                     endGame (playerScoreMap);
                     break;
                 case S2P_WRONG_ANSWER:
-                    Toast.makeText(GamePlay.this, "WRONG ANSWER", Toast.LENGTH_SHORT).show();
-                    chatText.setFocusable(false);
+                    LayoutInflater inflater1 = getLayoutInflater();
+                    View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                    TextView text1 = (TextView) layout1.findViewById(R.id.text);
+                    text1.setText("아무도 문제를 맞추지 못하였습니다. 다음문제로 넘어갑니다!");
+                    Toast toast1 = new Toast(getApplicationContext());
+                    toast1.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    toast1.setDuration(Toast.LENGTH_LONG);
+                    toast1.setView(layout1);
+                    toast1.show();
                     break;
                 case S2P_NEW_STAGE:
                     if (mCountDownTimer != null) {

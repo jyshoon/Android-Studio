@@ -609,7 +609,6 @@ public class GamePlay extends AppCompatActivity {
     public static final int S2P_RECV_HINT_LIST_END = 208;
     public static  final int S2P_WRONG_ANSWER = 209;
     public static final int S2P_NEW_STAGE = 210;
-    public static final int REQUEST_CODE_READYROOM = 401;
     public static final int REQUEST_CODE_GAMERANK = 402;
 
     private void clearHintViews () {
@@ -634,7 +633,7 @@ public class GamePlay extends AppCompatActivity {
             String[] hintList;
             int stage;
 
-            switch(msg.what){
+            switch(msg.what) {
                 case S2P_RECV_ANSWER:
 
 
@@ -647,22 +646,21 @@ public class GamePlay extends AppCompatActivity {
                     */
 
 
-
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
                     }
-                    clearHintViews ();
+                    clearHintViews();
                     hintTextViews[0][0].setFocusable(true);
                     hintTextViews[0][1].setFocusable(true);
                     hintTextViews[0][2].setFocusable(true);
                     hintTextViews[0][0].setFocusableInTouchMode(true);
                     hintTextViews[0][1].setFocusableInTouchMode(true);
                     hintTextViews[0][2].setFocusableInTouchMode(true);
-                    answer = (String)msg.obj;
+                    answer = (String) msg.obj;
                     isHostPlayer = true;
                     chatText.setFocusable(false);
-                    showAnswer ();
+                    showAnswer();
                     break;
                 case S2P_RECV_HINT_READY:
 
@@ -682,14 +680,14 @@ public class GamePlay extends AppCompatActivity {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
                     }
-                    clearHintViews ();
+                    clearHintViews();
 
                     isHostPlayer = false;
                     HintstartTimer(25);
                     break;
                 case S2P_RECV_HINT_LIST_END:
                     stage = msg.arg1;
-                    hintList = (String[])msg.obj;
+                    hintList = (String[]) msg.obj;
                     showHintList(stage, hintList);
                     //문제푸는타이머적용
                     startGuessAnswer();
@@ -697,21 +695,21 @@ public class GamePlay extends AppCompatActivity {
                     break;
                 case S2P_RECV_HINT_LIST:
                     stage = msg.arg1;
-                    hintList = (String[])msg.obj;
+                    hintList = (String[]) msg.obj;
                     //String[] hintStrs = hintList.split(" ");
                     showHintList(stage, hintList);
                     break;
                 case S2P_RECV_GUESS_ANSWER:
                     int number = msg.arg1;
-                    String guessAnswer = (String)msg.obj;
-                    showGuessAnswer(number,guessAnswer);
+                    String guessAnswer = (String) msg.obj;
+                    showGuessAnswer(number, guessAnswer);
 
                     if (msg.arg2 == 0) {
 
                         LayoutInflater inflater3 = getLayoutInflater();
                         View layout3 = inflater3.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                         TextView text3 = (TextView) layout3.findViewById(R.id.text);
-                        text3.setText("Player "+ number + " WRONG ANSWER");
+                        text3.setText("Player " + number + " WRONG ANSWER");
                         Toast toast3 = new Toast(getApplicationContext());
                         toast3.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         toast3.setDuration(Toast.LENGTH_LONG);
@@ -720,8 +718,7 @@ public class GamePlay extends AppCompatActivity {
 
                         if (number == myNumber)
                             chatText.setFocusable(false);
-                    }
-                    else {
+                    } else {
                         /*
                         LayoutInflater inflater2 = getLayoutInflater();
                         View layout2 = inflater2.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
@@ -741,19 +738,27 @@ public class GamePlay extends AppCompatActivity {
                     int score = msg.arg2;
                     */
                     int pnumber = msg.arg1;
-                    String[] scores = (String[])msg.obj;
+                    String[] scores = (String[]) msg.obj;
                     showScore(scores);
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
                     LayoutInflater inflater4 = getLayoutInflater();
                     View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                     TextView text4 = (TextView) layout4.findViewById(R.id.text);
-                    text4.setText(idTextView[pnumber].getText().toString()+"정답! 10점 획득  다음문제로 넘어갑니다");
+                    text4.setText(idTextView[pnumber].getText().toString() + "정답! 10점 획득  다음문제로 넘어갑니다");
                     Toast toast4 = new Toast(getApplicationContext());
                     toast4.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast4.setDuration(Toast.LENGTH_LONG);
                     toast4.setView(layout4);
                     toast4.show();
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                        }
+                    }, 5000);
+
+
                     if (isHostPlayer){
                         isHostPlayer = false;
                         chatText.setFocusable(true);
@@ -962,6 +967,17 @@ public class GamePlay extends AppCompatActivity {
     private void startGuessAnswer(){
         chatText.setFocusable(true);
         chatText.setFocusableInTouchMode(true);                 //힌트가 왔을때 답 입력 가능하게끔
+
+        LayoutInflater inflater4 = getLayoutInflater();
+        View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+        TextView text4 = (TextView) layout4.findViewById(R.id.text);
+        text4.setText("40초 start!");
+        Toast toast4 = new Toast(getApplicationContext());
+        toast4.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast4.setDuration(Toast.LENGTH_LONG);
+        toast4.setView(layout4);
+        toast4.show();
+
 
         mCountDownTimer = new SolvingTimer(40, 1000);
         mCountDownTimer.start();

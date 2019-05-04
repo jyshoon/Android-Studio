@@ -74,7 +74,7 @@ public class GameRank extends AppCompatActivity {
 
         numPlayer = intent.getIntExtra("numPlayer", 4);
 
-        idTextView[0].setText( intent.getExtras().getString("player0") );
+        idTextView[0].setText( intent.getExtras().getString("player0") );                               //플레이어 ID
         idTextView[1].setText( intent.getExtras().getString("player1") );
         idTextView[2].setText( intent.getExtras().getString("player2") );
         idTextView[3].setText( intent.getExtras().getString("player3") );
@@ -83,7 +83,7 @@ public class GameRank extends AppCompatActivity {
         characterView[1] = (ImageView) findViewById(R.id.user2);
         characterView[2] = (ImageView) findViewById(R.id.user3);
         characterView[3] = (ImageView) findViewById(R.id.user4);
-        characterView[0].setTag ( intent.getExtras().getInt("player0ResId"));
+        characterView[0].setTag ( intent.getExtras().getInt("player0ResId"));                           //플레이어 캐릭터
         characterView[1].setTag ( intent.getExtras().getInt("player1ResId"));
         characterView[2].setTag ( intent.getExtras().getInt("player2ResId"));
         characterView[3].setTag ( intent.getExtras().getInt("player3ResId"));
@@ -98,19 +98,18 @@ public class GameRank extends AppCompatActivity {
 
         }
 
-        for(int i = 0; i < numPlayer;i++){
+        for(int i = 0; i < numPlayer;i++){                                                                      //플레이어 점수들
             scoreView[i].setText( intent.getExtras().getString("score"+i));
         }
-
         for(int i = 0; i < numPlayer;i++){
             scores[i] = Integer.parseInt(scoreView[i].getText().toString());
         }
 
-        for(int i = 0; i < numPlayer; i++){
+        for(int i = 0; i < numPlayer; i++){                                                                         //랭킹 초기화
             ranking[i] = 1;
         }
 
-        for (int i = 0; i < numPlayer; i++){
+        for (int i = 0; i < numPlayer; i++){                                                                         //랭킹 정함
             for(int j = 0; j < numPlayer; j++){
                 if( scores[i] < scores[j] ){
                     ranking[i] = ranking [i]+1;
@@ -119,7 +118,7 @@ public class GameRank extends AppCompatActivity {
         }
 
         for(int i = 0; i < numPlayer; i++){
-            rank[i].setText(ranking[i]+"");
+            rank[i].setText(ranking[i]+"");                                                                           //랭킹 보여줌
         }
 
 

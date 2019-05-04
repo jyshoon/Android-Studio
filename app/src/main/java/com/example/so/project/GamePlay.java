@@ -556,6 +556,7 @@ public class GamePlay extends AppCompatActivity {
 
     private void endGame (HashMap<String, String> playerScoreMap)
     {
+ 
         Intent intent = new Intent(getApplicationContext(),GameRank.class);
 
         intent.putExtra("myID",myID);
@@ -577,9 +578,14 @@ public class GamePlay extends AppCompatActivity {
         intent.putExtra("player3ResId", (Integer)characterView[3].getTag());
 
         String scores = "";
+
+        
+       /* String scores = "";
+>>>>>>> Stashed changes
         for (String key : playerScoreMap.keySet()) {
             Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
         }
+        */
 
 
         startActivityForResult(intent,REQUEST_CODE_GAMERANK);

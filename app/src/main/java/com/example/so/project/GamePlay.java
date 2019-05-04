@@ -516,7 +516,7 @@ public class GamePlay extends AppCompatActivity {
             ad.show();
         }
 
-        //일단 ㅌ
+        //일단 기린
         // TODO: 받은 정답에 따라 해당하는 이미지를 팝업창으로 띄워준다.
 
         mTimeLeftInMillis = 5000;
@@ -558,10 +558,41 @@ public class GamePlay extends AppCompatActivity {
 
     private void endGame (HashMap<String, String> playerScoreMap)
     {
+
+        Intent intent = new Intent(getApplicationContext(),GameRank.class);
+
+        intent.putExtra("myID",myID);
+        intent.putExtra ("myImgResId", myImgResId);
+        intent.putExtra ("numPlayer", numPlayer);
+
+        intent.putExtra("score0",scoreView[0].getText().toString());
+        intent.putExtra("score1",scoreView[1].getText().toString());
+        intent.putExtra("score2",scoreView[2].getText().toString());
+        intent.putExtra("score3",scoreView[3].getText().toString());
+
+        intent.putExtra("player0",idTextView[0].getText().toString());
+        intent.putExtra("player1",idTextView[1].getText().toString());
+        intent.putExtra("player2",idTextView[2].getText().toString());                                //////////////////////////////////////////에러
+        intent.putExtra("player3",idTextView[3].getText().toString());
+        intent.putExtra("player0ResId", (Integer)characterView[0].getTag());
+        intent.putExtra("player1ResId", (Integer)characterView[1].getTag());
+        intent.putExtra("player2ResId", (Integer)characterView[2].getTag());
+        intent.putExtra("player3ResId", (Integer)characterView[3].getTag());
+
         String scores = "";
+
+
+       /* String scores = "";
+>>>>>>> Stashed changes
         for (String key : playerScoreMap.keySet()) {
             Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
         }
+        */
+
+
+        startActivityForResult(intent,REQUEST_CODE_GAMERANK);
+       // Intent intent1 = new Intent(getApplicationContext(),ReadyRoom.class);
+       // finish();
 
 
     }
@@ -578,6 +609,8 @@ public class GamePlay extends AppCompatActivity {
     public static final int S2P_RECV_HINT_LIST_END = 208;
     public static  final int S2P_WRONG_ANSWER = 209;
     public static final int S2P_NEW_STAGE = 210;
+    public static final int REQUEST_CODE_READYROOM = 401;
+    public static final int REQUEST_CODE_GAMERANK = 402;
 
     private void clearHintViews () {
         hintTextViews[0][0].setText("");
@@ -1011,4 +1044,16 @@ public class GamePlay extends AppCompatActivity {
         chatClearCountDownTimer.start();
 
     }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("ssssss","ssss");
+        if (resultCode == RESULT_OK) {
+            Log.d("dddddd","dddd");
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
+    }
+
 }

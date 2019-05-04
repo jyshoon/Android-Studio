@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <View
+        android:background="#00ff00"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="결과화면"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="36sp"
@@ -19,53 +26,97 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
+    <View
+        android:background="#00ff00"
+        android:layout_width="match_parent"
+        android:layout_height="4px"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/rankTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="등수" />
+                android:layout_weight="0.247"
+                android:gravity="center"
+                android:text="등수"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/profileTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="프로필" />
+                android:gravity="center"
+                android:text="프로필"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/scoreTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                android:text="획득점수" />
+                android:layout_weight="0.247"
+                android:gravity="center"
+                android:text="획득점수"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
         </LinearLayout>
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/rank0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="rank1Text" />
+                android:gravity="center"
+                android:text="rank1Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <ImageView
                 android:id="@+id/user1"
@@ -74,33 +125,64 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/neo" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
+
             <TextView
                 android:id="@+id/id0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="id" />
+                android:gravity="center"
+                android:text="id"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/score0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="score1Text" />
+                android:gravity="center"
+                android:text="score1Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
         </LinearLayout>
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/rank1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="rank2Text" />
+                android:gravity="center"
+                android:text="rank2Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <ImageView
                 android:id="@+id/user2"
@@ -109,33 +191,64 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/neo" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
+
             <TextView
                 android:id="@+id/id1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="id" />
+                android:gravity="center"
+                android:text="id"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/score1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="score2Text" />
+                android:gravity="center"
+                android:text="score2Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
         </LinearLayout>
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/rank2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="rank3Text" />
+                android:gravity="center"
+                android:text="rank3Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <ImageView
                 android:id="@+id/user3"
@@ -144,33 +257,64 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/neo" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
+
             <TextView
                 android:id="@+id/id2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="id" />
+                android:gravity="center"
+                android:text="id"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/score2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="score3Text" />
+                android:gravity="center"
+                android:text="score3Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
         </LinearLayout>
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/rank3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="rank4Text" />
+                android:gravity="center"
+                android:text="rank4Text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <ImageView
                 android:id="@+id/user4"
@@ -179,20 +323,44 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/neo" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
+
             <TextView
                 android:id="@+id/id3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="id" />
+                android:gravity="center"
+                android:text="id"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
 
             <TextView
                 android:id="@+id/score3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
-                android:text="score4text" />
+                android:gravity="center"
+                android:text="score4text"
+                android:textSize="36sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4px"
+                android:background="#00ff00" />
         </LinearLayout>
+
+        <View
+            android:layout_width="4px"
+            android:layout_height="match_parent"
+            android:background="#00ff00" />
     </LinearLayout>
 
     <LinearLayout
@@ -205,7 +373,8 @@
             android:id="@+id/restartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:onClick="onButton1Clicked"
             android:text="돌아가기" />
 

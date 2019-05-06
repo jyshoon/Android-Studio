@@ -26,8 +26,6 @@ public class ReadyRoom extends AppCompatActivity {
 
     String myID;
     ListView roomListView;
-    //ArrayList<String> roomList;
-    //ArrayAdapter<String> listAdapter;
     RoomListAdapter listAdapter;
     ArrayList<RoomListItemData> roomList;
 
@@ -176,39 +174,29 @@ public class ReadyRoom extends AppCompatActivity {
             roomList.add(new RoomListItemData(roomInfo[0], roomInfo[1], roomInfo[2]));
         }
         listAdapter.notifyDataSetChanged();
-
-
-
     }
 
     private void enterRoom () {
-
         Intent intent = new Intent(getApplicationContext(),GameReady.class);
         intent.putExtra("id",myID);
         intent.putExtra("imgId", imgId );
-
         startActivity(intent);
-        Log.d("HHHHHHHHHHHHHHHH", myID);
     }
 
     private void showRoomEnterFail ()
     {
-        Toast.makeText(this, "Fail to enter room " + selectedRoomName, Toast.LENGTH_LONG).show();
+        Toast.makeText(this,  selectedRoomName + " 번 방 입장불가", Toast.LENGTH_LONG).show();
     }
-
-
     private void createRoom () {
 
         Intent intent = new Intent(getApplicationContext(),GameReady.class);
         intent.putExtra("id",myID);
-
         startActivity(intent);
-        Log.d("HHHHHHHHHHHHHHHH", myID);
     }
 
     private void createRoomFail ()
     {
-        Toast.makeText(this, "Fail to create room " + selectedRoomName, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, selectedRoomName + "번 방 생성 불가", Toast.LENGTH_LONG).show();
     }
 
     public static final int S2P_SEND_ROOM_LIST = 300;
@@ -271,10 +259,8 @@ public class ReadyRoom extends AppCompatActivity {
 
 
             } catch (UnknownHostException e) {
-                Log.d("eeeeeeeeeeeeee","eeeeeeeeeeeee");
                 e.printStackTrace();
             } catch (IOException e) {
-                Log.d("xxxxxxxxxx","xxxxxxxxxxx");
                 e.printStackTrace();
             }
         }

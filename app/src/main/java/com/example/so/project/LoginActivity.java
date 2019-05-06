@@ -28,21 +28,10 @@ public class LoginActivity extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getApplicationContext(),ReadyRoom.class);
-
-
                 intent.putExtra("id",myID.getText().toString());
-
                 intent.putExtra("ip",myIP.getText().toString());
-                Log.d("ip넘김확인",myIP.getText().toString());
-
                 intent.putExtra("port",myPort.getText().toString());
-                Log.d("port넘김확인",myPort.getText().toString());
-
-
-                Log.d("dd", myID.getText().toString());
-
                 startActivity(intent);
             }
         });

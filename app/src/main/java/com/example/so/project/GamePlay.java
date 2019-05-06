@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import android.os.CountDownTimer;
-//////김태훈 branches
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class GamePlay extends AppCompatActivity {
+
+    private int flag = 0;                                       //0이면 첫번째 시도 wrong ans 1이면 두번째 시도 wrong ans
 
     private TextView[] idTextView = new TextView[4];
     private EditText[][] hintTextViews = new EditText[3][];
@@ -69,6 +69,16 @@ public class GamePlay extends AppCompatActivity {
     public int getNumPlayer () {
         return numPlayer;
     }
+
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_game_play);
+
+        // 초기화 하는 함수 호출
+        initGamePlay();
+    }
+
     private void initGamePlay () {
         // 초기화하는 함수
 
@@ -103,10 +113,6 @@ public class GamePlay extends AppCompatActivity {
                 characterView[i].setVisibility(View.INVISIBLE);
 
         }
-        //characterView[1].setImageResource ( intent.getExtras().getInt("player1ResId"));
-        //characterView[2].setImageResource ( intent.getExtras().getInt("player2ResId"));
-        //characterView[3].setImageResource ( intent.getExtras().getInt("player3ResId"));
-
 
         hintTextViews[0] = new  EditText[3];
         hintTextViews[0][0] = (EditText)findViewById(R.id.Hint_00);
@@ -132,30 +138,6 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[1][1].setText("");
         hintTextViews[1][2].setText("");
 
-
-        enterButton = (Button)findViewById(R.id.btnEnter);
-
-        hintTimeView = (TextView) findViewById(R.id.hintTimer);
-        answerTimeView = (TextView) findViewById(R.id.hintTimer);
-
-        // Socket을 전역변수로부터 얻느다.
-        sock = SocketSingleton.getSocket();
-
-        // Message Handler 생성
-        mesgHandler = new MessageHandler();
-
-        // 서버로부터 메시지 받는 쓰레드 생성
-        recvThread = new GamePlayMesgRecv(this);
-        recvThread.start();
-
-        sendMesg("P2S_READY_PLAY");
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_play);
-
         idTextView[0] = (TextView)findViewById(R.id.id0);
         idTextView[1] = (TextView)findViewById(R.id.id1);
         idTextView[2] = (TextView)findViewById(R.id.id2);
@@ -174,9 +156,24 @@ public class GamePlay extends AppCompatActivity {
         enterButton = (Button) findViewById(R.id.btnEnter);
         chatText = (EditText) findViewById(R.id.chatText);
         roundView = (TextView) findViewById(R.id.RoundView);
-        // 초기화 하는 함수 호출
-        initGamePlay();
 
+
+        enterButton = (Button)findViewById(R.id.btnEnter);
+
+        hintTimeView = (TextView) findViewById(R.id.hintTimer);
+        answerTimeView = (TextView) findViewById(R.id.hintTimer);
+
+        // Socket을 전역변수로부터 얻느다.
+        sock = SocketSingleton.getSocket();
+
+        // Message Handler 생성
+        mesgHandler = new MessageHandler();
+
+        // 서버로부터 메시지 받는 쓰레드 생성
+        recvThread = new GamePlayMesgRecv(this);
+        recvThread.start();
+
+        sendMesg("P2S_READY_PLAY");
     }
 
     @Override
@@ -208,11 +205,9 @@ public class GamePlay extends AppCompatActivity {
     }
 
     private void showAnswer () {
-
         // 정답을 보여주고 3초간 시간 관리
 
         stage = 0;  // 0 단계 스테이지
-
 
         //isHintDialogOpen = true;
         showImg();
@@ -230,9 +225,6 @@ public class GamePlay extends AppCompatActivity {
 
     private void showImg() {
 
-//        Random r = new Random();
-//        int answer = r.nextInt(14);
-//        if (answer == 0) {
         if (answer.compareTo("Giraffe") == 0) {
             Context mContext = getApplicationContext();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -268,7 +260,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 2) {
         else if (answer.compareTo("Leopard") == 0) {
 
             Context mContext = getApplicationContext();
@@ -287,7 +278,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 3) {
         else if (answer.compareTo("Cat") == 0) {
 
             Context mContext = getApplicationContext();
@@ -306,7 +296,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 4) {
         else if (answer.compareTo("Raccon") == 0) {
 
             Context mContext = getApplicationContext();
@@ -325,7 +314,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 5) {
         else if (answer.compareTo("Lion") == 0) {
 
             Context mContext = getApplicationContext();
@@ -344,7 +332,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 6) {
         else if (answer.compareTo("Pigeon") == 0) {
 
             Context mContext = getApplicationContext();
@@ -363,7 +350,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 7) {
         else if (answer.compareTo("Rabbit") == 0) {
 
             Context mContext = getApplicationContext();
@@ -382,7 +368,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 8) {
         else if (answer.compareTo("Wolf") == 0) {
 
             Context mContext = getApplicationContext();
@@ -401,7 +386,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 9) {
         else if (answer.compareTo("Dog") == 0) {
 
             Context mContext = getApplicationContext();
@@ -420,7 +404,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 10) {
         else if (answer.compareTo("Smartphone") == 0) {
 
             Context mContext = getApplicationContext();
@@ -439,7 +422,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 11) {
         else if (answer.compareTo("Elephant") == 0) {
 
             Context mContext = getApplicationContext();
@@ -458,7 +440,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 12) {
         else if (answer.compareTo("Butterfly") == 0) {
 
             Context mContext = getApplicationContext();
@@ -477,7 +458,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 13) {
         else if (answer.compareTo("Strawberry") == 0) {
 
             Context mContext = getApplicationContext();
@@ -496,7 +476,6 @@ public class GamePlay extends AppCompatActivity {
             ad = aDialog.create();
             ad.show();
         }
-        //if (answer == 14) {
         else if (answer.compareTo("Blueberry") == 0) {
 
             Context mContext = getApplicationContext();
@@ -581,19 +560,7 @@ public class GamePlay extends AppCompatActivity {
 
         String scores = "";
 
-
-       /* String scores = "";
->>>>>>> Stashed changes
-        for (String key : playerScoreMap.keySet()) {
-            Toast.makeText(this, key + " : " + playerScoreMap.get(key), Toast.LENGTH_LONG).show();
-        }
-        */
-
-
         startActivityForResult(intent,REQUEST_CODE_GAMERANK);
-       // Intent intent1 = new Intent(getApplicationContext(),ReadyRoom.class);
-       // finish();
-
 
     }
 
@@ -607,7 +574,7 @@ public class GamePlay extends AppCompatActivity {
     public static final int HINT_TIME_OVER = 206;
     public static final int S2P_END_GAME = 207;
     public static final int S2P_RECV_HINT_LIST_END = 208;
-    public static  final int S2P_WRONG_ANSWER = 209;
+    public static final int S2P_WRONG_ANSWER = 209;
     public static final int S2P_NEW_STAGE = 210;
     public static final int REQUEST_CODE_GAMERANK = 402;
 
@@ -635,17 +602,6 @@ public class GamePlay extends AppCompatActivity {
 
             switch(msg.what) {
                 case S2P_RECV_ANSWER:
-
-
-                    /*
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    */
-
-
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
@@ -696,7 +652,6 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_RECV_HINT_LIST:
                     stage = msg.arg1;
                     hintList = (String[]) msg.obj;
-                    //String[] hintStrs = hintList.split(" ");
                     showHintList(stage, hintList);
                     break;
                 case S2P_RECV_GUESS_ANSWER:
@@ -704,60 +659,42 @@ public class GamePlay extends AppCompatActivity {
                     String guessAnswer = (String) msg.obj;
                     showGuessAnswer(number, guessAnswer);
 
-                    if (msg.arg2 == 0) {
+                    if (msg.arg2 == 0) {                                                //오답이라면
 
-                        LayoutInflater inflater3 = getLayoutInflater();
-                        View layout3 = inflater3.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text3 = (TextView) layout3.findViewById(R.id.text);
-                        text3.setText("Player " + number + " WRONG ANSWER");
-                        Toast toast3 = new Toast(getApplicationContext());
-                        toast3.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast3.setDuration(Toast.LENGTH_LONG);
-                        toast3.setView(layout3);
-                        toast3.show();
+                        if(flag == 0) {                                                 //첫번째 시도 오답
+                            LayoutInflater inflater3 = getLayoutInflater();
+                            View layout3 = inflater3.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
+                            TextView text3 = (TextView) layout3.findViewById(R.id.text);
+                            text3.setText("Player " + number + " 오답!!!!!  20초간 추가 힌트 제공합니다!");
+                            Toast toast3 = new Toast(getApplicationContext());
+                            toast3.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                            toast3.setDuration(Toast.LENGTH_LONG);
+                            toast3.setView(layout3);
+                            toast3.show();
+                        }
 
+                        flag = 1;
                         if (number == myNumber)
                             chatText.setFocusable(false);
+
                     } else {
-                        /*
-                        LayoutInflater inflater2 = getLayoutInflater();
-                        View layout2 = inflater2.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
-                        TextView text2 = (TextView) layout2.findViewById(R.id.text);
-                        text2.setText("Player "+ number + " Correct ANSWER");
-                        Toast toast2 = new Toast(getApplicationContext());
-                        toast2.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                        toast2.setDuration(Toast.LENGTH_LONG);
-                        toast2.setView(layout2);
-                        toast2.show();
-                        */
+
                     }
                     break;
                 case S2P_CORRECT_ANSWER:
-                    /*
-                    int pnumber = msg.arg1;
-                    int score = msg.arg2;
-                    */
                     int pnumber = msg.arg1;
                     String[] scores = (String[]) msg.obj;
                     showScore(scores);
 
-
                     LayoutInflater inflater4 = getLayoutInflater();
                     View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                     TextView text4 = (TextView) layout4.findViewById(R.id.text);
-                    text4.setText(idTextView[pnumber].getText().toString() + "정답! 10점 획득  다음문제로 넘어갑니다");
+                    text4.setText("Player " + idTextView[pnumber].getText().toString() + " 정답! 10점 획득  다음문제로 넘어갑니다");
                     Toast toast4 = new Toast(getApplicationContext());
                     toast4.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast4.setDuration(Toast.LENGTH_LONG);
                     toast4.setView(layout4);
                     toast4.show();
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                        }
-                    }, 5000);
-
 
                     if (isHostPlayer){
                         isHostPlayer = false;
@@ -790,7 +727,6 @@ public class GamePlay extends AppCompatActivity {
                     break;
                 case S2P_WRONG_ANSWER:                                                                              //아예 맞추지 못했을 경우
 
-
                     LayoutInflater inflater1 = getLayoutInflater();
                     View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                     TextView text1 = (TextView) layout1.findViewById(R.id.text);
@@ -801,6 +737,7 @@ public class GamePlay extends AppCompatActivity {
                     toast1.setView(layout1);
                     toast1.show();
 
+                    flag = 0;
 
                     break;
                 case S2P_NEW_STAGE:
@@ -906,23 +843,6 @@ public class GamePlay extends AppCompatActivity {
         //mTimerRunning = true;
     }
 
-
-   /* private void AnswerstartTimer() {
-        mTimeLeftInMillis = 40000;
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                answerTimeView.setText(""+ mTimeLeftInMillis / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                //주어진 시간내에 문제를 풀지 못 했을 경우
-            }
-        }.start();
-    }*/
-
     private class SolvingTimer extends CountDownTimer {
         private long millsecLeft = 40000;
         public SolvingTimer (long secLeft, long interval) {
@@ -982,41 +902,6 @@ public class GamePlay extends AppCompatActivity {
         mCountDownTimer = new SolvingTimer(40, 1000);
         mCountDownTimer.start();
 
-        /*
-        mTimeLeftInMillis = 40000;
-        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                answerTimeView.setText(""+ mTimeLeftInMillis / 1000);
-            }
-
-            @Override
-            public void onFinish() {
-                //주어진 시간내에 문제를 풀지 못 했을 경우
-                if(isHostPlayer == true){
-                    //hintView 두번째 라인 활성화
-                    hintTextViews[1][0].setFocusable(true);
-                    hintTextViews[1][1].setFocusable(true);
-                    hintTextViews[1][2].setFocusable(true);
-                    hintTextViews[1][0].setFocusableInTouchMode(true);
-                    hintTextViews[1][1].setFocusableInTouchMode(true);
-                    hintTextViews[1][2].setFocusableInTouchMode(true);
-                    sendMesg("P2S_ANSWER_TIME_OVER");
-                    if (stage == 1) {
-                        isHostPlayer = false;
-                        chatText.setFocusable(true);
-                        chatText.setFocusableInTouchMode(true);
-                        // test
-                    }
-                }
-
-
-            }
-        };
-
-        mCountDownTimer.start();
-        */
     }
 
 
@@ -1058,13 +943,10 @@ public class GamePlay extends AppCompatActivity {
 
         chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.CORRET_ANSWER, 5000, 1000);
         chatClearCountDownTimer.start();
-
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("ssssss","ssss");
         if (resultCode == RESULT_OK) {
-            Log.d("dddddd","dddd");
             Intent intent = new Intent();
             setResult(RESULT_OK, intent);
             finish();

@@ -86,32 +86,7 @@ public class GameReady extends AppCompatActivity {
         mesgHandler = new MessageHandler();
 
         initNetwork();
-
-
     }
-/*
-    public void enterclicked(View v) throws InterruptedException {
-
-        final TextView textView3 = (TextView) findViewById(R.id.textView3);
-        EditText editText4 = (EditText) findViewById(R.id.editText4);
-        textView3.setVisibility(View.VISIBLE);
-        textView3.setText(editText4.getText());
-        Thread thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                TimerTask task = new TimerTask(){
-                    @Override
-                    public void run(){
-                        textView3.setVisibility(View.INVISIBLE);
-                    }
-                };
-                Timer timer = new Timer();
-                timer.schedule(task,3000);
-            }
-        });
-        thread.start();
-    }
-*/
     public void onButtonGameReadyClicked(View v){
         btnGameReady.setText("준비완료");
         sendMesg("P2S_READY_GAME", myNumber+"");
@@ -132,44 +107,6 @@ public class GameReady extends AppCompatActivity {
         return sock;
     }
 
-
-/*
-    class ConnectThread extends Thread{
-        String hostname;
-        public ConnectThread(String addr){
-            hostname=addr;
-        }
-        public void run(){
-            try{
-
-                sock = new Socket(hostname,port);
-
-                SocketSingleton.setSocket(sock);
-
-                isConnected = true;
-//
-//                OutputStream outstream = null;
-//                outstream = sock.getOutputStream();
-//
-//                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(outstream));
-//
-//
-//                bw.write(myID);
-//                bw.newLine();
-//                bw.flush();
-
-                Log.d("dffjjjjjjjjfffff","fffjjjjjjjjjjjjjjjjjjjjjjjff");
-
-            } catch (UnknownHostException e) {
-                Log.d("eeeeeeeeeeeeee","eeeeeeeeeeeee");
-                e.printStackTrace();
-            } catch (IOException e) {
-                Log.d("xxxxxxxxxx","xxxxxxxxxxx");
-                e.printStackTrace();
-            }
-        }
-    }
-*/
     private void sendMesg(String type, String data){
         GameMesgSender sendThread = new GameMesgSender(sock, type,data);
         sendThread.start();
@@ -232,7 +169,6 @@ public class GameReady extends AppCompatActivity {
                     break;
                 case S2P_PLAYER_GAME_READY:
                     setReady(msg.arg1);
-                    Toast.makeText(getApplicationContext(),"ddddddddddffffffffffffff",Toast.LENGTH_LONG ).show();
                     break;
             }
         }
@@ -240,10 +176,6 @@ public class GameReady extends AppCompatActivity {
     public MessageHandler getHandler(){
         return mesgHandler;
     }
-
-
-
-
 
     private void startGame(int numPlayer){
         Intent intent = new Intent(getApplicationContext(),GamePlay.class);
@@ -275,10 +207,6 @@ public class GameReady extends AppCompatActivity {
         characterView[num].setVisibility(View.VISIBLE);
         characterView[num].setImageResource (resId);
         characterView[num].setTag(resId);
-
-        Log.d("GGGGGGGGGGGG", ID + num+"");
-
-
     }
 
     private Timer timer;
@@ -295,7 +223,6 @@ public class GameReady extends AppCompatActivity {
 
     public void setReady(int number){
         readyTextView[number].setText("준비완료");
-        Toast.makeText(getApplicationContext(),"dddddddddd",Toast.LENGTH_LONG ).show();
     }
 
     @Override
@@ -304,9 +231,7 @@ public class GameReady extends AppCompatActivity {
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("ssssss","ssss");
         if (resultCode == RESULT_OK) {
-            Log.d("dddddd","dddd");
             Intent intent = new Intent();
             setResult(RESULT_OK, intent);
             finish();

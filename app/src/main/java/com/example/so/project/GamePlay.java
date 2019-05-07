@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -53,6 +54,7 @@ public class GamePlay extends AppCompatActivity {
 
     private Socket sock;
     private String answer;
+    private int check;  //정답 체크
 
     private MessageHandler mesgHandler = null;
     private GamePlayMesgRecv recvThread = null;
@@ -173,6 +175,9 @@ public class GamePlay extends AppCompatActivity {
 
         enterButton = (Button) findViewById(R.id.btnEnter);
         chatText = (EditText) findViewById(R.id.chatText);
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(10);
+        chatText.setFilters(FilterArray);
         roundView = (TextView) findViewById(R.id.RoundView);
         // 초기화 하는 함수 호출
         initGamePlay();
@@ -702,7 +707,7 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_RECV_GUESS_ANSWER:
                     int number = msg.arg1;
                     String guessAnswer = (String) msg.obj;
-                    showGuessAnswer(number, guessAnswer);
+                    showGuessAnswer(number, guessAnswer, check);
 
                     if (msg.arg2 == 0) {
 
@@ -740,7 +745,7 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     String[] scores = (String[]) msg.obj;
                     showScore(scores);
-
+                    check = 1;
 
                     LayoutInflater inflater4 = getLayoutInflater();
                     View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
@@ -789,7 +794,7 @@ public class GamePlay extends AppCompatActivity {
                     endGame (playerScoreMap);
                     break;
                 case S2P_WRONG_ANSWER:                                                                              //아예 맞추지 못했을 경우
-
+                    check = 0;
 
                     LayoutInflater inflater1 = getLayoutInflater();
                     View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
@@ -1052,13 +1057,18 @@ public class GamePlay extends AppCompatActivity {
     private Timer timer;
     private ChatClearCountDownTimer chatClearCountDownTimer;
 
-    public void showGuessAnswer(final int number, String mesg){
+    public void showGuessAnswer(final int number, String mesg, final int check){
 
         chatTextView[number].setText(mesg);
 
-        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.CORRET_ANSWER, 5000, 1000);
-        chatClearCountDownTimer.start();
-
+        if(check == 1){
+            chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.CORRET_ANSWER, 5000, 1000);
+            chatClearCountDownTimer.start();
+        }
+        else{
+            chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.INCORRECT_ANSWER, 5000, 1000);
+            chatClearCountDownTimer.start();
+        }
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -66,6 +67,10 @@ public class ReadyRoom extends AppCompatActivity {
 
         Log.d("dd", myID);
         roomText = (EditText)findViewById(R.id.roomText);
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(10);
+        roomText.setFilters(FilterArray);
+
         Button enterbutton = (Button)findViewById(R.id.enterbutton);
 
         enterbutton.setOnClickListener(new View.OnClickListener() {

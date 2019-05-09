@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/WordGuessApp-Android.iml" filepath="$PROJECT_DIR$/WordGuessApp-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/WordGuessApp-Android-git.iml" filepath="$PROJECT_DIR$/WordGuessApp-Android-git.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

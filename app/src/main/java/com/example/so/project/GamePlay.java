@@ -202,6 +202,7 @@ public class GamePlay extends AppCompatActivity {
         args[1] = chatText.getText().toString();
         sendMesg("P2S_SEND_GUESS_ANSWER", args);
         chatText.setText("");
+        chatText.setFocusable(false);
     }
 
     private void showAnswer () {
@@ -660,6 +661,7 @@ public class GamePlay extends AppCompatActivity {
                     showGuessAnswer(number, guessAnswer);
 
                     if (msg.arg2 == 0) {                                                //오답이라면
+                        chatText.setFocusable(false);
 
                         if(flag == 0) {                                                 //첫번째 시도 오답
                             LayoutInflater inflater3 = getLayoutInflater();
@@ -711,8 +713,8 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
                     setRound(roundNum);
-                    chatText.setFocusableInTouchMode(true);
-                    chatText.setFocusable(true);
+                    //chatText.setFocusableInTouchMode(true);
+                    //chatText.setFocusable(true);
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
@@ -872,8 +874,8 @@ public class GamePlay extends AppCompatActivity {
                 sendMesg("P2S_ANSWER_TIME_OVER");
                 if (stage == 1) {
                     isHostPlayer = false;
-                    chatText.setFocusable(true);
-                    chatText.setFocusableInTouchMode(true);
+                    //chatText.setFocusable(true);
+                    //chatText.setFocusableInTouchMode(true);
                     // test
                 }
             }
@@ -921,8 +923,8 @@ public class GamePlay extends AppCompatActivity {
         else{
             HintstartTimer(20);
 
-            chatText.setFocusable(true);
-            chatText.setFocusableInTouchMode(true);
+            //chatText.setFocusable(true);
+            //chatText.setFocusableInTouchMode(true);
             Toast.makeText(GamePlay.this, "Waitinf for Hint", Toast.LENGTH_SHORT).show();
         }
     }

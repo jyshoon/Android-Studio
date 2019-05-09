@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,8 +26,6 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import android.os.CountDownTimer;
-//////김태훈 branches
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class GamePlay extends AppCompatActivity {
 
     private int flag = 0;                                       //0이면 첫번째 시도 wrong ans 1이면 두번째 시도 wrong ans
@@ -56,7 +53,6 @@ public class GamePlay extends AppCompatActivity {
 
     private Socket sock;
     private String answer;
-    private int check;  //정답 체크
 
     private MessageHandler mesgHandler = null;
     private GamePlayMesgRecv recvThread = null;
@@ -206,14 +202,13 @@ public class GamePlay extends AppCompatActivity {
         args[1] = chatText.getText().toString();
         sendMesg("P2S_SEND_GUESS_ANSWER", args);
         chatText.setText("");
+        chatText.setFocusable(false);
     }
 
     private void showAnswer () {
-
         // 정답을 보여주고 3초간 시간 관리
 
         stage = 0;  // 0 단계 스테이지
-
 
         //isHintDialogOpen = true;
         showImg();
@@ -663,9 +658,10 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_RECV_GUESS_ANSWER:
                     int number = msg.arg1;
                     String guessAnswer = (String) msg.obj;
-                    showGuessAnswer(number, guessAnswer, check);
+                    showGuessAnswer(number, guessAnswer);
 
-                    if (msg.arg2 == 0) {
+                    if (msg.arg2 == 0) {                                                //오답이라면
+                        chatText.setFocusable(false);
 
                         if(flag == 0) {                                                 //첫번째 시도 오답
                             LayoutInflater inflater3 = getLayoutInflater();
@@ -691,12 +687,11 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     String[] scores = (String[]) msg.obj;
                     showScore(scores);
-                    check = 1;
 
                     LayoutInflater inflater4 = getLayoutInflater();
                     View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
                     TextView text4 = (TextView) layout4.findViewById(R.id.text);
-                    text4.setText(idTextView[pnumber].getText().toString() + "정답! 10점 획득  다음문제로 넘어갑니다");
+                    text4.setText("Player " + idTextView[pnumber].getText().toString() + " 정답! 10점 획득  다음문제로 넘어갑니다");
                     Toast toast4 = new Toast(getApplicationContext());
                     toast4.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     toast4.setDuration(Toast.LENGTH_LONG);
@@ -718,8 +713,8 @@ public class GamePlay extends AppCompatActivity {
                 case S2P_NEW_ROUND:
                     int roundNum = msg.arg1;
                     setRound(roundNum);
-                    chatText.setFocusableInTouchMode(true);
-                    chatText.setFocusable(true);
+                    //chatText.setFocusableInTouchMode(true);
+                    //chatText.setFocusable(true);
                     if (mCountDownTimer != null) {
                         mCountDownTimer.stop();
                         mCountDownTimer = null;
@@ -733,7 +728,6 @@ public class GamePlay extends AppCompatActivity {
                     endGame (playerScoreMap);
                     break;
                 case S2P_WRONG_ANSWER:                                                                              //아예 맞추지 못했을 경우
-                    check = 0;
 
                     LayoutInflater inflater1 = getLayoutInflater();
                     View layout1 = inflater1.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
@@ -880,8 +874,8 @@ public class GamePlay extends AppCompatActivity {
                 sendMesg("P2S_ANSWER_TIME_OVER");
                 if (stage == 1) {
                     isHostPlayer = false;
-                    chatText.setFocusable(true);
-                    chatText.setFocusableInTouchMode(true);
+                    //chatText.setFocusable(true);
+                    //chatText.setFocusableInTouchMode(true);
                     // test
                 }
             }
@@ -929,8 +923,8 @@ public class GamePlay extends AppCompatActivity {
         else{
             HintstartTimer(20);
 
-            chatText.setFocusable(true);
-            chatText.setFocusableInTouchMode(true);
+            //chatText.setFocusable(true);
+            //chatText.setFocusableInTouchMode(true);
             Toast.makeText(GamePlay.this, "Waitinf for Hint", Toast.LENGTH_SHORT).show();
         }
     }
@@ -945,18 +939,12 @@ public class GamePlay extends AppCompatActivity {
     private Timer timer;
     private ChatClearCountDownTimer chatClearCountDownTimer;
 
-    public void showGuessAnswer(final int number, String mesg, final int check){
+    public void showGuessAnswer(final int number, String mesg){
 
         chatTextView[number].setText(mesg);
 
-        if(check == 1){
-            chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.CORRET_ANSWER, 5000, 1000);
-            chatClearCountDownTimer.start();
-        }
-        else{
-            chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.INCORRECT_ANSWER, 5000, 1000);
-            chatClearCountDownTimer.start();
-        }
+        chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number], ChatClearCountDownTimer.CORRET_ANSWER, 5000, 1000);
+        chatClearCountDownTimer.start();
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

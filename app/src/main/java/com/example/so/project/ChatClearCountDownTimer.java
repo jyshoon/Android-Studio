@@ -18,10 +18,10 @@ public class ChatClearCountDownTimer extends CountDownTimer {
         chatView.setVisibility(View.VISIBLE);
 
         if(type == CORRET_ANSWER){
-            chatView.setBackgroundResource(R.drawable.bbb);
+            chatView.setBackgroundResource(R.drawable.correctanswer);
         }
         else if(type == INCORRECT_ANSWER){
-            chatView.setBackgroundResource(R.drawable.aaa);
+            chatView.setBackgroundResource(R.drawable.wronganswer);
         }
         else{
             chatView.setBackgroundResource(R.drawable.chatbubble);

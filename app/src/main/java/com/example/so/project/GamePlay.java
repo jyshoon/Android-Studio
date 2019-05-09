@@ -89,6 +89,21 @@ public class GamePlay extends AppCompatActivity {
         myImgResId = intent.getIntExtra("myImgId", 0);
         numPlayer = intent.getIntExtra("numPlayer", 4);
 
+        idTextView[0] = (TextView)findViewById(R.id.id0);
+        idTextView[1] = (TextView)findViewById(R.id.id1);
+        idTextView[2] = (TextView)findViewById(R.id.id2);
+        idTextView[3] = (TextView)findViewById(R.id.id3);
+
+        chatTextView[0] = (TextView)findViewById(R.id.chatTextView0);
+        chatTextView[1] = (TextView)findViewById(R.id.chatTextView1);
+        chatTextView[2] = (TextView)findViewById(R.id.chatTextView2);
+        chatTextView[3] = (TextView)findViewById(R.id.chatTextView3);
+
+        scoreView[0] = (TextView)findViewById(R.id.score0);
+        scoreView[1] = (TextView)findViewById(R.id.score1);
+        scoreView[2] = (TextView)findViewById(R.id.score2);
+        scoreView[3] = (TextView)findViewById(R.id.score3);
+
         idTextView[0].setText( intent.getExtras().getString("player0") );
         idTextView[1].setText( intent.getExtras().getString("player1") );
         idTextView[2].setText( intent.getExtras().getString("player2") );
@@ -137,21 +152,6 @@ public class GamePlay extends AppCompatActivity {
         hintTextViews[1][0].setText("");
         hintTextViews[1][1].setText("");
         hintTextViews[1][2].setText("");
-
-        idTextView[0] = (TextView)findViewById(R.id.id0);
-        idTextView[1] = (TextView)findViewById(R.id.id1);
-        idTextView[2] = (TextView)findViewById(R.id.id2);
-        idTextView[3] = (TextView)findViewById(R.id.id3);
-
-        chatTextView[0] = (TextView)findViewById(R.id.chatTextView0);
-        chatTextView[1] = (TextView)findViewById(R.id.chatTextView1);
-        chatTextView[2] = (TextView)findViewById(R.id.chatTextView2);
-        chatTextView[3] = (TextView)findViewById(R.id.chatTextView3);
-
-        scoreView[0] = (TextView)findViewById(R.id.score0);
-        scoreView[1] = (TextView)findViewById(R.id.score1);
-        scoreView[2] = (TextView)findViewById(R.id.score2);
-        scoreView[3] = (TextView)findViewById(R.id.score3);
 
         enterButton = (Button) findViewById(R.id.btnEnter);
         chatText = (EditText) findViewById(R.id.chatText);

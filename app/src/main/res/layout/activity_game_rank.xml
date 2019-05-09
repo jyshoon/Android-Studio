@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     >
     <View
-        android:background="#00ff00"
+        android:background="#7FAE90"
         android:layout_width="match_parent"
         android:layout_height="4px"
         />
@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="결과화면"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="36sp"
+        android:text="결과"
+        android:textColor="#7FAE90"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
     <View
-        android:background="#00ff00"
+        android:background="#7FAE90"
         android:layout_width="match_parent"
         android:layout_height="4px"
         />
@@ -35,13 +35,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="1">
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,7 +53,7 @@
                 android:id="@+id/rankTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.247"
+                android:layout_weight="0.34"
                 android:gravity="center"
                 android:text="등수"
                 android:textSize="36sp" />
@@ -62,7 +61,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/profileTextView"
@@ -76,13 +75,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/scoreTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.247"
+                android:layout_weight="0.34"
                 android:gravity="center"
                 android:text="획득점수"
                 android:textSize="36sp" />
@@ -90,13 +89,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
         </LinearLayout>
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -116,7 +115,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <ImageView
                 android:id="@+id/user1"
@@ -128,7 +127,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/id0"
@@ -142,7 +141,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/score0"
@@ -156,13 +155,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
         </LinearLayout>
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -182,7 +181,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <ImageView
                 android:id="@+id/user2"
@@ -194,7 +193,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/id1"
@@ -208,7 +207,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/score1"
@@ -222,13 +221,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
         </LinearLayout>
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -248,7 +247,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <ImageView
                 android:id="@+id/user3"
@@ -260,7 +259,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/id2"
@@ -274,7 +273,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/score2"
@@ -288,13 +287,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
         </LinearLayout>
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -314,7 +313,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <ImageView
                 android:id="@+id/user4"
@@ -326,7 +325,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/id3"
@@ -340,7 +339,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
 
             <TextView
                 android:id="@+id/score3"
@@ -354,13 +353,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4px"
-                android:background="#00ff00" />
+                android:background="#7FAE90" />
         </LinearLayout>
 
         <View
             android:layout_width="4px"
             android:layout_height="match_parent"
-            android:background="#00ff00" />
+            android:background="#7FAE90" />
     </LinearLayout>
 
     <LinearLayout

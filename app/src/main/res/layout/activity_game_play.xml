@@ -179,7 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                app:srcCompat="@drawable/neo" />
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score0"
@@ -224,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                app:srcCompat="@drawable/neo" />
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score1"
@@ -269,7 +269,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                app:srcCompat="@drawable/neo" />
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score2"
@@ -317,7 +317,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                app:srcCompat="@drawable/neo" />
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score3"

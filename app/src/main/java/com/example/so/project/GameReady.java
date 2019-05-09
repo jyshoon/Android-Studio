@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -79,13 +80,17 @@ public class GameReady extends AppCompatActivity {
 
 
         sendText = (EditText)findViewById(R.id.sendTextView);
-
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(20);
+        sendText.setFilters(FilterArray);
 
         btnGameReady = (Button)findViewById(R.id.btn_GameReady);
 
         mesgHandler = new MessageHandler();
 
         initNetwork();
+
+
     }
     public void onButtonGameReadyClicked(View v){
         btnGameReady.setText("준비완료");

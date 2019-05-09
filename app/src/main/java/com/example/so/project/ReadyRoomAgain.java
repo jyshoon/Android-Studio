@@ -1,20 +1,18 @@
 package com.example.so.project;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -23,7 +21,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ReadyRoom extends AppCompatActivity {
+public class ReadyRoomAgain extends AppCompatActivity {
 
     String myID;
     ListView roomListView;
@@ -41,7 +39,7 @@ public class ReadyRoom extends AppCompatActivity {
     private int port;
 
     private ConnectThread connectThread;
-    private ReadyRoomMesgRecv recvThread;
+    private ReadyRoomMesgRecvAgain recvThread;
     private MessageHandler mesgHandler;
 
     private String selectedRoomName = "";
@@ -63,7 +61,9 @@ public class ReadyRoom extends AppCompatActivity {
         addr = intent.getExtras().getString("ip").trim();
         port = Integer.parseInt(intent.getExtras().getString("port").trim());
 
-        Log.d("dd", myID);
+        Log.d("ddddddddddddddddddddddddddddddddddddd", myID);
+        Toast.makeText(this,  " dddddddddddddddddddddddddd", Toast.LENGTH_LONG).show();
+
         roomText = (EditText)findViewById(R.id.roomText);
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(10);
@@ -294,7 +294,7 @@ public class ReadyRoom extends AppCompatActivity {
 
         while(isConnected == false);
 
-        recvThread = new ReadyRoomMesgRecv(this);
+        recvThread = new ReadyRoomMesgRecvAgain(this);
         recvThread.start();
 
 

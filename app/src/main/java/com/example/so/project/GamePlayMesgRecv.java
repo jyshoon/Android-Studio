@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class GamePlayMesgRecv extends Thread{
     private GamePlay gamePlay;
+    private GameRank gameRank;
     private Socket sock;
     private BufferedReader br;
     private String [] parsedStr;
@@ -125,9 +126,7 @@ public class GamePlayMesgRecv extends Thread{
                 HashMap<String, String> playerScoreMap = new HashMap<String, String>();
                 for (int i = 1; i < parsedStr.length; i+=2)
                     playerScoreMap.put(parsedStr[i], parsedStr[i+1]);
-
                 sendmsg.obj = playerScoreMap;
-
                 gamePlay.getHandler().sendMessage(sendmsg);
             }
 
@@ -137,6 +136,14 @@ public class GamePlayMesgRecv extends Thread{
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
 
                 gamePlay.getHandler().sendMessage(sendmsg);
+            }
+            if(parsedStr[0].compareTo("S2P_EXIT_GAME") == 0){
+                Message sendmsg = gameRank.getHandler().obtainMessage();
+                sendmsg.what = gameRank.S2P_EXIT_GAME;
+                sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
+
+                gameRank.getHandler().sendMessage(sendmsg);
+                break;
             }
 
         }

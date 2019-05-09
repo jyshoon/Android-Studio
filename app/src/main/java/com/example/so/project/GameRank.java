@@ -1,5 +1,6 @@
 package com.example.so.project;
 
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.os.Handler;
 
+import java.net.Socket;
 import java.util.*;
 
 public class GameRank extends AppCompatActivity {
@@ -19,14 +22,26 @@ public class GameRank extends AppCompatActivity {
     private int[] scores = new int[4];
     private int[] ranking = new int[4];
     private String myID;
+    private int myNumber;
     private int myImgResId;
     private TextView[] rank = new TextView[4];
-    public static final int REQUEST_CODE_GAMEPLAY = 400;
+    public static final int REQUEST_CODE_READYROOMAGIAN = 404;
+
+
+    private MessageHandler mesgHandler = null;
+
+    private Socket sock;
+
+    private String addr = null;
+    private int port;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_rank);
+
+
+        sock = SocketSingleton.getSocket();
 
         idTextView[0] = (TextView)findViewById(R.id.id0);
         idTextView[1] = (TextView)findViewById(R.id.id1);
@@ -45,32 +60,94 @@ public class GameRank extends AppCompatActivity {
         rank[2] = (TextView)findViewById(R.id.rank2);
         rank[3] = (TextView)findViewById(R.id.rank3);
 
-
-
         initGameRank();
         Button restartButton = (Button)findViewById(R.id.restartButton);
         restartButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(),GamePlay.class);
-                //intent.putExtra("id",myID);
-                Intent intent = new Intent();
-                //intent.putExtra("result_msg", "결과가 넘어간다 얍!");
-                setResult(RESULT_OK, intent);
-                finish();
-
-               // finish();
+                sendMesg("P2S_EXIT_GAME", Integer.toString(myNumber));                              //스레드 종료 시키기 위한 메시지
             }
         });
 
     }
+    private void goToReadyRoom(){
+        Intent intent = new Intent(getApplicationContext(),ReadyRoomAgain.class);
+
+        intent.putExtra("id",myID);
+        intent.putExtra("ip", addr);
+        intent.putExtra("port",Integer.toString(port));
+
+        startActivityForResult(intent,REQUEST_CODE_READYROOMAGIAN);
+        finish();
+    }
+
+
+
+
+
+
+
+    public MessageHandler getHandler(){
+        return mesgHandler;
+    }
+
+
+    private void sendMesg (String type) {
+        GameMesgSender sendThread = new GameMesgSender(sock, type);
+        sendThread.start();
+    }
+
+    private void sendMesg(String type, String data){
+        GameMesgSender sendThread = new GameMesgSender(sock, type,data);
+        sendThread.start();
+    }
+
+    private void sendMesg (String type, String[] args) {
+        GameMesgSender sendThread = new GameMesgSender (sock, type, args);
+        sendThread.start ();
+    }
+
+
+    public static final int S2P_EXIT_GAME = 500;
+
+    class MessageHandler extends Handler {
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            String[] hintList;
+            int stage;
+
+            switch (msg.what) {
+                case S2P_EXIT_GAME:
+                    goToReadyRoom();
+                    break;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void initGameRank() {
         Intent intent = getIntent();
 
-        myID = intent.getExtras().getString("myID");
+
         myImgResId = intent.getIntExtra("myImgId", 0);
+        addr = intent.getExtras().getString("ip").trim();
+        port = Integer.parseInt(intent.getExtras().getString("port").trim());
+        myID = intent.getExtras().getString("myID");
+        myNumber = intent.getIntExtra("myNum", -1);
 
         numPlayer = intent.getIntExtra("numPlayer", 4);
 
@@ -95,7 +172,6 @@ public class GameRank extends AppCompatActivity {
             }
             else
                 characterView[i].setVisibility(View.INVISIBLE);
-
         }
         for(int i=0; i<4;i++){
             scores[i] = 0;
@@ -125,4 +201,6 @@ public class GameRank extends AppCompatActivity {
 
 
     }
+
 }
+

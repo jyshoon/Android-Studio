@@ -36,6 +36,8 @@ public class GameReady extends AppCompatActivity {
     private int myNumber;
     private Button btnGameReady;
     private GameReadyMesgRecv recvThread;
+    private String addr = null;
+    private int port;
 
     public Socket sock;
 
@@ -48,6 +50,8 @@ public class GameReady extends AppCompatActivity {
         setContentView(R.layout.activity_game_ready);
 
         Intent intent = getIntent();
+        addr = intent.getExtras().getString("ip").trim();
+        port = Integer.parseInt(intent.getExtras().getString("port").trim());
         myID = intent.getExtras().getString("id");
         myImgId = intent.getExtras().getInt("imgId");
 
@@ -184,6 +188,9 @@ public class GameReady extends AppCompatActivity {
 
     private void startGame(int numPlayer){
         Intent intent = new Intent(getApplicationContext(),GamePlay.class);
+
+        intent.putExtra("ip", addr);
+        intent.putExtra("port",Integer.toString(port));
 
         intent.putExtra("myNum", myNumber);
         intent.putExtra("myID",myID);

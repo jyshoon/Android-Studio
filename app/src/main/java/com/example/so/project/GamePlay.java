@@ -50,6 +50,8 @@ public class GamePlay extends AppCompatActivity {
     private int stage;
     private boolean isHostPlayer = false;
 
+    private String addr = null;
+    private int port;
 
     private Socket sock;
     private String answer;
@@ -85,6 +87,8 @@ public class GamePlay extends AppCompatActivity {
 
         // 이전 GrameReady로부터 Intent로 여러 데이터를 넘겨 받는다.
         Intent intent = getIntent();
+        addr = intent.getExtras().getString("ip").trim();
+        port = Integer.parseInt(intent.getExtras().getString("port").trim());
         myID = intent.getExtras().getString("myID");
         myNumber = intent.getIntExtra("myNum", -1);
         myImgResId = intent.getIntExtra("myImgId", 0);
@@ -542,7 +546,11 @@ public class GamePlay extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(),GameRank.class);
 
+
+        intent.putExtra("ip", addr);
+        intent.putExtra("port",Integer.toString(port));
         intent.putExtra("myID",myID);
+        intent.putExtra("myNum", myNumber);
         intent.putExtra ("myImgResId", myImgResId);
         intent.putExtra ("numPlayer", numPlayer);
 

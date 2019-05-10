@@ -110,7 +110,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="rank1Text"
                 android:textSize="36sp" />
 
             <View
@@ -136,7 +135,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="id"
                 android:textSize="36sp" />
 
             <View
@@ -150,7 +148,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="score1Text"
                 android:textSize="36sp" />
 
             <View
@@ -176,7 +173,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="rank2Text"
                 android:textSize="36sp" />
 
             <View
@@ -202,7 +198,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="id"
                 android:textSize="36sp" />
 
             <View
@@ -216,7 +211,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="score2Text"
                 android:textSize="36sp" />
 
             <View
@@ -242,7 +236,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="rank3Text"
                 android:textSize="36sp" />
 
             <View
@@ -268,7 +261,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="id"
                 android:textSize="36sp" />
 
             <View
@@ -282,7 +274,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="score3Text"
                 android:textSize="36sp" />
 
             <View
@@ -308,7 +299,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="rank4Text"
                 android:textSize="36sp" />
 
             <View
@@ -334,7 +324,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="id"
                 android:textSize="36sp" />
 
             <View
@@ -348,7 +337,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.45"
                 android:gravity="center"
-                android:text="score4text"
                 android:textSize="36sp" />
 
             <View

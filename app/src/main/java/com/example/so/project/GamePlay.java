@@ -26,6 +26,9 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Timer;
 import android.os.CountDownTimer;
+
+import static android.widget.Toast.LENGTH_LONG;
+
 public class GamePlay extends AppCompatActivity {
 
     private int flag = 0;                                       //0이면 첫번째 시도 wrong ans 1이면 두번째 시도 wrong ans
@@ -569,6 +572,8 @@ public class GamePlay extends AppCompatActivity {
         intent.putExtra("player3ResId", (Integer)characterView[3].getTag());
 
         String scores = "";
+
+        Toast.makeText(this,  " dddddddddddddddddddd1", LENGTH_LONG).show();
 
         startActivityForResult(intent,REQUEST_CODE_GAMERANK);
 

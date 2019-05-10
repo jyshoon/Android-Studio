@@ -61,8 +61,8 @@ public class ReadyRoomAgain extends AppCompatActivity {
         addr = intent.getExtras().getString("ip").trim();
         port = Integer.parseInt(intent.getExtras().getString("port").trim());
 
-        Log.d("ddddddddddddddddddddddddddddddddddddd", myID);
-        Toast.makeText(this,  " dddddddddddddddddddddddddd", Toast.LENGTH_LONG).show();
+        Log.d("dddddddd", myID);
+        Toast.makeText(this,  " dddddddddddddddddddd", Toast.LENGTH_LONG).show();
 
         roomText = (EditText)findViewById(R.id.roomText);
         InputFilter[] FilterArray = new InputFilter[1];

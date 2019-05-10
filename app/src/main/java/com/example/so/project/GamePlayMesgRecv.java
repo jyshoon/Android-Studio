@@ -109,6 +109,7 @@ public class GamePlayMesgRecv extends Thread{
                 sendmsg.what = GamePlay.S2P_WRONG_ANSWER;
 
                 gamePlay.getHandler().sendMessage(sendmsg);
+
             }
 
             if(parsedStr[0].compareTo("S2P_NEW_ROUND") == 0){
@@ -128,6 +129,7 @@ public class GamePlayMesgRecv extends Thread{
                     playerScoreMap.put(parsedStr[i], parsedStr[i+1]);
                 sendmsg.obj = playerScoreMap;
                 gamePlay.getHandler().sendMessage(sendmsg);
+                break;
             }
 
             if(parsedStr[0].compareTo("S2P_NEW_STAGE") == 0){
@@ -136,14 +138,6 @@ public class GamePlayMesgRecv extends Thread{
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
 
                 gamePlay.getHandler().sendMessage(sendmsg);
-            }
-            if(parsedStr[0].compareTo("S2P_EXIT_GAME") == 0){
-                Message sendmsg = gameRank.getHandler().obtainMessage();
-                sendmsg.what = gameRank.S2P_EXIT_GAME;
-                sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
-
-                gameRank.getHandler().sendMessage(sendmsg);
-                break;
             }
 
         }

@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Handler;
+import android.widget.Toast;
 
 import java.net.Socket;
 import java.util.*;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class GameRank extends AppCompatActivity {
 
@@ -27,8 +30,8 @@ public class GameRank extends AppCompatActivity {
     private TextView[] rank = new TextView[4];
     public static final int REQUEST_CODE_READYROOMAGIAN = 404;
 
-
-    private MessageHandler mesgHandler = null;
+    private GameRankMesgRecv recvThread;
+    private MessageHandler mesgHandler;
 
     private Socket sock;
 
@@ -39,7 +42,8 @@ public class GameRank extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_rank);
-
+        Toast.makeText(this,  " dddddddddddddddddddd1", LENGTH_LONG).show();
+        mesgHandler = new MessageHandler();
 
         sock = SocketSingleton.getSocket();
 
@@ -48,7 +52,7 @@ public class GameRank extends AppCompatActivity {
         idTextView[2] = (TextView)findViewById(R.id.id2);
         idTextView[3] = (TextView)findViewById(R.id.id3);
 
-
+        Button restartButton = (Button)findViewById(R.id.restartButton);
 
         scoreView[0] = (TextView)findViewById(R.id.score0);
         scoreView[1] = (TextView)findViewById(R.id.score1);
@@ -60,13 +64,20 @@ public class GameRank extends AppCompatActivity {
         rank[2] = (TextView)findViewById(R.id.rank2);
         rank[3] = (TextView)findViewById(R.id.rank3);
 
+        recvThread = new GameRankMesgRecv(this);
+        recvThread.start();
+
         initGameRank();
-        Button restartButton = (Button)findViewById(R.id.restartButton);
+
+
         restartButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+
+
                 sendMesg("P2S_EXIT_GAME", Integer.toString(myNumber));                              //스레드 종료 시키기 위한 메시지
+
             }
         });
 
@@ -77,9 +88,8 @@ public class GameRank extends AppCompatActivity {
         intent.putExtra("id",myID);
         intent.putExtra("ip", addr);
         intent.putExtra("port",Integer.toString(port));
-
-        startActivityForResult(intent,REQUEST_CODE_READYROOMAGIAN);
-        finish();
+        startActivity(intent);
+        //startActivityForResult(intent,REQUEST_CODE_READYROOMAGIAN);
     }
 
 
@@ -118,6 +128,7 @@ public class GameRank extends AppCompatActivity {
             int stage;
 
             switch (msg.what) {
+
                 case S2P_EXIT_GAME:
                     goToReadyRoom();
                     break;
@@ -198,8 +209,9 @@ public class GameRank extends AppCompatActivity {
         for(int i = 0; i < numPlayer; i++){
             rank[i].setText(ranking[i]+"");                                                                           //랭킹 보여줌
         }
-
-
+    }
+    public Socket getSocket(){
+        return sock;
     }
 
 }

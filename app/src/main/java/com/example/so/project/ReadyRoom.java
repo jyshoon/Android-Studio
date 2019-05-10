@@ -287,8 +287,6 @@ public class ReadyRoom extends AppCompatActivity {
     }
 
     private void initNetwork(){
-
-
         connectThread = new ConnectThread(addr);
         connectThread.start();
 
@@ -296,9 +294,6 @@ public class ReadyRoom extends AppCompatActivity {
 
         recvThread = new ReadyRoomMesgRecv(this);
         recvThread.start();
-
-
-
     }
 
     @Override

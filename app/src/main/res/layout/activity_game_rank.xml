@@ -1,371 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".GamePlay"
+    android:weightSum="6.7"
     >
-    <View
-        android:background="#00ff00"
-        android:layout_width="match_parent"
-        android:layout_height="4px"
-        />
 
-    <TextView
-        android:id="@+id/textView3"
+    //상단바
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="결과화면"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
-    <View
-        android:background="#00ff00"
-        android:layout_width="match_parent"
-        android:layout_height="4px"
-        />
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_weight="2"
+        android:weightSum="3"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/roomname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    android:text="방이름"
+                    android:textSize="60sp" />
+
+                <TextView
+                    android:id="@+id/hintTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="남은 시간"
+                    android:textSize="30dp"
+                    android:layout_gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/RoundView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ROUND1"
+                    android:textSize="30dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/Hint_00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 1"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/Hint_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 2"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/Hint_02"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 3"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/Hint_03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 4"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/Hint_04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 5"
+                    android:textSize="20dp" />
+
+                <EditText
+                    android:id="@+id/Hint_05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_weight="1"
+                    android:hint="  Hint 6"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/rankTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.247"
-                android:gravity="center"
-                android:text="등수"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+            android:orientation="vertical"
+            android:weightSum="6"
+            android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/profileTextView"
+                android:id="@+id/chatTextView0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="프로필"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-
-            <TextView
-                android:id="@+id/scoreTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.247"
-                android:gravity="center"
-                android:text="획득점수"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/rank0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-
-            <ImageView
-                android:id="@+id/user1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/c1" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:gravity="center"
+                android:background="@drawable/chatbubble"
+                android:visibility="invisible"
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/id0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="아이디"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
+            <ImageView
+                android:id="@+id/user1"
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="점수"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
         </LinearLayout>
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="6"
+            android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/rank1"
+                android:id="@+id/chatTextView1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-
-            <ImageView
-                android:id="@+id/user2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/c1" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:gravity="center"
+                android:background="@drawable/chatbubble"
+                android:visibility="invisible"
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/id1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="아이디"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
+            <ImageView
+                android:id="@+id/user2"
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="점수"
+                android:textSize="30dp"
+                android:gravity="center"/>
         </LinearLayout>
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="6"
+            android:layout_margin="10dp">
 
             <TextView
-                android:id="@+id/rank2"
+                android:id="@+id/chatTextView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-
-            <ImageView
-                android:id="@+id/user3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/c1" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:gravity="center"
+                android:background="@drawable/chatbubble"
+                android:visibility="invisible"
+                android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/id2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="아이디"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
+
+            <ImageView
+                android:id="@+id/user3"
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="점수"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
         </LinearLayout>
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:focusable="true"
+            android:weightSum="6"
+            android:focusableInTouchMode="true">
 
             <TextView
-                android:id="@+id/rank3"
+                android:id="@+id/chatTextView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
-
-            <ImageView
-                android:id="@+id/user4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/c1" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:gravity="center"
+                android:background="@drawable/chatbubble"
+                android:visibility="invisible"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/id3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:text="아이디"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:gravity="center"/>
 
-            <View
+
+            <ImageView
+                android:id="@+id/user4"
                 android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                app:srcCompat="@drawable/c1" />
 
             <TextView
                 android:id="@+id/score3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.45"
-                android:gravity="center"
-                android:textSize="36sp" />
+                android:layout_height="0dp"
+                android:text="점수"
+                android:textSize="30dp"
+                android:layout_weight="1"
+                android:gravity="center"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4px"
-                android:background="#00ff00" />
         </LinearLayout>
-
-        <View
-            android:layout_width="4px"
-            android:layout_height="match_parent"
-            android:background="#00ff00" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="6">
+        android:layout_weight="0.7"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:weightSum="5">
+
+        <EditText
+            android:id="@+id/chatText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:hint="정답을 입력하시오"
+            android:textSize="20dp"
+            />
 
         <Button
-            android:id="@+id/restartButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:onClick="onButton1Clicked"
-            android:text="돌아가기" />
+            android:id="@+id/btnEnter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onEnterButtonClicked"
+            android:text="Enter"
+            android:textSize="20dp"
+            android:background="@drawable/rounded_corner_background"
+            android:layout_margin="8dp"/>
 
     </LinearLayout>
-
-</LinearLayout>
+</TableLayout>

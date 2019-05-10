@@ -61,8 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginTop="50dp">
+            android:layout_weight="1">
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,27 +69,32 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="이름 입력"/>
+                android:hint="아이디 입력"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="이름 입력"/>
+                android:hint="패스워드 입력"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="이름 입력"/>
+                android:hint="패스워드 확인"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="이름 입력"/>
+                android:hint="학교 입력"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="학년"/>
+                    android:hint="학년" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:text="방이름"
-            android:textSize="15dp"/>
+            android:textSize="60dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:layout_weight="0.3"
                     android:gravity="center_horizontal"/>
 
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
 
@@ -106,7 +106,7 @@
                     android:gravity="center_horizontal"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="20dp" />
+                    android:textSize="30dp" />
 
                 <ImageView
                     android:id="@+id/user2character"
@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
@@ -149,7 +149,7 @@
                     android:gravity="center_horizontal"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="20dp"/>
+                    android:textSize="30dp"/>
 
                 <ImageView
                     android:id="@+id/user3character"
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
@@ -192,7 +192,7 @@
                     android:gravity="center_horizontal"
                     android:hint="아이디"
                     android:text="id"
-                    android:textSize="20dp" />
+                    android:textSize="30dp" />
 
                 <ImageView
                     android:id="@+id/user4character"
@@ -206,7 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="준비"
-                    android:textSize="20dp"
+                    android:textSize="30dp"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"/>
             </LinearLayout>

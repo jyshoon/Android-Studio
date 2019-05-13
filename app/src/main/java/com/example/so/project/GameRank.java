@@ -171,9 +171,9 @@ public class GameRank extends AppCompatActivity {
             else
                 characterView[i].setVisibility(View.INVISIBLE);
         }
-        /*for(int i=0; i<4;i++){
+        for(int i=0; i<4;i++){
             scores[i] = 0;
-        }*/
+        }
         for(int i = 0; i < numPlayer;i++){                                                                      //플레이어 점수들
             scoreView[i].setText( intent.getExtras().getString("score"+i));
         }

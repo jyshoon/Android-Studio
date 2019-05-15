@@ -1,6 +1,7 @@
 package com.example.so.project;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
@@ -46,6 +47,9 @@ public class GameReady extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_ready);
 

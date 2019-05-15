@@ -22,13 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ReadyRoom" />
-        <activity android:name=".GameReady" />
-        <activity android:name=".GamePlay" />
-        <activity android:name=".GameRank" />
-        <activity android:name=".ReadyRoomAgain"/>
+        <activity android:name=".LoginActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".RegisterActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".ReadyRoom"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".GameReady"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".GamePlay"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".GameRank"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".ReadyRoomAgain"
+            android:configChanges="screenSize|orientation"/>
+
+
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.example.so.project;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -78,6 +79,8 @@ public class GamePlay extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play);
 
@@ -573,7 +576,6 @@ public class GamePlay extends AppCompatActivity {
 
         String scores = "";
 
-        Toast.makeText(this,  " dddddddddddddddddddd1", LENGTH_LONG).show();
 
         startActivityForResult(intent,REQUEST_CODE_GAMERANK);
 

@@ -167,6 +167,14 @@ public class ReadyRoom extends AppCompatActivity {
 //랜덤으로 레디룸 이미지(캐릭터) 띄우기 여기까지
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        recvThread = new ReadyRoomMesgRecv(this);
+        recvThread.start();
+    }
+
     private void recvRoomList (String mesg) {
         String[] parsedStr;
         parsedStr = mesg.split("####");
@@ -198,7 +206,10 @@ public class ReadyRoom extends AppCompatActivity {
     private void createRoom () {
 
         Intent intent = new Intent(getApplicationContext(),GameReady.class);
+        intent.putExtra("ip", addr);
+        intent.putExtra("port",Integer.toString(port));
         intent.putExtra("id",myID);
+        intent.putExtra("imgId", imgId );
         startActivity(intent);
     }
 

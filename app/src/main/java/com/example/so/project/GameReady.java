@@ -35,7 +35,7 @@ public class GameReady extends AppCompatActivity {
     private String myID;
     private int myImgId;
     private int myNumber;
-    private Button btnGameReady;
+    private Button btnGameReady,btnExit;
     private GameReadyMesgRecv recvThread;
     private String addr = null;
     private int port;
@@ -94,6 +94,8 @@ public class GameReady extends AppCompatActivity {
 
         btnGameReady = (Button)findViewById(R.id.btn_GameReady);
 
+        btnExit = (Button)findViewById(R.id.exitButton);
+
         mesgHandler = new MessageHandler();
 
         initNetwork();
@@ -103,6 +105,11 @@ public class GameReady extends AppCompatActivity {
     public void onButtonGameReadyClicked(View v){
         btnGameReady.setText("준비완료");
         sendMesg("P2S_READY_GAME", myNumber+"");
+    }
+
+    public void onButtonExitClicked(View v){
+        //퇴장 확인에 대한 토스트 메시지 (yes or no)
+        sendMesg("P2S_EXIT_ROOM", myNumber+"");
     }
 
     public void onEnterClicked(View v){
@@ -162,8 +169,8 @@ public class GameReady extends AppCompatActivity {
     public static final int S2P_START_GAME = 101;
     public static final int S2P_SEND_GAME_READY_CHAT = 102;
     public static final int S2P_PLAYER_GAME_READY = 103;
+    public static final int S2P_EXIT_ROOM = 104;
     public static final int REQUEST_CODE_GAMEPLAY = 404;
-
 
 
     class MessageHandler extends Handler {
@@ -182,6 +189,9 @@ public class GameReady extends AppCompatActivity {
                     break;
                 case S2P_PLAYER_GAME_READY:
                     setReady(msg.arg1);
+                    break;
+                case S2P_EXIT_ROOM:
+                    exitRoom(msg.arg1);
                     break;
             }
         }
@@ -235,6 +245,13 @@ public class GameReady extends AppCompatActivity {
         chatClearCountDownTimer = new ChatClearCountDownTimer(chatTextView[number],ChatClearCountDownTimer.CHAT, 2000, 1000);
         chatClearCountDownTimer.start();
 
+    }
+
+    public void exitRoom(int result){
+
+        if (result == 1) {
+            finish();
+        }
     }
 
     public void setReady(int number){

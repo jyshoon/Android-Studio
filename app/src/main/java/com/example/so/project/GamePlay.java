@@ -529,9 +529,13 @@ public class GamePlay extends AppCompatActivity {
 
     //private void showScore(int number, int score){
     private void showScore(String[] scores){
-        for (int i = 0; i < numPlayer; i++)
-            scoreView[i].setText(scores[i]);
+        for (int i = 0; i < numPlayer; i++) {
 
+            int index = Integer.parseInt(scores[2*i]);
+
+            scoreView[index].setText(scores[2*i+1]);
+
+        }
         //hintView 초기화
         // @TODO : 현재는 맞췄을 경우 인데 틀렸을 경우에도 아래의 코드 넣어줘야함 // 태훈
         hintTextViews[0][0].setText("");
@@ -704,6 +708,7 @@ public class GamePlay extends AppCompatActivity {
                     int pnumber = msg.arg1;
                     String[] scores = (String[]) msg.obj;
                     showScore(scores);
+
 
                     LayoutInflater inflater4 = getLayoutInflater();
                     View layout4 = inflater4.inflate(R.layout.toast_layout, (ViewGroup) findViewById(R.id.toast_layout_root));

@@ -61,7 +61,7 @@ public class GameReadyMesgRecv extends Thread{
                 sendmsg.what = GameReady.S2P_EXIT_ROOM;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
                 gameReady.getHandler().sendMessage(sendmsg);
-                if (sendmsg.arg1 == 1)
+                if (sendmsg.arg1 == gameReady.getNumber())
                     break;
             }
 

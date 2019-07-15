@@ -167,34 +167,41 @@ public class GameRank extends AppCompatActivity {
             if ((Integer)characterView[i].getTag() != 0) {
                 characterView[i].setVisibility(View.VISIBLE);
                 characterView[i].setImageResource( (Integer)characterView[i].getTag() );
+                scoreView[i].setText( intent.getExtras().getString("score"+i));
+                scores[i] = Integer.parseInt(scoreView[i].getText().toString());
             }
-            else
+            else {
                 characterView[i].setVisibility(View.INVISIBLE);
+                scores[i] = 0;
+            }
         }
-        for(int i=0; i<4;i++){
+        /*for(int i=0; i<4;i++){
             scores[i] = 0;
         }
-        for(int i = 0; i < numPlayer;i++){                                                                      //플레이어 점수들
+
+        for(int i = 0; i < 4;i++){                                                                      //플레이어 점수들
             scoreView[i].setText( intent.getExtras().getString("score"+i));
         }
-        for(int i = 0; i < numPlayer;i++){
+        for(int i = 0; i < 4;i++){
             scores[i] = Integer.parseInt(scoreView[i].getText().toString());
-        }
+        }*/
 
-        for(int i = 0; i < numPlayer; i++){                                                                         //랭킹 초기화
+        for(int i = 0; i < 4; i++){                                                                         //랭킹 초기화
             ranking[i] = 1;
         }
 
-        for (int i = 0; i < numPlayer; i++){                                                                         //랭킹 정함
-            for(int j = 0; j < numPlayer; j++){
+        for (int i = 0; i < 4; i++){                                                                         //랭킹 정함
+            for(int j = 0; j < 4; j++){
                 if( scores[i] < scores[j] ){
                     ranking[i] = ranking [i]+1;
                 }
             }
         }
 
-        for(int i = 0; i < numPlayer; i++){
-            rank[i].setText(ranking[i]+"");                                                                           //랭킹 보여줌
+        for(int i = 0; i < 4; i++){
+            //랭킹 보여줌
+            if((Integer)characterView[i].getTag() != 0)
+                rank[i].setText(ranking[i]+"");
         }
     }
     public Socket getSocket(){

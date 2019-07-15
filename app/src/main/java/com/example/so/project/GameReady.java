@@ -102,6 +102,11 @@ public class GameReady extends AppCompatActivity {
 
 
     }
+
+    public int getNumber(){
+        return myNumber;
+    }
+
     public void onButtonGameReadyClicked(View v){
         btnGameReady.setText("준비완료");
         sendMesg("P2S_READY_GAME", myNumber+"");
@@ -247,10 +252,23 @@ public class GameReady extends AppCompatActivity {
 
     }
 
-    public void exitRoom(int result){
+    public void exitRoom(int numExitRoom){
 
-        if (result == 1) {
+        if (numExitRoom == myNumber) {
             finish();
+        }
+        else{
+            idTextView[numExitRoom].setText("");
+            characterView[numExitRoom].setVisibility(View.INVISIBLE);
+            characterView[numExitRoom].setTag(0);
+
+            for(int i=0; i<4; i++){
+
+                if( readyTextView[i].getText().toString().compareTo("준비완료") == 0)
+                    readyTextView[i].setText("준비");
+
+            }
+
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.so.project;
 
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -38,6 +39,7 @@ public class GameReadyMesgRecv extends Thread{
             }
 
             parsedStr = msg.split("####");
+            Log.d("KHKim", msg);
 
             if(parsedStr[0].compareTo("S2P_CLIENT_NUMBER") == 0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();/////////////////////////////////////////////////
@@ -66,9 +68,14 @@ public class GameReadyMesgRecv extends Thread{
                 Message sendmsg = gameReady.getHandler().obtainMessage();
                 sendmsg.what = GameReady.S2P_EXIT_ROOM;
                 sendmsg.arg1 = Integer.parseInt(parsedStr[1]);
-                gameReady.getHandler().sendMessage(sendmsg);
+                boolean myExit = false;
                 if (sendmsg.arg1 == gameReady.getNumber())
+                    myExit = true;
+                gameReady.getHandler().sendMessage(sendmsg);
+                if (myExit) {
+                    Log.d("KHKim", gameReady.getNumber() + "'s GameReady Thread exits.");
                     break;
+                }
             }
 
             if(parsedStr[0].compareTo("S2P_START_GAME")==0){

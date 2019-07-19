@@ -1,6 +1,7 @@
 package com.example.so.project;
 
 import android.os.Message;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,6 +37,8 @@ public class GamePlayMesgRecv extends Thread{
             }
 
             parsedStr = msg.split("####");
+
+            Log.d("KHKim", msg);
 
             if(parsedStr[0].compareTo("S2P_RECV_ANSWER") == 0){
                 Message sendmsg = gamePlay.getHandler().obtainMessage();

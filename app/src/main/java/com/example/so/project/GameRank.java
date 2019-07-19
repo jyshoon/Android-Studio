@@ -130,12 +130,19 @@ public class GameRank extends AppCompatActivity {
             switch (msg.what) {
 
                 case S2P_EXIT_GAME:
-                    goToReadyRoom();
+                    exitGame ();
+                    //goToReadyRoom();
                     break;
             }
         }
     }
 
+
+    private void exitGame () {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
     private void initGameRank() {
         Intent intent = getIntent();
@@ -206,6 +213,14 @@ public class GameRank extends AppCompatActivity {
     }
     public Socket getSocket(){
         return sock;
+    }
+
+
+    public void onBackPressed () {
+        //Toast.makeText(this, "One more back for exit.", Toast.LENGTH_SHORT).show ();
+//        Intent intent = new Intent();
+//        setResult(RESULT_OK, intent);
+//        finish();
     }
 
 }

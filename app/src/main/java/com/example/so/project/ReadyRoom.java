@@ -196,6 +196,7 @@ public class ReadyRoom extends AppCompatActivity {
         intent.putExtra("port",Integer.toString(port));
         intent.putExtra("id",myID);
         intent.putExtra("imgId", imgId );
+        intent.putExtra("roomName", selectedRoomName);
         startActivity(intent);
     }
 
@@ -210,6 +211,7 @@ public class ReadyRoom extends AppCompatActivity {
         intent.putExtra("port",Integer.toString(port));
         intent.putExtra("id",myID);
         intent.putExtra("imgId", imgId );
+        intent.putExtra("roomName", selectedRoomName);
         startActivity(intent);
     }
 

@@ -30,6 +30,7 @@ public class GameReady extends AppCompatActivity {
     private TextView[] chatTextView = new TextView[4];
     private TextView[] readyTextView = new TextView[4];
     private ImageView[] characterView = new ImageView[4];
+    private TextView roomNameView;
 
     private EditText sendText;
     private String myID;
@@ -59,8 +60,10 @@ public class GameReady extends AppCompatActivity {
         myID = intent.getExtras().getString("id");
         myImgId = intent.getExtras().getInt("imgId");
 
+        String roomName = intent.getExtras().getString("roomName");
 
-
+        roomNameView = (TextView)findViewById(R.id.roomname);
+        roomNameView.setText(roomName);
 
         idTextView[0] = (TextView)findViewById(R.id.id0);
         idTextView[1] = (TextView)findViewById(R.id.id1);
@@ -272,6 +275,8 @@ public class GameReady extends AppCompatActivity {
                     readyTextView[i].setText("준비");
 
             }
+
+            btnGameReady.setText("준비");
 
         }
     }

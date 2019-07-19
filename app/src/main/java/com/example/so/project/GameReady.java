@@ -175,6 +175,7 @@ public class GameReady extends AppCompatActivity {
     public static final int S2P_SEND_GAME_READY_CHAT = 102;
     public static final int S2P_PLAYER_GAME_READY = 103;
     public static final int S2P_EXIT_ROOM = 104;
+    public static final int S2P_EXIT_ROOM_FAIL = 105;
     public static final int REQUEST_CODE_GAMEPLAY = 404;
 
 
@@ -197,6 +198,9 @@ public class GameReady extends AppCompatActivity {
                     break;
                 case S2P_EXIT_ROOM:
                     exitRoom(msg.arg1);
+                    break;
+                case S2P_EXIT_ROOM_FAIL:
+                    exitRoomFail();
                     break;
             }
         }
@@ -270,6 +274,10 @@ public class GameReady extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void exitRoomFail () {
+        Toast.makeText(this, "방장은 마지막에 나가야 합니다. ", Toast.LENGTH_SHORT).show ();
     }
 
     public void setReady(int number){

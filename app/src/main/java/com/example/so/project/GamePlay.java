@@ -134,6 +134,7 @@ public class GamePlay extends AppCompatActivity {
             if ((Integer)characterView[i].getTag() != 0) {
                 characterView[i].setVisibility(View.VISIBLE);
                 characterView[i].setImageResource( (Integer)characterView[i].getTag() );
+                scoreView[i].setText("0");
             }
             else
                 characterView[i].setVisibility(View.INVISIBLE);

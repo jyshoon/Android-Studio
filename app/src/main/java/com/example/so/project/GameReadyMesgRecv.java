@@ -56,6 +56,12 @@ public class GameReadyMesgRecv extends Thread{
                 gameReady.getHandler().sendMessage(sendmsg);
             }
 
+            if(parsedStr[0].compareTo("S2P_EXIT_ROOM_FAIL")==0){
+                Message sendmsg = gameReady.getHandler().obtainMessage();
+                sendmsg.what = GameReady.S2P_EXIT_ROOM_FAIL;
+                gameReady.getHandler().sendMessage(sendmsg);
+            }
+
             if(parsedStr[0].compareTo("S2P_EXIT_ROOM")==0){
                 Message sendmsg = gameReady.getHandler().obtainMessage();
                 sendmsg.what = GameReady.S2P_EXIT_ROOM;

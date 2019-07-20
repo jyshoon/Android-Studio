@@ -1,11 +1,8 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.os.CountDownTimer;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 public class HintCountDownTimer extends CountDownTimer {

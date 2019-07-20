@@ -1,7 +1,6 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +9,13 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.education.so.project.R;
 
 import java.io.IOException;
 import java.net.Socket;

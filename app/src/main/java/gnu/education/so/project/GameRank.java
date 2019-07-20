@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +11,9 @@ import android.widget.TextView;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.education.so.project.R;
+
 import java.net.Socket;
-import java.util.*;
 
 import static android.widget.Toast.LENGTH_LONG;
 

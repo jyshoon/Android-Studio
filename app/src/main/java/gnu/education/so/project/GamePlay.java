@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +9,6 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -24,11 +23,10 @@ import android.widget.Toast;
 
 import java.net.Socket;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Timer;
 import android.os.CountDownTimer;
 
-import static android.widget.Toast.LENGTH_LONG;
+import com.education.so.project.R;
 
 public class GamePlay extends AppCompatActivity {
 
@@ -39,6 +37,8 @@ public class GamePlay extends AppCompatActivity {
     private TextView[] chatTextView = new TextView[4];
     private TextView[] scoreView = new TextView[4];
     private ImageView[] characterView = new ImageView[4];
+
+    private TextView roomNameView;
 
     private Button enterButton;
     private EditText chatText;
@@ -99,6 +99,11 @@ public class GamePlay extends AppCompatActivity {
         myNumber = intent.getIntExtra("myNum", -1);
         myImgResId = intent.getIntExtra("myImgId", 0);
         numPlayer = intent.getIntExtra("numPlayer", 4);
+
+        String roomName = intent.getExtras().getString("roomName");
+
+        roomNameView = (TextView)findViewById(R.id.roomname);
+        roomNameView.setText(roomName);
 
         idTextView[0] = (TextView)findViewById(R.id.id0);
         idTextView[1] = (TextView)findViewById(R.id.id1);

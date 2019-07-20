@@ -1,10 +1,10 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.so.project.R;
+import com.education.so.project.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

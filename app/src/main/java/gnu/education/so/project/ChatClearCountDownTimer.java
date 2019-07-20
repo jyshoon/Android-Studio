@@ -1,8 +1,10 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
+
+import com.education.so.project.R;
 
 public class ChatClearCountDownTimer extends CountDownTimer {
     public static final int CORRET_ANSWER = 1;

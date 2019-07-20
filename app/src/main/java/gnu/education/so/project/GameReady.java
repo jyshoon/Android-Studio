@@ -1,14 +1,12 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import com.education.so.project.R;
+
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameReady extends AppCompatActivity {
     TextView textView3; //채팅내용변수
@@ -40,6 +37,7 @@ public class GameReady extends AppCompatActivity {
     private GameReadyMesgRecv recvThread;
     private String addr = null;
     private int port;
+    private String roomName;
 
     public Socket sock;
 
@@ -60,7 +58,7 @@ public class GameReady extends AppCompatActivity {
         myID = intent.getExtras().getString("id");
         myImgId = intent.getExtras().getInt("imgId");
 
-        String roomName = intent.getExtras().getString("roomName");
+        roomName = intent.getExtras().getString("roomName");
 
         roomNameView = (TextView)findViewById(R.id.roomname);
         roomNameView.setText(roomName);
@@ -222,6 +220,8 @@ public class GameReady extends AppCompatActivity {
         intent.putExtra("myID",myID);
         intent.putExtra ("myResId", myImgId);
         intent.putExtra ("numPlayer", numPlayer);
+        intent.putExtra("roomName", roomName);
+
 
 
         intent.putExtra("player0",idTextView[0].getText().toString());

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.so.project">
+    package="com.education.so.project">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -15,26 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TitleActivity">
+        <activity android:name="gnu.education.so.project.TitleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name="gnu.education.so.project.LoginActivity"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".RegisterActivity"
+        <activity android:name="gnu.education.so.project.RegisterActivity"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".ReadyRoom"
+        <activity android:name="gnu.education.so.project.ReadyRoom"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".GameReady"
+        <activity android:name="gnu.education.so.project.GameReady"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".GamePlay"
+        <activity android:name="gnu.education.so.project.GamePlay"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".GameRank"
+        <activity android:name="gnu.education.so.project.GameRank"
             android:configChanges="screenSize|orientation"/>
-        <activity android:name=".ReadyRoomAgain"
+        <activity android:name="gnu.education.so.project.ReadyRoomAgain"
             android:configChanges="screenSize|orientation"/>
 
 

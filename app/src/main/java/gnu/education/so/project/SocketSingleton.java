@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import java.net.Socket;
 

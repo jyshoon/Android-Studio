@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 public class RoomListItemData {
     public RoomListItemData (String _roomName, String _num, String _status) {

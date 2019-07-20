@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

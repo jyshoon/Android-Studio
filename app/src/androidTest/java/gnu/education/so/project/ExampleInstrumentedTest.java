@@ -1,4 +1,4 @@
-package com.example.so.project;
+package gnu.education.so.project;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
